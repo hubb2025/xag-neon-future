@@ -26,7 +26,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/30">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-border/30">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -49,7 +49,7 @@ const Header = () => {
                     onMouseLeave={() => setIsProductsOpen(false)}
                   >
                     <button
-                      className="text-muted-foreground hover:text-primary transition-colors duration-300 font-tech uppercase tracking-wide text-sm flex items-center"
+                      className="text-green-600 hover:text-green-500 transition-colors duration-300 font-tech uppercase tracking-wide text-sm flex items-center"
                     >
                       {item.name}
                       <ChevronDown className="ml-1 h-4 w-4" />
@@ -64,7 +64,7 @@ const Header = () => {
                         <a
                           key={subItem.name}
                           href={subItem.href}
-                          className="block px-4 py-3 text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors duration-200 font-tech text-sm first:rounded-t-lg last:rounded-b-lg"
+                          className="block px-4 py-3 text-green-600 hover:text-green-500 hover:bg-primary/10 transition-colors duration-200 font-tech text-sm first:rounded-t-lg last:rounded-b-lg"
                         >
                           {subItem.name}
                         </a>
@@ -74,7 +74,7 @@ const Header = () => {
                 ) : (
                   <a
                     href={item.href}
-                    className="text-muted-foreground hover:text-primary transition-colors duration-300 font-tech uppercase tracking-wide text-sm"
+                    className="text-green-600 hover:text-green-500 transition-colors duration-300 font-tech uppercase tracking-wide text-sm"
                   >
                     {item.name}
                   </a>
@@ -93,7 +93,7 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors"
+            className="md:hidden p-2 text-green-600 hover:bg-green-100 rounded-lg transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -109,7 +109,7 @@ const Header = () => {
                   {item.hasDropdown ? (
                     <>
                       <button
-                        className="text-muted-foreground hover:text-primary transition-colors duration-300 font-tech uppercase tracking-wide text-sm py-2 flex items-center justify-between w-full"
+                        className="text-green-600 hover:text-green-500 transition-colors duration-300 font-tech uppercase tracking-wide text-sm py-2 flex items-center justify-between w-full"
                         onClick={() => setIsProductsOpen(!isProductsOpen)}
                       >
                         {item.name}
@@ -121,7 +121,7 @@ const Header = () => {
                             <a
                               key={subItem.name}
                               href={subItem.href}
-                              className="block text-muted-foreground hover:text-primary transition-colors duration-300 font-tech text-sm py-1"
+                              className="block text-green-600 hover:text-green-500 transition-colors duration-300 font-tech text-sm py-1"
                               onClick={() => {
                                 setIsMenuOpen(false);
                                 setIsProductsOpen(false);
@@ -136,7 +136,7 @@ const Header = () => {
                   ) : (
                     <a
                       href={item.href}
-                      className="text-muted-foreground hover:text-primary transition-colors duration-300 font-tech uppercase tracking-wide text-sm py-2"
+                      className="text-green-600 hover:text-green-500 transition-colors duration-300 font-tech uppercase tracking-wide text-sm py-2"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {item.name}
