@@ -55,7 +55,7 @@ const Footer = () => {
               <a href="#" className="p-3 bg-primary/10 hover:bg-primary/20 rounded-lg border border-primary/30 transition-colors group">
                 <Facebook className="h-5 w-5 text-primary group-hover:text-neon-green" />
               </a>
-              <a href="#" className="p-3 bg-primary/10 hover:bg-primary/20 rounded-lg border border-primary/30 transition-colors group">
+              <a href="https://www.instagram.com/agricamp.drones?igsh=MWdxZzU0MTdxM2xudg%3D%3D" className="p-3 bg-primary/10 hover:bg-primary/20 rounded-lg border border-primary/30 transition-colors group">
                 <Instagram className="h-5 w-5 text-primary group-hover:text-neon-green" />
               </a>
               <a href="#" className="p-3 bg-primary/10 hover:bg-primary/20 rounded-lg border border-primary/30 transition-colors group">
@@ -172,7 +172,7 @@ const Footer = () => {
         <div className="py-6 border-t border-border/30">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-muted-foreground font-tech text-sm">
-              © {currentYear} DRONES Xag. Todos os direitos reservados.
+              © {currentYear} DroneXag. Todos os direitos reservados.
             </p>
             <div className="flex space-x-6 text-sm">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors font-tech">
