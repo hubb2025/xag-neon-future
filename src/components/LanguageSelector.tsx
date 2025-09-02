@@ -7,9 +7,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useToast } from "@/hooks/use-toast";
 
 const LanguageSelector = () => {
   const [currentLanguage, setCurrentLanguage] = useState("PT-BR");
+  const { toast } = useToast();
 
   const languages = [
     { code: "PT-BR", name: "Português", flag: "🇧🇷" },
@@ -20,6 +22,16 @@ const LanguageSelector = () => {
   ];
 
   const currentLang = languages.find(lang => lang.code === currentLanguage);
+
+  const handleLanguageChange = (languageCode: string) => {
+    setCurrentLanguage(languageCode);
+    const selectedLang = languages.find(lang => lang.code === languageCode);
+    
+    toast({
+      title: "Idioma alterado!",
+      description: `Idioma alterado para ${selectedLang?.name} ${selectedLang?.flag}`,
+    });
+  };
 
   return (
     <DropdownMenu>
@@ -34,7 +46,7 @@ const LanguageSelector = () => {
         {languages.map((language) => (
           <DropdownMenuItem
             key={language.code}
-            onClick={() => setCurrentLanguage(language.code)}
+            onClick={() => handleLanguageChange(language.code)}
             className="hover:bg-primary/10 focus:bg-primary/10 cursor-pointer"
           >
             <span className="mr-3">{language.flag}</span>
