@@ -59,7 +59,7 @@ const ContactForm = () => {
             <span className="text-neon-green">ENTRE EM</span>{" "}
             <span className="text-neon-red">CONTATO</span>
           </h2>
-          <p className="text-xl text-muted-foreground font-tech max-w-3xl mx-auto">
+          <p className="text-xl text-white/90 font-tech max-w-3xl mx-auto">
             Pronto para decolar? Fale conosco e descubra o drone perfeito para você
           </p>
         </div>
@@ -79,8 +79,8 @@ const ContactForm = () => {
                     <Phone className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <p className="font-tech font-semibold text-gray-800">Telefone</p>
-                    <p className="text-gray-600">(11) 9999-8888</p>
+                    <p className="font-tech font-semibold text-white">Telefone</p>
+                    <p className="text-white/80">(11) 9999-8888</p>
                   </div>
                 </div>
 
@@ -89,8 +89,8 @@ const ContactForm = () => {
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <p className="font-tech font-semibold text-gray-800">Email</p>
-                    <p className="text-gray-600">contato@dronesxag.com</p>
+                    <p className="font-tech font-semibold text-white">Email</p>
+                    <p className="text-white/80">contato@dronesxag.com</p>
                   </div>
                 </div>
 
@@ -99,8 +99,8 @@ const ContactForm = () => {
                     <MapPin className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <p className="font-tech font-semibold text-gray-800">Endereço</p>
-                    <p className="text-gray-600">
+                    <p className="font-tech font-semibold text-white">Endereço</p>
+                    <p className="text-white/80">
                       Av. Paulista, 1000<br />
                       São Paulo - SP, 01310-100
                     </p>
@@ -118,15 +118,15 @@ const ContactForm = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex justify-between">
-                  <span className="font-tech text-gray-600">Segunda - Sexta</span>
-                  <span className="text-gray-800">9:00 - 18:00</span>
+                  <span className="font-tech text-white/70">Segunda - Sexta</span>
+                  <span className="text-white">9:00 - 18:00</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-tech text-gray-600">Sábado</span>
-                  <span className="text-gray-800">9:00 - 14:00</span>
+                  <span className="font-tech text-white/70">Sábado</span>
+                  <span className="text-white">9:00 - 14:00</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-tech text-gray-600">Domingo</span>
+                  <span className="font-tech text-white/70">Domingo</span>
                   <span className="text-secondary">Fechado</span>
                 </div>
               </CardContent>
@@ -144,7 +144,7 @@ const ContactForm = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-tech font-semibold text-gray-800 mb-2">
+                    <label className="block text-sm font-tech font-semibold text-white mb-2">
                       Nome *
                     </label>
                     <Input
@@ -157,7 +157,7 @@ const ContactForm = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-tech font-semibold text-gray-800 mb-2">
+                    <label className="block text-sm font-tech font-semibold text-white mb-2">
                       Telefone
                     </label>
                     <Input
@@ -171,7 +171,7 @@ const ContactForm = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-tech font-semibold text-gray-800 mb-2">
+                  <label className="block text-sm font-tech font-semibold text-white mb-2">
                     Email *
                   </label>
                   <Input
@@ -186,7 +186,7 @@ const ContactForm = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-tech font-semibold text-gray-800 mb-2">
+                  <label className="block text-sm font-tech font-semibold text-white mb-2">
                     Mensagem *
                   </label>
                   <Textarea

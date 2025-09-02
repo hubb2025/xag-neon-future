@@ -80,9 +80,9 @@ const DroneProductSection = ({
               <h2 className="text-4xl md:text-6xl font-cyber font-black leading-tight">
                 <span className="text-neon-green">{title}</span>
                 <br />
-                <span className="text-foreground">{subtitle}</span>
+                <span className={isReversed ? "text-foreground" : "text-white"}>{subtitle}</span>
               </h2>
-              <p className="text-xl text-muted-foreground font-tech leading-relaxed max-w-xl">
+              <p className={`text-xl font-tech leading-relaxed max-w-xl ${isReversed ? "text-muted-foreground" : "text-white/90"}`}>
                 {description}
               </p>
             </div>
@@ -92,7 +92,7 @@ const DroneProductSection = ({
               {features.map((feature, index) => (
                 <div key={index} className="flex items-center space-x-3">
                   <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span className="text-foreground font-tech">{feature}</span>
+                  <span className={`font-tech ${isReversed ? "text-foreground" : "text-white"}`}>{feature}</span>
                 </div>
               ))}
             </div>
@@ -103,7 +103,7 @@ const DroneProductSection = ({
                 <div className="flex items-center space-x-3">
                   <Clock className="h-5 w-5 text-primary" />
                   <div>
-                    <div className="text-sm font-tech text-muted-foreground">Autonomia</div>
+                    <div className={`text-sm font-tech ${isReversed ? "text-muted-foreground" : "text-white/70"}`}>Autonomia</div>
                     <div className="font-cyber font-bold text-primary">{specs.flightTime}</div>
                   </div>
                 </div>
@@ -113,7 +113,7 @@ const DroneProductSection = ({
                 <div className="flex items-center space-x-3">
                   <Zap className="h-5 w-5 text-primary" />
                   <div>
-                    <div className="text-sm font-tech text-muted-foreground">Alcance</div>
+                    <div className={`text-sm font-tech ${isReversed ? "text-muted-foreground" : "text-white/70"}`}>Alcance</div>
                     <div className="font-cyber font-bold text-primary">{specs.range}</div>
                   </div>
                 </div>
@@ -123,7 +123,7 @@ const DroneProductSection = ({
                 <div className="flex items-center space-x-3">
                   <Shield className="h-5 w-5 text-primary" />
                   <div>
-                    <div className="text-sm font-tech text-muted-foreground">Carga</div>
+                    <div className={`text-sm font-tech ${isReversed ? "text-muted-foreground" : "text-white/70"}`}>Carga</div>
                     <div className="font-cyber font-bold text-primary">{specs.payload}</div>
                   </div>
                 </div>
@@ -135,7 +135,7 @@ const DroneProductSection = ({
                     <div className="w-2 h-2 bg-primary rounded-full"></div>
                   </div>
                   <div>
-                    <div className="text-sm font-tech text-muted-foreground">Câmera</div>
+                    <div className={`text-sm font-tech ${isReversed ? "text-muted-foreground" : "text-white/70"}`}>Câmera</div>
                     <div className="font-cyber font-bold text-primary">{specs.camera}</div>
                   </div>
                 </div>
@@ -165,7 +165,7 @@ const DroneProductSection = ({
                 </Button>
               </div>
               
-              <p className="text-sm font-tech text-muted-foreground">
+              <p className={`text-sm font-tech ${isReversed ? "text-muted-foreground" : "text-white/80"}`}>
                 💳 Parcelamento em até 24x sem juros | 🚚 Frete grátis para todo Brasil
               </p>
             </div>
