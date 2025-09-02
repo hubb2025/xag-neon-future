@@ -174,15 +174,18 @@ const Footer = () => {
             <p className="text-muted-foreground font-tech text-sm">
               © {currentYear} DroneXag. Todos os direitos reservados.
             </p>
-            <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors font-tech">
+            <div className="flex flex-wrap gap-6 text-sm">
+              <a href="/politica-privacidade" className="text-muted-foreground hover:text-primary transition-colors font-tech">
                 Política de Privacidade
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors font-tech">
+              <a href="/termos-uso" className="text-muted-foreground hover:text-primary transition-colors font-tech">
                 Termos de Uso
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors font-tech">
+              <a href="/politica-cookies" className="text-muted-foreground hover:text-primary transition-colors font-tech">
                 Cookies
+              </a>
+              <a href="/contrato-servicos" className="text-muted-foreground hover:text-primary transition-colors font-tech">
+                Contrato
               </a>
             </div>
           </div>
