@@ -103,7 +103,7 @@ const DroneProductSection = ({
                 <div className="flex items-center space-x-3">
                   <Clock className="h-5 w-5 text-primary" />
                   <div>
-                    <div className={`text-sm font-tech ${isReversed ? 'text-gray-500' : 'text-gray-600'}`}>Autonomia</div>
+                    <div className="text-sm font-tech text-muted-foreground">Autonomia</div>
                     <div className="font-cyber font-bold text-primary">{specs.flightTime}</div>
                   </div>
                 </div>
@@ -113,7 +113,7 @@ const DroneProductSection = ({
                 <div className="flex items-center space-x-3">
                   <Zap className="h-5 w-5 text-primary" />
                   <div>
-                    <div className={`text-sm font-tech ${isReversed ? 'text-gray-500' : 'text-gray-600'}`}>Alcance</div>
+                    <div className="text-sm font-tech text-muted-foreground">Alcance</div>
                     <div className="font-cyber font-bold text-primary">{specs.range}</div>
                   </div>
                 </div>
@@ -123,7 +123,7 @@ const DroneProductSection = ({
                 <div className="flex items-center space-x-3">
                   <Shield className="h-5 w-5 text-primary" />
                   <div>
-                    <div className={`text-sm font-tech ${isReversed ? 'text-gray-500' : 'text-gray-600'}`}>Carga</div>
+                    <div className="text-sm font-tech text-muted-foreground">Carga</div>
                     <div className="font-cyber font-bold text-primary">{specs.payload}</div>
                   </div>
                 </div>
@@ -135,7 +135,7 @@ const DroneProductSection = ({
                     <div className="w-2 h-2 bg-primary rounded-full"></div>
                   </div>
                   <div>
-                    <div className={`text-sm font-tech ${isReversed ? 'text-gray-500' : 'text-gray-600'}`}>Câmera</div>
+                    <div className="text-sm font-tech text-muted-foreground">Câmera</div>
                     <div className="font-cyber font-bold text-primary">{specs.camera}</div>
                   </div>
                 </div>
@@ -149,7 +149,7 @@ const DroneProductSection = ({
                   {price}
                 </div>
                 {originalPrice && (
-                  <div className={`text-xl line-through ${isReversed ? 'text-gray-500' : 'text-gray-600'}`}>
+                  <div className="text-xl line-through text-muted-foreground">
                     {originalPrice}
                   </div>
                 )}
@@ -165,7 +165,7 @@ const DroneProductSection = ({
                 </Button>
               </div>
               
-              <p className={`text-sm font-tech ${isReversed ? 'text-gray-500' : 'text-gray-600'}`}>
+              <p className="text-sm font-tech text-muted-foreground">
                 💳 Parcelamento em até 24x sem juros | 🚚 Frete grátis para todo Brasil
               </p>
             </div>

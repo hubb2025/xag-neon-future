@@ -343,17 +343,36 @@ All colors MUST be HSL.
 
   /* Section Backgrounds */
   .section-dark {
-    background: linear-gradient(135deg, hsl(var(--cyber-dark)), #000000);
+    background: linear-gradient(135deg, hsl(var(--cyber-dark)), hsl(220 13% 4%));
+    color: hsl(var(--foreground));
   }
 
   .section-light {
-    background: linear-gradient(135deg, #ffffff, #f0f9ff);
-    color: #1e293b;
+    background: linear-gradient(135deg, hsl(0 0% 100%), hsl(210 40% 98%));
+    color: hsl(222 84% 4.9%);
   }
 
   .section-green {
-    background: linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--primary) / 0.05));
-    color: #1e293b;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.08), hsl(var(--primary) / 0.03));
+    color: hsl(222 84% 4.9%);
+  }
+
+  .section-dark .text-neon-green {
+    color: hsl(var(--primary));
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.8);
+  }
+
+  .section-dark .text-neon-red {
+    color: hsl(var(--secondary));
+    text-shadow: 0 0 10px hsl(var(--secondary) / 0.8);
+  }
+
+  .section-dark .text-foreground {
+    color: hsl(var(--foreground));
+  }
+
+  .section-dark .text-muted-foreground {
+    color: hsl(var(--muted-foreground));
   }
 
   .section-light .text-neon-green {
@@ -367,11 +386,11 @@ All colors MUST be HSL.
   }
 
   .section-light .text-foreground {
-    color: #1e293b;
+    color: hsl(222 84% 4.9%);
   }
 
   .section-light .text-muted-foreground {
-    color: #64748b;
+    color: hsl(215 16% 47%);
   }
 
   .section-green .text-neon-green {
@@ -385,11 +404,11 @@ All colors MUST be HSL.
   }
 
   .section-green .text-foreground {
-    color: #1e293b;
+    color: hsl(222 84% 4.9%);
   }
 
   .section-green .text-muted-foreground {
-    color: #475569;
+    color: hsl(215 20% 65%);
   }
 
   /* Glow Effects */
