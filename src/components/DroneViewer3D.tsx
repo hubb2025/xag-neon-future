@@ -56,19 +56,19 @@ const DroneModel = () => {
       {/* Hélices */}
       <mesh position={[0.5, 0.1, 0.5]} rotation={[Math.PI / 2, 0, 0]}>
         <cylinderGeometry args={[0.15, 0.15, 0.01]} />
-        <meshStandardMaterial color="hsl(var(--primary))" transparent opacity={0.8} />
+        <meshStandardMaterial color="#00ff88" transparent opacity={0.8} />
       </mesh>
       <mesh position={[-0.5, 0.1, 0.5]} rotation={[Math.PI / 2, 0, 0]}>
         <cylinderGeometry args={[0.15, 0.15, 0.01]} />
-        <meshStandardMaterial color="hsl(var(--primary))" transparent opacity={0.8} />
+        <meshStandardMaterial color="#00ff88" transparent opacity={0.8} />
       </mesh>
       <mesh position={[0.5, 0.1, -0.5]} rotation={[Math.PI / 2, 0, 0]}>
         <cylinderGeometry args={[0.15, 0.15, 0.01]} />
-        <meshStandardMaterial color="hsl(var(--primary))" transparent opacity={0.8} />
+        <meshStandardMaterial color="#00ff88" transparent opacity={0.8} />
       </mesh>
       <mesh position={[-0.5, 0.1, -0.5]} rotation={[Math.PI / 2, 0, 0]}>
         <cylinderGeometry args={[0.15, 0.15, 0.01]} />
-        <meshStandardMaterial color="hsl(var(--primary))" transparent opacity={0.8} />
+        <meshStandardMaterial color="#00ff88" transparent opacity={0.8} />
       </mesh>
 
       {/* Câmera */}
@@ -80,11 +80,11 @@ const DroneModel = () => {
       {/* LEDs */}
       <mesh position={[0.1, 0.02, 0.3]}>
         <sphereGeometry args={[0.02]} />
-        <meshStandardMaterial color="hsl(var(--primary))" emissive="hsl(var(--primary))" emissiveIntensity={0.5} />
+        <meshStandardMaterial color="#00ff88" emissive="#00ff88" emissiveIntensity={0.5} />
       </mesh>
       <mesh position={[-0.1, 0.02, 0.3]}>
         <sphereGeometry args={[0.02]} />
-        <meshStandardMaterial color="hsl(var(--primary))" emissive="hsl(var(--primary))" emissiveIntensity={0.5} />
+        <meshStandardMaterial color="#00ff88" emissive="#00ff88" emissiveIntensity={0.5} />
       </mesh>
     </group>
   );
@@ -132,7 +132,7 @@ export const DroneViewer3D = () => {
                   shadow-mapSize-width={2048}
                   shadow-mapSize-height={2048}
                 />
-                <pointLight position={[-2, 2, 2]} intensity={0.5} color="hsl(var(--primary))" />
+                <pointLight position={[-2, 2, 2]} intensity={0.5} color="#00ff88" />
                 
                 {/* Ambiente */}
                 <Environment preset="studio" />
