@@ -1,13 +1,23 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import LanguageSelector from "./LanguageSelector";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
 
   const navItems = [
-    { name: "Drones", href: "#drones" },
+    { 
+      name: "Produtos", 
+      href: "#", 
+      hasDropdown: true,
+      subItems: [
+        { name: "XAG Phantom Pro", href: "/drones/xag-phantom-pro" },
+        { name: "XAG Stealth Elite", href: "/drones/xag-stealth-elite" },
+        { name: "XAG Cargo Master", href: "/drones/xag-cargo-master" }
+      ]
+    },
     { name: "Sobre", href: "#sobre" },
     { name: "FAQ", href: "#faq" },
     { name: "Contato", href: "#contato" },
@@ -29,13 +39,45 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-muted-foreground hover:text-primary transition-colors duration-300 font-tech uppercase tracking-wide text-sm"
-              >
-                {item.name}
-              </a>
+              <div key={item.name} className="relative group">
+                {item.hasDropdown ? (
+                  <>
+                    <button
+                      className="text-muted-foreground hover:text-primary transition-colors duration-300 font-tech uppercase tracking-wide text-sm flex items-center"
+                      onMouseEnter={() => setIsProductsOpen(true)}
+                      onMouseLeave={() => setIsProductsOpen(false)}
+                    >
+                      {item.name}
+                      <ChevronDown className="ml-1 h-4 w-4" />
+                    </button>
+                    {/* Dropdown Menu */}
+                    <div 
+                      className={`absolute top-full left-0 mt-2 w-56 bg-background/95 backdrop-blur-md border border-border/30 rounded-lg shadow-lg transition-all duration-200 ${
+                        isProductsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
+                      }`}
+                      onMouseEnter={() => setIsProductsOpen(true)}
+                      onMouseLeave={() => setIsProductsOpen(false)}
+                    >
+                      {item.subItems?.map((subItem) => (
+                        <a
+                          key={subItem.name}
+                          href={subItem.href}
+                          className="block px-4 py-3 text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors duration-200 font-tech text-sm first:rounded-t-lg last:rounded-b-lg"
+                        >
+                          {subItem.name}
+                        </a>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <a
+                    href={item.href}
+                    className="text-muted-foreground hover:text-primary transition-colors duration-300 font-tech uppercase tracking-wide text-sm"
+                  >
+                    {item.name}
+                  </a>
+                )}
+              </div>
             ))}
           </nav>
 
@@ -61,14 +103,44 @@ const Header = () => {
           <div className="md:hidden mt-4 py-4 border-t border-border/30">
             <nav className="flex flex-col space-y-4">
               {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-muted-foreground hover:text-primary transition-colors duration-300 font-tech uppercase tracking-wide text-sm py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
+                <div key={item.name}>
+                  {item.hasDropdown ? (
+                    <>
+                      <button
+                        className="text-muted-foreground hover:text-primary transition-colors duration-300 font-tech uppercase tracking-wide text-sm py-2 flex items-center justify-between w-full"
+                        onClick={() => setIsProductsOpen(!isProductsOpen)}
+                      >
+                        {item.name}
+                        <ChevronDown className={`h-4 w-4 transition-transform ${isProductsOpen ? 'rotate-180' : ''}`} />
+                      </button>
+                      {isProductsOpen && (
+                        <div className="ml-4 mt-2 space-y-2">
+                          {item.subItems?.map((subItem) => (
+                            <a
+                              key={subItem.name}
+                              href={subItem.href}
+                              className="block text-muted-foreground hover:text-primary transition-colors duration-300 font-tech text-sm py-1"
+                              onClick={() => {
+                                setIsMenuOpen(false);
+                                setIsProductsOpen(false);
+                              }}
+                            >
+                              {subItem.name}
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <a
+                      href={item.href}
+                      className="text-muted-foreground hover:text-primary transition-colors duration-300 font-tech uppercase tracking-wide text-sm py-2"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </a>
+                  )}
+                </div>
               ))}
               <div className="mt-4 space-y-4">
                 <LanguageSelector />

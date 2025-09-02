@@ -26,42 +26,42 @@ interface DroneInfoCirclesProps {
 const DroneInfoCircles = ({ droneImage, droneAlt, specs, className }: DroneInfoCirclesProps) => {
   const infoCircles: DroneInfoCircle[] = [
     {
-      icon: <Clock className="h-6 w-6" />,
+      icon: <Clock className="h-3 w-3 md:h-4 md:w-4" />,
       value: specs.flightTime,
       label: "Autonomia",
       position: "top-4 left-8 md:top-8 md:left-16",
       delay: "animation-delay-100"
     },
     {
-      icon: <Radar className="h-6 w-6" />,
+      icon: <Radar className="h-3 w-3 md:h-4 md:w-4" />,
       value: specs.range,
       label: "Alcance",
       position: "top-4 right-8 md:top-8 md:right-16",
       delay: "animation-delay-200"
     },
     {
-      icon: <Droplets className="h-6 w-6" />,
+      icon: <Droplets className="h-3 w-3 md:h-4 md:w-4" />,
       value: specs.capacity,
       label: "Capacidade",
       position: "top-1/2 -translate-y-1/2 right-0 md:-right-8",
       delay: "animation-delay-300"
     },
     {
-      icon: <Weight className="h-6 w-6" />,
+      icon: <Weight className="h-3 w-3 md:h-4 md:w-4" />,
       value: specs.weight,
       label: "Peso",
       position: "bottom-4 left-8 md:bottom-8 md:left-16",
       delay: "animation-delay-400"
     },
     {
-      icon: <Zap className="h-6 w-6" />,
+      icon: <Zap className="h-3 w-3 md:h-4 md:w-4" />,
       value: specs.coverage,
       label: "Cobertura",
       position: "bottom-4 right-8 md:bottom-8 md:right-16",
       delay: "animation-delay-500"
     },
     {
-      icon: <Shield className="h-6 w-6" />,
+      icon: <Shield className="h-3 w-3 md:h-4 md:w-4" />,
       value: specs.payload,
       label: "Carga Útil",
       position: "top-1/2 -translate-y-1/2 left-0 md:-left-8",
@@ -101,9 +101,12 @@ const DroneInfoCircles = ({ droneImage, droneAlt, specs, className }: DroneInfoC
             {/* Circle Container */}
             <div className="relative">
               {/* Main Circle */}
-              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-background/80 backdrop-blur-sm border-2 border-primary/30 flex flex-col items-center justify-center group-hover/circle:border-primary group-hover/circle:bg-primary/10 transition-all duration-300 shadow-lg">
-                <div className="text-primary group-hover/circle:text-neon-green transition-colors duration-300">
+              <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-background/90 backdrop-blur-sm border-2 border-primary/30 flex flex-col items-center justify-center group-hover/circle:border-primary group-hover/circle:bg-primary/10 transition-all duration-300 shadow-lg">
+                <div className="text-primary group-hover/circle:text-neon-green transition-colors duration-300 mb-0.5">
                   {circle.icon}
+                </div>
+                <div className="text-[8px] md:text-[10px] font-tech font-bold text-center leading-tight text-primary group-hover/circle:text-neon-green transition-colors duration-300">
+                  {circle.value}
                 </div>
               </div>
               
@@ -114,18 +117,15 @@ const DroneInfoCircles = ({ droneImage, droneAlt, specs, className }: DroneInfoC
               <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 blur-md opacity-0 group-hover/circle:opacity-100 transition-opacity duration-300"></div>
               
               {/* Info Label */}
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 min-w-max opacity-0 group-hover/circle:opacity-100 transition-opacity duration-300">
-                <div className="bg-background/90 backdrop-blur-sm border border-primary/30 rounded-lg px-3 py-2 text-center">
-                  <div className="font-cyber font-bold text-primary text-sm md:text-base">
-                    {circle.value}
-                  </div>
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 min-w-max opacity-0 group-hover/circle:opacity-100 transition-opacity duration-300">
+                <div className="bg-background/90 backdrop-blur-sm border border-primary/30 rounded-lg px-2 py-1 text-center">
                   <div className="font-tech text-xs text-muted-foreground">
                     {circle.label}
                   </div>
                 </div>
                 
                 {/* Tooltip Arrow */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-background/90 border-l border-t border-primary/30 rotate-45"></div>
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-background/90 border-l border-t border-primary/30 rotate-45"></div>
               </div>
               
               {/* Connection Line to Center */}

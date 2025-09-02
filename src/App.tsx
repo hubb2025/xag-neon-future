@@ -9,6 +9,9 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import CookiePolicy from "./pages/CookiePolicy";
 import ServiceContract from "./pages/ServiceContract";
+import XagPhantomPro from "./pages/XagPhantomPro";
+import XagStealthElite from "./pages/XagStealthElite";
+import XagCargoMaster from "./pages/XagCargoMaster";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +23,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/drones/xag-phantom-pro" element={<XagPhantomPro />} />
+          <Route path="/drones/xag-stealth-elite" element={<XagStealthElite />} />
+          <Route path="/drones/xag-cargo-master" element={<XagCargoMaster />} />
           <Route path="/politica-privacidade" element={<PrivacyPolicy />} />
           <Route path="/termos-uso" element={<TermsOfService />} />
           <Route path="/politica-cookies" element={<CookiePolicy />} />
