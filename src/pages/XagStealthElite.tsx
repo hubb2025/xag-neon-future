@@ -8,6 +8,14 @@ import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Star, ArrowRight, Phone, Mail, MessageCircle } from "lucide-react";
 
 const XagStealthElite = () => {
+  const whatsappMessage = encodeURIComponent(
+    `Olá! Tenho interesse no drone XAG STEALTH ELITE EDITION. Gostaria de mais informações sobre disponibilidade e condições.`
+  );
+
+  const handleWhatsAppClick = () => {
+    window.open(`https://wa.me/5511999999999?text=${whatsappMessage}`, '_blank');
+  };
+
   const specs = {
     flightTime: "75min",
     range: "25km", 
@@ -69,17 +77,11 @@ const XagStealthElite = () => {
                 </p>
               </div>
               
-              <div className="flex items-center space-x-4">
-                <div className="text-5xl font-cyber font-black text-primary">
-                  R$ 22.499
-                </div>
-                <div className="text-2xl line-through text-muted-foreground">
-                  R$ 26.999
-                </div>
-              </div>
-              
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="btn-cyber text-lg px-8 py-4 group">
+                <Button 
+                  className="btn-cyber text-lg px-8 py-4 group"
+                  onClick={handleWhatsAppClick}
+                >
                   Comprar Agora
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>

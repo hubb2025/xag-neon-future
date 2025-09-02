@@ -16,8 +16,6 @@ const Index = () => {
       title: "XAG PHANTOM",
       subtitle: "PRO SERIES",
       description: "O drone mais avançado para operações comerciais e de vigilância. Equipado com tecnologia de ponta e sistema de navegação autônoma.",
-      price: "R$ 15.999",
-      originalPrice: "R$ 19.999",
       image: "/lovable-uploads/80bab24b-15fb-47fe-ade1-dda75319c061.png",
       badge: "MAIS VENDIDO",
       features: [
@@ -42,8 +40,6 @@ const Index = () => {
       title: "XAG STEALTH",
       subtitle: "ELITE EDITION",
       description: "Versão otimizada para missões táticas e operações noturnas. Design furtivo com tecnologia de camuflagem avançada.",
-      price: "R$ 22.499",
-      originalPrice: "R$ 26.999",
       image: "/lovable-uploads/a716d702-40cb-40bb-a842-a73475fd5abe.png",
       badge: "LANÇAMENTO",
       features: [
@@ -68,7 +64,6 @@ const Index = () => {
       title: "XAG CARGO",
       subtitle: "MASTER CLASS",
       description: "Especialmente desenvolvido para transporte de cargas pesadas e entregas comerciais em larga escala.",
-      price: "R$ 18.999",
       image: "/lovable-uploads/e004268f-665d-4e77-a00e-241c47a47044.png",
       badge: "PROFISSIONAL",
       features: [

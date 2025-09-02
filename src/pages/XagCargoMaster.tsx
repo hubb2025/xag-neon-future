@@ -8,6 +8,14 @@ import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Star, ArrowRight, Phone, Mail, MessageCircle } from "lucide-react";
 
 const XagCargoMaster = () => {
+  const whatsappMessage = encodeURIComponent(
+    `Olá! Tenho interesse no drone XAG CARGO MASTER CLASS. Gostaria de mais informações sobre disponibilidade e condições.`
+  );
+
+  const handleWhatsAppClick = () => {
+    window.open(`https://wa.me/5511999999999?text=${whatsappMessage}`, '_blank');
+  };
+
   const specs = {
     flightTime: "55min",
     range: "20km", 
@@ -69,14 +77,11 @@ const XagCargoMaster = () => {
                 </p>
               </div>
               
-              <div className="flex items-center space-x-4">
-                <div className="text-5xl font-cyber font-black text-primary">
-                  R$ 18.999
-                </div>
-              </div>
-              
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="btn-cyber text-lg px-8 py-4 group">
+                <Button 
+                  className="btn-cyber text-lg px-8 py-4 group"
+                  onClick={handleWhatsAppClick}
+                >
                   Comprar Agora
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>

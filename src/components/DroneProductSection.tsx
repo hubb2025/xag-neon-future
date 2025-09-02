@@ -9,8 +9,6 @@ interface DroneProductSectionProps {
   title: string;
   subtitle: string;
   description: string;
-  price: string;
-  originalPrice?: string;
   features: string[];
   image: string;
   isReversed?: boolean;
@@ -27,17 +25,27 @@ interface DroneProductSectionProps {
 }
 
 const DroneProductSection = ({
+  id,
   title,
   subtitle,
   description,
-  price,
-  originalPrice,
   features,
   image,
   isReversed = false,
   badge,
   specs
 }: DroneProductSectionProps) => {
+  const whatsappMessage = encodeURIComponent(
+    `Olá! Tenho interesse no drone ${title} ${subtitle}. Gostaria de mais informações sobre disponibilidade e condições.`
+  );
+
+  const handleWhatsAppClick = () => {
+    window.open(`https://wa.me/5511999999999?text=${whatsappMessage}`, '_blank');
+  };
+
+  const handleSpecsClick = () => {
+    window.location.href = `/drones/${id}`;
+  };
   // Alternar entre verde (0,2,4...) e branco (1,3,5...)
   const sectionClass = isReversed ? 'section-light' : 'section-green';
   
@@ -146,25 +154,21 @@ const DroneProductSection = ({
               </Card>
             </div>
 
-            {/* Price and CTA */}
+            {/* CTA Buttons */}
             <div className="space-y-6">
-              <div className="flex items-center space-x-4">
-                <div className="text-4xl font-cyber font-black text-primary">
-                  {price}
-                </div>
-                {originalPrice && (
-                  <div className="text-xl line-through text-muted-foreground">
-                    {originalPrice}
-                  </div>
-                )}
-              </div>
-              
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="btn-cyber text-lg px-8 py-4 group">
+                <Button 
+                  className="btn-cyber text-lg px-8 py-4 group"
+                  onClick={handleWhatsAppClick}
+                >
                   Comprar Agora
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
-                <Button variant="outline" className="btn-cyber-red text-lg px-8 py-4">
+                <Button 
+                  variant="outline" 
+                  className="btn-cyber-red text-lg px-8 py-4"
+                  onClick={handleSpecsClick}
+                >
                   Ver Especificações
                 </Button>
               </div>
