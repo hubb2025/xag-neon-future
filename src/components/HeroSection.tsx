@@ -64,7 +64,7 @@ const HeroSection = () => {
                   <span className="text-foreground">dinheiro no bolso
                   </span>
                   <br />
-                  <span className="text-neon-red glow-red">do Agricultor</span>
+                  <span className="text-foreground glow-green">do Agricultor</span>
                 </h1>
 
 
