@@ -93,7 +93,6 @@ const Index = () => {
             />
           ))}
         </section>
-        <DroneCarousel />
         <AboutSection />
         <FAQ />
         <ContactForm />
