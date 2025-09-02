@@ -43,7 +43,7 @@ const AboutSection = () => {
             <span className="text-neon-red">XAG</span>
           </h2>
           <p className="text-xl text-muted-foreground font-tech max-w-4xl mx-auto leading-relaxed">
-            Pioneiros em tecnologia de drones no Brasil, combinamos inovação, qualidade 
+            Pioneiros em tecnologia de drones no Brasil, combinamos inovação, qualidade
             e design futurista para entregar experiências únicas de voo.
           </p>
         </div>
@@ -57,13 +57,13 @@ const AboutSection = () => {
                 Nossa Missão
               </h3>
               <p className="text-lg text-muted-foreground font-tech leading-relaxed">
-                Revolucionar o mercado de drones no Brasil através da tecnologia mais 
-                avançada disponível, oferecendo produtos que combinam performance 
+                Revolucionar o mercado de drones no Brasil através da tecnologia mais
+                avançada disponível, oferecendo produtos que combinam performance
                 excepcional com design cyberpunk único.
               </p>
               <p className="text-lg text-muted-foreground font-tech leading-relaxed">
-                Desde nossa fundação, já entregamos mais de 10.000 drones para clientes 
-                em todo o país, desde entusiastas até grandes empresas que confiam em 
+                Desde nossa fundação, já entregamos mais de 10.000 drones para clientes
+                em todo o país, desde entusiastas até grandes empresas que confiam em
                 nossa expertise.
               </p>
             </div>
@@ -85,27 +85,30 @@ const AboutSection = () => {
           </div>
 
           {/* Features Grid */}
-            <div className="grid gap-6">
-              {features.map((feature, index) => (
-                <Card key={index} className="card-cyber-light hover:glow-green transition-all duration-300">
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="p-3 bg-primary/20 rounded-lg border border-primary/30 flex-shrink-0">
-                        <feature.icon className="h-6 w-6 text-primary" />
-                      </div>
-                      <div className="space-y-2">
-                        <h4 className="font-tech font-bold text-lg text-gray-800">
-                          {feature.title}
-                        </h4>
-                        <p className="text-gray-600 font-tech leading-relaxed">
-                          {feature.description}
-                        </p>
-                      </div>
+          <div className="grid gap-6">
+            {features.map((feature, index) => (
+              <Card
+                key={index}
+                className="card-cyber-light hover:glow-green transition-all duration-300"
+              >
+                <CardContent className="p-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="p-3 bg-primary/20 rounded-lg border border-primary/30 flex-shrink-0">
+                      <feature.icon className="h-6 w-6 text-primary" />
                     </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+                    <div className="space-y-2">
+                      <h4 className="font-tech font-bold text-lg text-white">
+                        {feature.title}
+                      </h4>
+                      <p className="text-white font-tech leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
 
         {/* Company Values */}
@@ -114,7 +117,7 @@ const AboutSection = () => {
             <span className="text-neon-green">NOSSOS</span>{" "}
             <span className="text-foreground">VALORES</span>
           </h3>
-          
+
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="space-y-4">
               <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center mx-auto border border-primary/30">

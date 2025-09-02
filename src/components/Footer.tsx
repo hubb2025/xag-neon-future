@@ -31,22 +31,22 @@ const Footer = () => {
     <footer className="relative bg-gradient-to-b from-background via-metallic to-cyber-dark border-t border-border/30">
       {/* Background Pattern */}
       <div className="absolute inset-0 grid-pattern opacity-5"></div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
         {/* Main Footer Content */}
         <div className="py-16 grid lg:grid-cols-4 md:grid-cols-2 gap-12">
           {/* Company Info */}
           <div className="space-y-6">
             <div className="flex items-center space-x-3">
-              <img 
-                src="/lovable-uploads/c47e410b-0ff2-494f-8f54-149ca96a34fc.png" 
+              <img
+                src="/lovable-uploads/logo-comprida-drone__1_-removebg-preview.png"
                 alt="DRONES Xag Logo"
                 className="h-8 w-auto"
               />
             </div>
-            
+
             <p className="text-muted-foreground font-tech leading-relaxed">
-              A mais avançada concessionária de drones do Brasil, oferecendo tecnologia de ponta 
+              A mais avançada concessionária de drones do Brasil, oferecendo tecnologia de ponta
               com design futurista e performance excepcional.
             </p>
 
@@ -113,17 +113,18 @@ const Footer = () => {
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-primary flex-shrink-0" />
-                <span className="text-muted-foreground font-tech">(11) 9999-8888</span>
+                <span className="text-muted-foreground font-tech">(48) 98474-2150</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-primary flex-shrink-0" />
-                <span className="text-muted-foreground font-tech">contato@dronesxag.com</span>
+                <span className="text-muted-foreground font-tech">contato@agricampdrones.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-primary flex-shrink-0" />
                 <span className="text-muted-foreground font-tech">
-                  Av. Paulista, 1000<br />
-                  São Paulo - SP
+                  Avenida Mário José Mateus, 220
+                  <br />
+                  Bairro Vela Vista - 88.132-705
                 </span>
               </div>
             </div>

@@ -17,7 +17,7 @@ const ContactForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Simulate form submission
     toast({
       title: "Mensagem enviada!",
@@ -47,11 +47,11 @@ const ContactForm = () => {
       <div className="absolute inset-0 grid-pattern-light opacity-30"></div>
       <div className="cyber-corner absolute inset-0 opacity-50"></div>
       <div className="cyber-circuit absolute inset-0"></div>
-      
+
       {/* Additional Cyber Elements */}
       <div className="absolute top-10 right-10 w-24 h-24 cyber-hexagon opacity-25"></div>
       <div className="absolute bottom-10 left-10 w-18 h-18 border border-primary/40 rotate-45"></div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center space-y-6 mb-16">
@@ -80,7 +80,7 @@ const ContactForm = () => {
                   </div>
                   <div>
                     <p className="font-tech font-semibold text-white">Telefone</p>
-                    <p className="text-white/80">(11) 9999-8888</p>
+                    <p className="text-white/80">(48) 98474-2150</p>
                   </div>
                 </div>
 
@@ -90,7 +90,7 @@ const ContactForm = () => {
                   </div>
                   <div>
                     <p className="font-tech font-semibold text-white">Email</p>
-                    <p className="text-white/80">contato@dronesxag.com</p>
+                    <p className="text-white/80">contato@agricampdrones.com</p>
                   </div>
                 </div>
 
@@ -101,8 +101,8 @@ const ContactForm = () => {
                   <div>
                     <p className="font-tech font-semibold text-white">Endereço</p>
                     <p className="text-white/80">
-                      Av. Paulista, 1000<br />
-                      São Paulo - SP, 01310-100
+                      Avenida Mário José Mateus, 220 <br />
+                      Bairro Vela Vista - 88.132-705
                     </p>
                   </div>
                 </div>
