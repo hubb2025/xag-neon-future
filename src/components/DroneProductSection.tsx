@@ -35,10 +35,11 @@ const DroneProductSection = ({
   specs
 }: DroneProductSectionProps) => {
   return (
-    <section className="py-24 relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/3 via-background to-secondary/3"></div>
-      <div className={`absolute ${isReversed ? 'left-0' : 'right-0'} top-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl`}></div>
+    <section className="py-24 relative overflow-hidden section-light">
+      {/* Light Background Effects */}
+      <div className="absolute inset-0 grid-pattern-light opacity-30"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+      <div className="cyber-corner absolute inset-0 opacity-50"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className={`grid lg:grid-cols-2 gap-16 items-center ${isReversed ? 'lg:grid-flow-col-dense' : ''}`}>
@@ -77,44 +78,44 @@ const DroneProductSection = ({
 
             {/* Specs Cards */}
             <div className="grid grid-cols-2 gap-4">
-              <Card className="card-cyber p-4">
+              <Card className="card-cyber-light p-4">
                 <div className="flex items-center space-x-3">
                   <Clock className="h-5 w-5 text-primary" />
                   <div>
-                    <div className="text-sm text-muted-foreground font-tech">Autonomia</div>
-                    <div className="font-cyber font-bold text-neon-green">{specs.flightTime}</div>
+                    <div className="text-sm text-gray-500 font-tech">Autonomia</div>
+                    <div className="font-cyber font-bold text-primary">{specs.flightTime}</div>
                   </div>
                 </div>
               </Card>
               
-              <Card className="card-cyber p-4">
+              <Card className="card-cyber-light p-4">
                 <div className="flex items-center space-x-3">
                   <Zap className="h-5 w-5 text-primary" />
                   <div>
-                    <div className="text-sm text-muted-foreground font-tech">Alcance</div>
-                    <div className="font-cyber font-bold text-neon-green">{specs.range}</div>
+                    <div className="text-sm text-gray-500 font-tech">Alcance</div>
+                    <div className="font-cyber font-bold text-primary">{specs.range}</div>
                   </div>
                 </div>
               </Card>
               
-              <Card className="card-cyber p-4">
+              <Card className="card-cyber-light p-4">
                 <div className="flex items-center space-x-3">
                   <Shield className="h-5 w-5 text-primary" />
                   <div>
-                    <div className="text-sm text-muted-foreground font-tech">Carga</div>
-                    <div className="font-cyber font-bold text-neon-green">{specs.payload}</div>
+                    <div className="text-sm text-gray-500 font-tech">Carga</div>
+                    <div className="font-cyber font-bold text-primary">{specs.payload}</div>
                   </div>
                 </div>
               </Card>
               
-              <Card className="card-cyber p-4">
+              <Card className="card-cyber-light p-4">
                 <div className="flex items-center space-x-3">
                   <div className="w-5 h-5 bg-primary/20 rounded border border-primary/30 flex items-center justify-center">
                     <div className="w-2 h-2 bg-primary rounded-full"></div>
                   </div>
                   <div>
-                    <div className="text-sm text-muted-foreground font-tech">Câmera</div>
-                    <div className="font-cyber font-bold text-neon-green">{specs.camera}</div>
+                    <div className="text-sm text-gray-500 font-tech">Câmera</div>
+                    <div className="font-cyber font-bold text-primary">{specs.camera}</div>
                   </div>
                 </div>
               </Card>
@@ -123,11 +124,11 @@ const DroneProductSection = ({
             {/* Price and CTA */}
             <div className="space-y-6">
               <div className="flex items-center space-x-4">
-                <div className="text-4xl font-cyber font-black text-neon-green">
+                <div className="text-4xl font-cyber font-black text-primary">
                   {price}
                 </div>
                 {originalPrice && (
-                  <div className="text-xl text-muted-foreground line-through">
+                  <div className="text-xl text-gray-500 line-through">
                     {originalPrice}
                   </div>
                 )}
@@ -143,7 +144,7 @@ const DroneProductSection = ({
                 </Button>
               </div>
               
-              <p className="text-sm text-muted-foreground font-tech">
+              <p className="text-sm text-gray-500 font-tech">
                 💳 Parcelamento em até 24x sem juros | 🚚 Frete grátis para todo Brasil
               </p>
             </div>

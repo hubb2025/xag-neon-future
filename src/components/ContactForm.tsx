@@ -41,9 +41,11 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contato" className="py-20 relative">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5"></div>
+    <section id="contato" className="py-20 relative section-light">
+      {/* Light Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/3 via-background to-secondary/3"></div>
+      <div className="absolute inset-0 grid-pattern-light opacity-20"></div>
+      <div className="cyber-corner absolute inset-0 opacity-40"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
@@ -60,9 +62,9 @@ const ContactForm = () => {
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Info */}
           <div className="space-y-8">
-            <Card className="card-cyber">
+            <Card className="card-cyber-light">
               <CardHeader>
-                <CardTitle className="font-cyber text-2xl text-neon-green">
+                <CardTitle className="font-cyber text-2xl text-primary">
                   Informações de Contato
                 </CardTitle>
               </CardHeader>
@@ -72,8 +74,8 @@ const ContactForm = () => {
                     <Phone className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <p className="font-tech font-semibold text-foreground">Telefone</p>
-                    <p className="text-muted-foreground">(11) 9999-8888</p>
+                    <p className="font-tech font-semibold text-gray-800">Telefone</p>
+                    <p className="text-gray-600">(11) 9999-8888</p>
                   </div>
                 </div>
 
@@ -82,8 +84,8 @@ const ContactForm = () => {
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <p className="font-tech font-semibold text-foreground">Email</p>
-                    <p className="text-muted-foreground">contato@dronesxag.com</p>
+                    <p className="font-tech font-semibold text-gray-800">Email</p>
+                    <p className="text-gray-600">contato@dronesxag.com</p>
                   </div>
                 </div>
 
@@ -92,8 +94,8 @@ const ContactForm = () => {
                     <MapPin className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <p className="font-tech font-semibold text-foreground">Endereço</p>
-                    <p className="text-muted-foreground">
+                    <p className="font-tech font-semibold text-gray-800">Endereço</p>
+                    <p className="text-gray-600">
                       Av. Paulista, 1000<br />
                       São Paulo - SP, 01310-100
                     </p>
@@ -103,23 +105,23 @@ const ContactForm = () => {
             </Card>
 
             {/* Business Hours */}
-            <Card className="card-cyber">
+            <Card className="card-cyber-light">
               <CardHeader>
-                <CardTitle className="font-cyber text-xl text-neon-red">
+                <CardTitle className="font-cyber text-xl text-secondary">
                   Horário de Funcionamento
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex justify-between">
-                  <span className="font-tech text-muted-foreground">Segunda - Sexta</span>
-                  <span className="text-foreground">9:00 - 18:00</span>
+                  <span className="font-tech text-gray-600">Segunda - Sexta</span>
+                  <span className="text-gray-800">9:00 - 18:00</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-tech text-muted-foreground">Sábado</span>
-                  <span className="text-foreground">9:00 - 14:00</span>
+                  <span className="font-tech text-gray-600">Sábado</span>
+                  <span className="text-gray-800">9:00 - 14:00</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-tech text-muted-foreground">Domingo</span>
+                  <span className="font-tech text-gray-600">Domingo</span>
                   <span className="text-secondary">Fechado</span>
                 </div>
               </CardContent>
@@ -127,9 +129,9 @@ const ContactForm = () => {
           </div>
 
           {/* Contact Form */}
-          <Card className="card-cyber">
+          <Card className="card-cyber-light">
             <CardHeader>
-              <CardTitle className="font-cyber text-2xl text-neon-green">
+              <CardTitle className="font-cyber text-2xl text-primary">
                 Envie sua Mensagem
               </CardTitle>
             </CardHeader>
@@ -137,7 +139,7 @@ const ContactForm = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-tech font-semibold text-foreground mb-2">
+                    <label className="block text-sm font-tech font-semibold text-gray-800 mb-2">
                       Nome *
                     </label>
                     <Input
@@ -145,26 +147,26 @@ const ContactForm = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="bg-input/50 border-border/50 focus:border-primary"
+                      className="bg-gray-50/50 border-gray-300 focus:border-primary"
                       placeholder="Seu nome completo"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-tech font-semibold text-foreground mb-2">
+                    <label className="block text-sm font-tech font-semibold text-gray-800 mb-2">
                       Telefone
                     </label>
                     <Input
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="bg-input/50 border-border/50 focus:border-primary"
+                      className="bg-gray-50/50 border-gray-300 focus:border-primary"
                       placeholder="(11) 99999-9999"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-tech font-semibold text-foreground mb-2">
+                  <label className="block text-sm font-tech font-semibold text-gray-800 mb-2">
                     Email *
                   </label>
                   <Input
@@ -173,13 +175,13 @@ const ContactForm = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="bg-input/50 border-border/50 focus:border-primary"
+                    className="bg-gray-50/50 border-gray-300 focus:border-primary"
                     placeholder="seu@email.com"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-tech font-semibold text-foreground mb-2">
+                  <label className="block text-sm font-tech font-semibold text-gray-800 mb-2">
                     Mensagem *
                   </label>
                   <Textarea
@@ -188,7 +190,7 @@ const ContactForm = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="bg-input/50 border-border/50 focus:border-primary resize-none"
+                    className="bg-gray-50/50 border-gray-300 focus:border-primary resize-none"
                     placeholder="Conte-nos sobre seu interesse em drones..."
                   />
                 </div>

@@ -170,12 +170,116 @@ All colors MUST be HSL.
     @apply transition-all duration-300;
   }
 
+  .card-cyber-light {
+    @apply bg-white/95 backdrop-blur-sm border border-gray-200;
+    @apply shadow-[0_8px_32px_rgba(0,0,0,0.1)];
+    @apply hover:border-primary/30 hover:shadow-[0_8px_32px_hsl(var(--primary)/0.1)];
+    @apply transition-all duration-300;
+  }
+
   /* Grid Pattern Background */
   .grid-pattern {
     background-image: 
       linear-gradient(rgba(0, 255, 0, 0.1) 1px, transparent 1px),
       linear-gradient(90deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px);
     background-size: 50px 50px;
+  }
+
+  .grid-pattern-light {
+    background-image: 
+      linear-gradient(rgba(0, 255, 0, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 0, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  /* Cyberpunk Geometric Elements */
+  .cyber-lines {
+    position: relative;
+  }
+
+  .cyber-lines::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary)), transparent);
+    animation: cyber-scan 3s linear infinite;
+  }
+
+  .cyber-lines::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    background: linear-gradient(45deg, transparent 30%, hsl(var(--primary)/0.1) 50%, transparent 70%);
+    clip-path: polygon(0% 0%, 85% 0%, 100% 100%, 15% 100%);
+  }
+
+  .cyber-corner {
+    position: relative;
+  }
+
+  .cyber-corner::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border: 2px solid hsl(var(--primary)/0.3);
+    border-left: none;
+    border-bottom: none;
+    background: linear-gradient(135deg, hsl(var(--primary)/0.1), transparent);
+  }
+
+  .cyber-corner::after {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    border: 2px solid hsl(var(--secondary)/0.3);
+    border-right: none;
+    border-top: none;
+    background: linear-gradient(315deg, hsl(var(--secondary)/0.1), transparent);
+  }
+
+  .cyber-hexagon {
+    clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+    background: linear-gradient(135deg, hsl(var(--primary)/0.2), hsl(var(--secondary)/0.2));
+  }
+
+  /* Section Backgrounds */
+  .section-dark {
+    background: linear-gradient(135deg, hsl(var(--cyber-dark)), hsl(var(--metallic)));
+  }
+
+  .section-light {
+    background: linear-gradient(135deg, #ffffff, #f8fafc);
+    color: #1e293b;
+  }
+
+  .section-light .text-neon-green {
+    color: hsl(var(--primary));
+    text-shadow: none;
+  }
+
+  .section-light .text-neon-red {
+    color: hsl(var(--secondary));
+    text-shadow: none;
+  }
+
+  .section-light .text-foreground {
+    color: #1e293b;
+  }
+
+  .section-light .text-muted-foreground {
+    color: #64748b;
   }
 
   /* Glow Effects */
@@ -185,5 +289,10 @@ All colors MUST be HSL.
 
   .glow-red {
     box-shadow: 0 0 20px hsl(var(--neon-red) / 0.3);
+  }
+
+  @keyframes cyber-scan {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100vw); }
   }
 }

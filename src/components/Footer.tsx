@@ -38,12 +38,11 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6">
             <div className="flex items-center space-x-3">
-              <div className="p-2 bg-primary/20 rounded-lg border border-primary/30 glow-green">
-                <Zap className="h-6 w-6 text-primary" />
-              </div>
-              <span className="text-2xl font-cyber font-bold text-neon-green">
-                DRONES Xag
-              </span>
+              <img 
+                src="/lovable-uploads/c47e410b-0ff2-494f-8f54-149ca96a34fc.png" 
+                alt="DRONES Xag Logo"
+                className="h-8 w-auto"
+              />
             </div>
             
             <p className="text-muted-foreground font-tech leading-relaxed">

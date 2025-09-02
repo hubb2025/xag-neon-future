@@ -26,11 +26,12 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="sobre" className="py-20 relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-r from-secondary/5 via-transparent to-primary/5"></div>
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
+    <section id="sobre" className="py-20 relative overflow-hidden section-light">
+      {/* Light Background Effects */}
+      <div className="absolute inset-0 grid-pattern-light opacity-20"></div>
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+      <div className="cyber-corner absolute inset-0 opacity-30"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
@@ -67,15 +68,15 @@ const AboutSection = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-6">
-              <div className="text-center p-6 card-cyber">
-                <div className="text-3xl font-cyber font-bold text-neon-green mb-2">10K+</div>
-                <div className="text-sm text-muted-foreground font-tech uppercase tracking-wide">
+              <div className="text-center p-6 card-cyber-light">
+                <div className="text-3xl font-cyber font-bold text-primary mb-2">10K+</div>
+                <div className="text-sm text-gray-600 font-tech uppercase tracking-wide">
                   Drones Vendidos
                 </div>
               </div>
-              <div className="text-center p-6 card-cyber">
-                <div className="text-3xl font-cyber font-bold text-neon-red mb-2">5+</div>
-                <div className="text-sm text-muted-foreground font-tech uppercase tracking-wide">
+              <div className="text-center p-6 card-cyber-light">
+                <div className="text-3xl font-cyber font-bold text-secondary mb-2">5+</div>
+                <div className="text-sm text-gray-600 font-tech uppercase tracking-wide">
                   Anos de Experiência
                 </div>
               </div>
@@ -83,27 +84,27 @@ const AboutSection = () => {
           </div>
 
           {/* Features Grid */}
-          <div className="grid gap-6">
-            {features.map((feature, index) => (
-              <Card key={index} className="card-cyber hover:glow-green transition-all duration-300">
-                <CardContent className="p-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="p-3 bg-primary/20 rounded-lg border border-primary/30 flex-shrink-0">
-                      <feature.icon className="h-6 w-6 text-primary" />
+            <div className="grid gap-6">
+              {features.map((feature, index) => (
+                <Card key={index} className="card-cyber-light hover:glow-green transition-all duration-300">
+                  <CardContent className="p-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="p-3 bg-primary/20 rounded-lg border border-primary/30 flex-shrink-0">
+                        <feature.icon className="h-6 w-6 text-primary" />
+                      </div>
+                      <div className="space-y-2">
+                        <h4 className="font-tech font-bold text-lg text-gray-800">
+                          {feature.title}
+                        </h4>
+                        <p className="text-gray-600 font-tech leading-relaxed">
+                          {feature.description}
+                        </p>
+                      </div>
                     </div>
-                    <div className="space-y-2">
-                      <h4 className="font-tech font-bold text-lg text-foreground">
-                        {feature.title}
-                      </h4>
-                      <p className="text-muted-foreground font-tech leading-relaxed">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
         </div>
 
         {/* Company Values */}
@@ -118,8 +119,8 @@ const AboutSection = () => {
               <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center mx-auto border border-primary/30">
                 <span className="text-2xl font-cyber font-bold text-primary">I</span>
               </div>
-              <h4 className="font-cyber text-xl text-neon-green">INOVAÇÃO</h4>
-              <p className="text-muted-foreground font-tech">
+              <h4 className="font-cyber text-xl text-primary">INOVAÇÃO</h4>
+              <p className="text-gray-600 font-tech">
                 Sempre na vanguarda da tecnologia, buscando as melhores soluções para nossos clientes.
               </p>
             </div>
@@ -128,8 +129,8 @@ const AboutSection = () => {
               <div className="w-16 h-16 bg-gradient-to-br from-secondary/20 to-secondary/10 rounded-full flex items-center justify-center mx-auto border border-secondary/30">
                 <span className="text-2xl font-cyber font-bold text-secondary">Q</span>
               </div>
-              <h4 className="font-cyber text-xl text-neon-red">QUALIDADE</h4>
-              <p className="text-muted-foreground font-tech">
+              <h4 className="font-cyber text-xl text-secondary">QUALIDADE</h4>
+              <p className="text-gray-600 font-tech">
                 Compromisso com a excelência em cada produto que oferecemos ao mercado.
               </p>
             </div>
@@ -138,8 +139,8 @@ const AboutSection = () => {
               <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/10 rounded-full flex items-center justify-center mx-auto border border-border">
                 <span className="text-2xl font-cyber font-bold text-primary">P</span>
               </div>
-              <h4 className="font-cyber text-xl text-neon-green">PAIXÃO</h4>
-              <p className="text-muted-foreground font-tech">
+              <h4 className="font-cyber text-xl text-primary">PAIXÃO</h4>
+              <p className="text-gray-600 font-tech">
                 Amor genuíno pela tecnologia de drones e pela satisfação de nossos clientes.
               </p>
             </div>

@@ -34,11 +34,12 @@ const FAQ = () => {
   ];
 
   return (
-    <section id="faq" className="py-20 relative">
+    <section id="faq" className="py-20 relative section-dark">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="grid-pattern h-full"></div>
       </div>
+      <div className="cyber-lines absolute inset-0"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
