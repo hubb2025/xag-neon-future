@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import LanguageSelector from "./LanguageSelector";
 
@@ -42,7 +42,7 @@ const Header = () => {
           {/* Language Selector & CTA Button Desktop */}
           <div className="hidden md:flex items-center space-x-4">
             <LanguageSelector />
-            <Button className="btn-cyber">
+            <Button className="bg-red-600 hover:bg-red-700 text-white">
               Explorar Drones
             </Button>
           </div>
@@ -72,7 +72,7 @@ const Header = () => {
               ))}
               <div className="mt-4 space-y-4">
                 <LanguageSelector />
-                <Button className="btn-cyber w-full">
+                <Button className="w-full bg-red-600 hover:bg-red-700 text-white">
                   Explorar Drones
                 </Button>
               </div>
