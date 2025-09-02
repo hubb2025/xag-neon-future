@@ -1,9 +1,50 @@
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Play } from "lucide-react";
+import { useState, useEffect } from "react";
 import heroImage from "@/assets/img-hero.png";
 import backgroundImage from "@/assets/agricultural-field-bg.jpg";
 
 const HeroSection = () => {
+  const [modelos, setModelos] = useState(0);
+  const [precisao, setPrecisao] = useState(0);
+  const [suporte, setSuporte] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  const animateNumber = (start: number, end: number, duration: number, setValue: (value: number) => void, isDecimal: boolean = false) => {
+    const startTime = Date.now();
+    const animate = () => {
+      const currentTime = Date.now();
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+      const currentValue = start + (end - start) * easeOutCubic;
+      
+      if (isDecimal) {
+        setValue(Math.round(currentValue * 10) / 10);
+      } else {
+        setValue(Math.round(currentValue));
+      }
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    requestAnimationFrame(animate);
+  };
+
+  useEffect(() => {
+    if (!hasAnimated) {
+      const timer = setTimeout(() => {
+        animateNumber(0, 50, 2000, setModelos);
+        animateNumber(0, 99.9, 2500, setPrecisao, true);
+        animateNumber(0, 24, 1800, setSuporte);
+        setHasAnimated(true);
+      }, 500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [hasAnimated]);
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -94,21 +135,27 @@ const HeroSection = () => {
               </Button>
             </div>
 
-            {/* Tech Stats */}
-            <div className="flex gap-4 lg:gap-8 pt-4">
+            {/* Tech Stats - Desktop Only with Animation */}
+            <div className="hidden lg:flex gap-4 lg:gap-8 pt-4">
               <div className="text-center relative">
                 <div className="absolute inset-0 bg-primary/5 blur-xl"></div>
-                <div className="text-xl lg:text-2xl font-cyber font-bold text-primary relative">50+</div>
+                <div className="text-xl lg:text-2xl font-cyber font-bold text-primary relative">
+                  {modelos}+
+                </div>
                 <div className="text-xs lg:text-sm text-muted-foreground relative">Modelos</div>
               </div>
               <div className="text-center relative">
                 <div className="absolute inset-0 bg-secondary/5 blur-xl"></div>
-                <div className="text-xl lg:text-2xl font-cyber font-bold text-secondary relative">99.9%</div>
+                <div className="text-xl lg:text-2xl font-cyber font-bold text-secondary relative">
+                  {precisao}%
+                </div>
                 <div className="text-xs lg:text-sm text-muted-foreground relative">Precisão</div>
               </div>
               <div className="text-center relative">
                 <div className="absolute inset-0 bg-accent/5 blur-xl"></div>
-                <div className="text-xl lg:text-2xl font-cyber font-bold text-accent relative">24/7</div>
+                <div className="text-xl lg:text-2xl font-cyber font-bold text-accent relative">
+                  {suporte}/7
+                </div>
                 <div className="text-xs lg:text-sm text-muted-foreground relative">Suporte</div>
               </div>
             </div>
