@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Play } from "lucide-react";
-import heroImage from "@/assets/ChatGPT Image 30 de ago. de 2025, 19_11_34.png";
+import heroImage from "@/assets/img-hero.png";
 import backgroundImage from "@/assets/agricultural-field-bg.jpg";
 
 const HeroSection = () => {
