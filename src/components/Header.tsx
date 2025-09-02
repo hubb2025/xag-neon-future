@@ -42,22 +42,22 @@ const Header = () => {
             {navItems.map((item) => (
               <div key={item.name} className="relative group">
                 {item.hasDropdown ? (
-                  <>
+                  <div 
+                    className="relative"
+                    onMouseEnter={() => setIsProductsOpen(true)}
+                    onMouseLeave={() => setIsProductsOpen(false)}
+                  >
                     <button
                       className="text-muted-foreground hover:text-primary transition-colors duration-300 font-tech uppercase tracking-wide text-sm flex items-center"
-                      onMouseEnter={() => setIsProductsOpen(true)}
-                      onMouseLeave={() => setIsProductsOpen(false)}
                     >
                       {item.name}
                       <ChevronDown className="ml-1 h-4 w-4" />
                     </button>
                     {/* Dropdown Menu */}
                     <div 
-                      className={`absolute top-full left-0 mt-2 w-56 bg-background/95 backdrop-blur-md border border-border/30 rounded-lg shadow-lg transition-all duration-200 ${
+                      className={`absolute top-full left-0 w-56 bg-background/95 backdrop-blur-md border border-border/30 rounded-lg shadow-lg transition-all duration-200 z-50 ${
                         isProductsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
                       }`}
-                      onMouseEnter={() => setIsProductsOpen(true)}
-                      onMouseLeave={() => setIsProductsOpen(false)}
                     >
                       {item.subItems?.map((subItem) => (
                         <a
@@ -69,7 +69,7 @@ const Header = () => {
                         </a>
                       ))}
                     </div>
-                  </>
+                  </div>
                 ) : (
                   <a
                     href={item.href}
