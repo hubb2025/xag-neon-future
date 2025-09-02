@@ -78,7 +78,10 @@ const DroneInfoCircles = ({ droneImage, droneAlt, specs, className }: DroneInfoC
           <img
             src={droneImage}
             alt={droneAlt}
-            className="w-full h-auto max-w-lg mx-auto group-hover:scale-105 transition-transform duration-700 drop-shadow-2xl"
+            className="w-full h-auto max-w-lg mx-auto group-hover:scale-105 transition-transform duration-700"
+            style={{
+              filter: 'drop-shadow(8px 8px 16px rgba(0, 0, 0, 0.4)) drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.6)) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.8))',
+            }}
           />
           
           {/* Central glow effect */}

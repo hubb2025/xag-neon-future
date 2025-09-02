@@ -19,6 +19,7 @@ const Header = () => {
         { name: "XAG Cargo Master", href: "/drones/xag-cargo-master" }
       ]
     },
+    { name: "Treinamento", href: "#treinamento" },
     { name: "Sobre", href: "#sobre" },
     { name: "FAQ", href: "#faq" },
     { name: "Contato", href: "#contato" },

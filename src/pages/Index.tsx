@@ -4,12 +4,21 @@ import DroneCarousel from "@/components/DroneCarousel";
 import DroneProductSection from "@/components/DroneProductSection";
 import AboutSection from "@/components/AboutSection";
 import AdvantagesSection from "@/components/AdvantagesSection";
+import TrainingSection from "@/components/TrainingSection";
 import FAQ from "@/components/FAQ";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
+import { motion } from "framer-motion";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Index = () => {
+  const advantagesRef = useScrollAnimation();
+  const aboutRef = useScrollAnimation();
+  const trainingRef = useScrollAnimation();
+  const faqRef = useScrollAnimation();
+  const contactRef = useScrollAnimation();
+
   const droneModels = [
     {
       id: "xag-phantom-pro",
@@ -99,10 +108,50 @@ const Index = () => {
             />
           ))}
         </section>
-        <AdvantagesSection />
-        <AboutSection />
-        <FAQ />
-        <ContactForm />
+        <motion.div
+          ref={advantagesRef.ref}
+          initial={{ opacity: 0, y: 50 }}
+          animate={advantagesRef.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <AdvantagesSection />
+        </motion.div>
+        
+        <motion.div
+          ref={aboutRef.ref}
+          initial={{ opacity: 0, y: 50 }}
+          animate={aboutRef.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <AboutSection />
+        </motion.div>
+        
+        <motion.div
+          ref={trainingRef.ref}
+          initial={{ opacity: 0, y: 50 }}
+          animate={trainingRef.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <TrainingSection />
+        </motion.div>
+        
+        <motion.div
+          ref={faqRef.ref}
+          initial={{ opacity: 0, y: 50 }}
+          animate={faqRef.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <FAQ />
+        </motion.div>
+        
+        <motion.div
+          ref={contactRef.ref}
+          initial={{ opacity: 0, y: 50 }}
+          animate={contactRef.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <ContactForm />
+        </motion.div>
       </main>
       <Footer />
       <BackToTop />
