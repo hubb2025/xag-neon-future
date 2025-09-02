@@ -7,16 +7,16 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       />
-      
+
       {/* Dark overlay for better text contrast */}
       <div className="absolute inset-0 bg-black/40" />
-      
+
       {/* Animated Background Grid - Disabled to prevent flickering */}
-      
+
       {/* Cyber Circuit Lines - Reduced animation */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent hidden sm:block" style={{ animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
@@ -31,7 +31,7 @@ const HeroSection = () => {
         <div className="absolute top-40 right-8 sm:right-32 w-6 h-6 border border-secondary/40" style={{ animation: 'float 8s ease-in-out infinite' }}></div>
         <div className="absolute bottom-32 left-8 sm:left-40 w-3 h-3 bg-accent/30 rotate-45" style={{ animation: 'float 7s ease-in-out infinite' }}></div>
         <div className="absolute bottom-20 right-4 sm:right-20 w-5 h-5 border border-destructive/40 rotate-12" style={{ animation: 'float 9s ease-in-out infinite' }}></div>
-        
+
         {/* Larger decorative elements - Slower animations */}
         <div className="absolute top-1/3 left-2 sm:left-10 w-16 sm:w-20 h-16 sm:h-20 border border-primary/20 rotate-45" style={{ animation: 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
         <div className="absolute bottom-1/3 right-2 sm:right-10 w-12 sm:w-16 h-12 sm:h-16 border border-secondary/20" style={{ animation: 'pulse 10s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
@@ -48,7 +48,7 @@ const HeroSection = () => {
             {/* Decorative corner elements */}
             <div className="absolute -top-4 sm:-top-8 -left-4 sm:-left-8 w-8 sm:w-16 h-8 sm:h-16 border-l-2 border-t-2 border-primary/40 hidden sm:block"></div>
             <div className="absolute -bottom-4 sm:-bottom-8 -right-4 sm:-right-8 w-8 sm:w-16 h-8 sm:h-16 border-r-2 border-b-2 border-secondary/40 hidden sm:block"></div>
-             
+
             <div className="space-y-4 lg:space-y-6">
               <div className="relative">
                 {/* Animated text glow effect */}
@@ -57,22 +57,23 @@ const HeroSection = () => {
                     DRONES<br />DO<br />FUTURO
                   </h1>
                 </div>
-                 
+
                 <h1 className="text-4xl md:text-5xl lg:text-7xl font-cyber font-black leading-tight relative">
-                  <span className="text-foreground glow-green">DRONES</span>
+                  <span className="text-foreground glow-green">A Tecnologia que põe</span>
                   <br />
-                  <span className="text-foreground">DO</span>
+                  <span className="text-foreground">dinheiro no bolso
+                  </span>
                   <br />
-                  <span className="text-neon-red glow-red">FUTURO</span>
+                  <span className="text-neon-red glow-red">do Agricultor</span>
                 </h1>
-                 
+
+
                 {/* Scanning line effect disabled to prevent flickering */}
               </div>
 
               <div className="relative">
-                <div className="absolute -left-2 sm:-left-4 top-0 w-1 h-full bg-gradient-to-b from-primary via-secondary to-accent opacity-60 hidden sm:block"></div>
-                <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-tech max-w-2xl pl-0 sm:pl-8 relative">
-                  Descubra a nova era da tecnologia de drones com designs cyberpunk e performance revolucionária.
+                <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-tech max-w-2xl pl-0 relative">
+                  Eficiência, precisão e retorno garantido
                   <span className="absolute -right-1 sm:-right-2 top-0 w-2 h-2 bg-primary animate-ping hidden sm:block"></span>
                 </p>
               </div>
@@ -119,17 +120,17 @@ const HeroSection = () => {
             <div className="absolute inset-0 scale-110">
               <div className="cyber-hexagon opacity-30"></div>
             </div>
-            
+
             {/* Main image container */}
             <div className="relative group">
               {/* Multiple layered glow effects */}
               <div className="absolute inset-0 bg-gradient-radial from-primary/30 via-transparent to-transparent rounded-full blur-3xl scale-150 group-hover:scale-[1.6] transition-transform duration-1000"></div>
               <div className="absolute inset-0 bg-gradient-radial from-secondary/20 via-transparent to-transparent rounded-full blur-2xl scale-125 group-hover:scale-[1.4] transition-transform duration-1000 delay-200"></div>
-              
+
               {/* Scanning rings - reduced animation intensity */}
               <div className="absolute inset-0 border-2 border-primary/20 rounded-full scale-110" style={{ animation: 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite' }}></div>
               <div className="absolute inset-0 border border-secondary/30 rounded-full scale-125" style={{ animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
-              
+
               <img
                 src={heroImage}
                 alt="Drone Futurista DRONES Xag - Tecnologia avançada com design cyberpunk"
@@ -150,7 +151,7 @@ const HeroSection = () => {
             <div className="absolute -bottom-8 -left-8 w-8 h-8 bg-secondary rounded-full glow-green" style={{ animation: 'pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}>
               <div className="absolute inset-1 border border-background rounded-full"></div>
             </div>
-            
+
             {/* Tech readout elements */}
             <div className="absolute top-20 -left-10 bg-background/90 border border-primary/30 rounded px-3 py-1 text-xs font-tech">
               <div className="text-primary">STATUS: ONLINE</div>
@@ -158,7 +159,7 @@ const HeroSection = () => {
             <div className="absolute bottom-20 -right-10 bg-background/90 border border-secondary/30 rounded px-3 py-1 text-xs font-tech">
               <div className="text-secondary">SIGNAL: 100%</div>
             </div>
-            
+
             {/* Data stream elements */}
             <div className="absolute top-1/3 -left-20 cyber-data-stream opacity-60"></div>
             <div className="absolute bottom-1/3 -right-20 cyber-data-stream opacity-40"></div>
