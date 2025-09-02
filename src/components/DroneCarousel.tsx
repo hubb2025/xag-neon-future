@@ -85,30 +85,30 @@ const DroneCarousel = () => {
           <Button
             variant="outline"
             size="icon"
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm border-primary/30 hover:bg-primary/20"
+            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm border-primary/30 hover:bg-primary/20 hidden sm:flex"
             onClick={prevSlide}
           >
-            <ChevronLeft className="h-5 w-5" />
+            <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
           </Button>
           
           <Button
             variant="outline" 
             size="icon"
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm border-primary/30 hover:bg-primary/20"
+            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm border-primary/30 hover:bg-primary/20 hidden sm:flex"
             onClick={nextSlide}
           >
-            <ChevronRight className="h-5 w-5" />
+            <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
           </Button>
 
           {/* Carousel Content */}
-          <div className="overflow-hidden">
+          <div className="overflow-hidden mx-2 sm:mx-0">
             <div 
               className="flex transition-transform duration-500 ease-out"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
               {drones.map((drone) => (
-                <div key={drone.id} className="w-full flex-shrink-0 px-4">
-                  <div className="max-w-md mx-auto">
+                <div key={drone.id} className="w-full flex-shrink-0 px-2 sm:px-4">
+                  <div className="max-w-sm sm:max-w-md mx-auto">
                     <DroneCard {...drone} />
                   </div>
                 </div>
@@ -129,6 +129,29 @@ const DroneCarousel = () => {
                 onClick={() => setCurrentIndex(index)}
               />
             ))}
+          </div>
+
+          {/* Mobile Navigation Buttons */}
+          <div className="flex justify-center gap-4 mt-6 sm:hidden">
+            <Button
+              variant="outline"
+              size="sm"
+              className="bg-background/80 backdrop-blur-sm border-primary/30 hover:bg-primary/20"
+              onClick={prevSlide}
+            >
+              <ChevronLeft className="h-4 w-4 mr-1" />
+              Anterior
+            </Button>
+            
+            <Button
+              variant="outline"
+              size="sm"
+              className="bg-background/80 backdrop-blur-sm border-primary/30 hover:bg-primary/20"
+              onClick={nextSlide}
+            >
+              Próximo
+              <ChevronRight className="h-4 w-4 ml-1" />
+            </Button>
           </div>
         </div>
 

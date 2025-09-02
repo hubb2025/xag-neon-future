@@ -59,8 +59,8 @@ const DroneProductSection = ({
       )}
       
       {/* Additional Cyber Elements */}
-      <div className="absolute top-20 left-10 w-20 h-20 cyber-hexagon opacity-30"></div>
-      <div className="absolute bottom-20 right-10 w-16 h-16 border border-primary/30 rotate-45"></div>
+      <div className="absolute top-10 sm:top-20 left-2 sm:left-10 w-16 sm:w-20 h-16 sm:h-20 cyber-hexagon opacity-30"></div>
+      <div className="absolute bottom-10 sm:bottom-20 right-2 sm:right-10 w-12 sm:w-16 h-12 sm:h-16 border border-primary/30 rotate-45"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className={`grid lg:grid-cols-2 gap-16 items-center ${isReversed ? 'lg:grid-flow-col-dense' : ''}`}>
