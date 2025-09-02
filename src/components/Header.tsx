@@ -19,10 +19,10 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <img 
-              src="/lovable-uploads/c47e410b-0ff2-494f-8f54-149ca96a34fc.png" 
+            <img
+              src="/lovable-uploads/logo-comprida-drone__1_-removebg-preview.png"
               alt="DRONES Xag Logo"
-              className="h-8 w-auto"
+              style={{ height: '60px', width: '190px' }}
             />
           </div>
 
