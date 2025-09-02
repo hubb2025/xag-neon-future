@@ -84,11 +84,42 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'cyber-pulse': {
+					'0%, 100%': {
+						boxShadow: '0 0 20px hsl(var(--primary) / 0.5)'
+					},
+					'50%': {
+						boxShadow: '0 0 40px hsl(var(--primary) / 0.8)'
+					}
+				},
+				'neon-flicker': {
+					'0%, 100%': { opacity: '1' },
+					'2%': { opacity: '0.8' },
+					'4%': { opacity: '1' },
+					'8%': { opacity: '0.9' },
+					'10%': { opacity: '1' }
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-10px)' }
+				},
+				'slide-in-right': {
+					'0%': { transform: 'translateX(100%)', opacity: '0' },
+					'100%': { transform: 'translateX(0)', opacity: '1' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'cyber-pulse': 'cyber-pulse 2s ease-in-out infinite',
+				'neon-flicker': 'neon-flicker 3s infinite',
+				'float': 'float 3s ease-in-out infinite',
+				'slide-in-right': 'slide-in-right 0.5s ease-out'
+			},
+			fontFamily: {
+				'cyber': ['Orbitron', 'monospace'],
+				'tech': ['Exo 2', 'sans-serif']
 			}
 		}
 	},
