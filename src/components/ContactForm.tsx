@@ -64,7 +64,7 @@ const ContactForm = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
           {/* Contact Info */}
           <div className="space-y-8">
             <Card className="card-cyber-green">
@@ -142,7 +142,7 @@ const ContactForm = () => {
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-tech font-semibold text-white mb-2">
                       Nome *
@@ -152,7 +152,7 @@ const ContactForm = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="bg-gray-50/50 border-gray-300 focus:border-primary"
+                      className=""
                       placeholder="Seu nome completo"
                     />
                   </div>
@@ -164,7 +164,7 @@ const ContactForm = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="bg-gray-50/50 border-gray-300 focus:border-primary"
+                      className=""
                       placeholder="(11) 99999-9999"
                     />
                   </div>
@@ -180,7 +180,7 @@ const ContactForm = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="bg-gray-50/50 border-gray-300 focus:border-primary"
+                    className=""
                     placeholder="seu@email.com"
                   />
                 </div>
@@ -195,7 +195,7 @@ const ContactForm = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="bg-gray-50/50 border-gray-300 focus:border-primary resize-none"
+                    className="resize-none"
                     placeholder="Conte-nos sobre seu interesse em drones..."
                   />
                 </div>
