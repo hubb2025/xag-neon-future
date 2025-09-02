@@ -9,12 +9,12 @@ import FAQ from "@/components/FAQ";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
-import { DroneViewer3D } from "@/components/DroneViewer3D";
+
 import { motion } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Index = () => {
-  const droneViewer3DRef = useScrollAnimation();
+  
   const advantagesRef = useScrollAnimation();
   const aboutRef = useScrollAnimation();
   const trainingRef = useScrollAnimation();
@@ -110,15 +110,6 @@ const Index = () => {
             />
           ))}
         </section>
-        
-        <motion.div
-          ref={droneViewer3DRef.ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={droneViewer3DRef.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <DroneViewer3D />
-        </motion.div>
         
         <motion.div
           ref={advantagesRef.ref}
