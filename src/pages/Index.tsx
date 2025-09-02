@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import DroneCarousel from "@/components/DroneCarousel";
 import DroneProductSection from "@/components/DroneProductSection";
 import AboutSection from "@/components/AboutSection";
+import AdvantagesSection from "@/components/AdvantagesSection";
 import FAQ from "@/components/FAQ";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
@@ -93,6 +94,7 @@ const Index = () => {
             />
           ))}
         </section>
+        <AdvantagesSection />
         <AboutSection />
         <FAQ />
         <ContactForm />
