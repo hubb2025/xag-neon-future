@@ -80,11 +80,11 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
+    <div className="min-h-screen bg-background w-full">
       <Header />
-      <main className="overflow-x-hidden">
+      <main className="w-full">
         <HeroSection />
-        <section id="drones" className="overflow-x-hidden">
+        <section id="drones" className="w-full">
           {droneModels.map((drone, index) => (
             <DroneProductSection
               key={drone.id}
@@ -93,7 +93,6 @@ const Index = () => {
             />
           ))}
         </section>
-        <DroneCarousel />
         <AboutSection />
         <FAQ />
         <ContactForm />
