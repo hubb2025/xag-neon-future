@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import LanguageSelector from "./LanguageSelector";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,8 +40,9 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button Desktop */}
-          <div className="hidden md:block">
+          {/* Language Selector & CTA Button Desktop */}
+          <div className="hidden md:flex items-center space-x-4">
+            <LanguageSelector />
             <Button className="btn-cyber">
               Explorar Drones
             </Button>
@@ -69,9 +71,12 @@ const Header = () => {
                   {item.name}
                 </a>
               ))}
-              <Button className="btn-cyber mt-4 w-full">
-                Explorar Drones
-              </Button>
+              <div className="mt-4 space-y-4">
+                <LanguageSelector />
+                <Button className="btn-cyber w-full">
+                  Explorar Drones
+                </Button>
+              </div>
             </nav>
           </div>
         )}
