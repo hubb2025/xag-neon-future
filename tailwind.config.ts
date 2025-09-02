@@ -104,6 +104,10 @@ export default {
 					'0%, 100%': { transform: 'translateY(0px)' },
 					'50%': { transform: 'translateY(-10px)' }
 				},
+				'cyber-scan': {
+					'0%': { transform: 'translateX(-100%)' },
+					'100%': { transform: 'translateX(100vw)' }
+				},
 				'slide-in-right': {
 					'0%': { transform: 'translateX(100%)', opacity: '0' },
 					'100%': { transform: 'translateX(0)', opacity: '1' }
@@ -115,6 +119,7 @@ export default {
 				'cyber-pulse': 'cyber-pulse 2s ease-in-out infinite',
 				'neon-flicker': 'neon-flicker 3s infinite',
 				'float': 'float 3s ease-in-out infinite',
+				'cyber-scan': 'cyber-scan 4s linear infinite',
 				'slide-in-right': 'slide-in-right 0.5s ease-out'
 			},
 			fontFamily: {

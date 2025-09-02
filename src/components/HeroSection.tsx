@@ -4,7 +4,7 @@ import heroImage from "@/assets/hero-drone-removebg-preview.png";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background/95 to-muted/20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated Background Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px] animate-pulse"></div>
       
