@@ -7,6 +7,7 @@ import AdvantagesSection from "@/components/AdvantagesSection";
 import FAQ from "@/components/FAQ";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
+import BackToTop from "@/components/BackToTop";
 
 const Index = () => {
   const droneModels = [
@@ -109,6 +110,7 @@ const Index = () => {
         <ContactForm />
       </main>
       <Footer />
+      <BackToTop />
     </div>
   );
 };

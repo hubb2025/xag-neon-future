@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import BackToTop from "@/components/BackToTop";
 import DroneInfoCircles from "@/components/DroneInfoCircles";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -213,6 +214,7 @@ const XagStealthElite = () => {
       </section>
 
       <Footer />
+      <BackToTop />
     </div>
   );
 };
