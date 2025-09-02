@@ -34,12 +34,33 @@ const DroneProductSection = ({
   badge,
   specs
 }: DroneProductSectionProps) => {
+  // Alternar entre verde (0,2,4...) e branco (1,3,5...)
+  const sectionClass = isReversed ? 'section-light' : 'section-green';
+  
   return (
-    <section className="py-24 relative overflow-hidden section-light">
-      {/* Light Background Effects */}
-      <div className="absolute inset-0 grid-pattern-light opacity-30"></div>
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-      <div className="cyber-corner absolute inset-0 opacity-50"></div>
+    <section className={`py-24 relative overflow-hidden ${sectionClass}`}>
+      {/* Dynamic Background Effects based on section type */}
+      {isReversed ? (
+        // Light section backgrounds
+        <>
+          <div className="absolute inset-0 grid-pattern-light opacity-30"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+          <div className="cyber-corner absolute inset-0 opacity-40"></div>
+          <div className="cyber-circuit absolute inset-0"></div>
+        </>
+      ) : (
+        // Green section backgrounds  
+        <>
+          <div className="absolute inset-0 grid-pattern-light opacity-40"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+          <div className="cyber-corner absolute inset-0 opacity-60"></div>
+          <div className="cyber-circuit absolute inset-0"></div>
+        </>
+      )}
+      
+      {/* Additional Cyber Elements */}
+      <div className="absolute top-20 left-10 w-20 h-20 cyber-hexagon opacity-30"></div>
+      <div className="absolute bottom-20 right-10 w-16 h-16 border border-primary/30 rotate-45"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className={`grid lg:grid-cols-2 gap-16 items-center ${isReversed ? 'lg:grid-flow-col-dense' : ''}`}>
@@ -78,43 +99,43 @@ const DroneProductSection = ({
 
             {/* Specs Cards */}
             <div className="grid grid-cols-2 gap-4">
-              <Card className="card-cyber-light p-4">
+              <Card className={isReversed ? "card-cyber-light p-4" : "card-cyber-green p-4"}>
                 <div className="flex items-center space-x-3">
                   <Clock className="h-5 w-5 text-primary" />
                   <div>
-                    <div className="text-sm text-gray-500 font-tech">Autonomia</div>
+                    <div className={`text-sm font-tech ${isReversed ? 'text-gray-500' : 'text-gray-600'}`}>Autonomia</div>
                     <div className="font-cyber font-bold text-primary">{specs.flightTime}</div>
                   </div>
                 </div>
               </Card>
               
-              <Card className="card-cyber-light p-4">
+              <Card className={isReversed ? "card-cyber-light p-4" : "card-cyber-green p-4"}>
                 <div className="flex items-center space-x-3">
                   <Zap className="h-5 w-5 text-primary" />
                   <div>
-                    <div className="text-sm text-gray-500 font-tech">Alcance</div>
+                    <div className={`text-sm font-tech ${isReversed ? 'text-gray-500' : 'text-gray-600'}`}>Alcance</div>
                     <div className="font-cyber font-bold text-primary">{specs.range}</div>
                   </div>
                 </div>
               </Card>
               
-              <Card className="card-cyber-light p-4">
+              <Card className={isReversed ? "card-cyber-light p-4" : "card-cyber-green p-4"}>
                 <div className="flex items-center space-x-3">
                   <Shield className="h-5 w-5 text-primary" />
                   <div>
-                    <div className="text-sm text-gray-500 font-tech">Carga</div>
+                    <div className={`text-sm font-tech ${isReversed ? 'text-gray-500' : 'text-gray-600'}`}>Carga</div>
                     <div className="font-cyber font-bold text-primary">{specs.payload}</div>
                   </div>
                 </div>
               </Card>
               
-              <Card className="card-cyber-light p-4">
+              <Card className={isReversed ? "card-cyber-light p-4" : "card-cyber-green p-4"}>
                 <div className="flex items-center space-x-3">
                   <div className="w-5 h-5 bg-primary/20 rounded border border-primary/30 flex items-center justify-center">
                     <div className="w-2 h-2 bg-primary rounded-full"></div>
                   </div>
                   <div>
-                    <div className="text-sm text-gray-500 font-tech">Câmera</div>
+                    <div className={`text-sm font-tech ${isReversed ? 'text-gray-500' : 'text-gray-600'}`}>Câmera</div>
                     <div className="font-cyber font-bold text-primary">{specs.camera}</div>
                   </div>
                 </div>
@@ -128,7 +149,7 @@ const DroneProductSection = ({
                   {price}
                 </div>
                 {originalPrice && (
-                  <div className="text-xl text-gray-500 line-through">
+                  <div className={`text-xl line-through ${isReversed ? 'text-gray-500' : 'text-gray-600'}`}>
                     {originalPrice}
                   </div>
                 )}
@@ -144,7 +165,7 @@ const DroneProductSection = ({
                 </Button>
               </div>
               
-              <p className="text-sm text-gray-500 font-tech">
+              <p className={`text-sm font-tech ${isReversed ? 'text-gray-500' : 'text-gray-600'}`}>
                 💳 Parcelamento em até 24x sem juros | 🚚 Frete grátis para todo Brasil
               </p>
             </div>
@@ -156,7 +177,7 @@ const DroneProductSection = ({
               <img
                 src={image}
                 alt={`${title} ${subtitle}`}
-                className="w-full h-auto max-w-2xl mx-auto animate-float group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-auto max-w-2xl mx-auto group-hover:scale-105 transition-transform duration-700"
               />
               
               {/* Glow Effects */}

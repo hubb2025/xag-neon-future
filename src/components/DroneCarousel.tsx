@@ -54,10 +54,17 @@ const DroneCarousel = () => {
 
   return (
     <section className="py-20 relative overflow-hidden section-dark">
-      {/* Cyberpunk Background Effects */}
+      {/* Advanced Cyberpunk Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5"></div>
       <div className="cyber-lines absolute inset-0"></div>
+      <div className="cyber-circuit absolute inset-0"></div>
+      <div className="cyber-matrix absolute inset-0"></div>
       <div className="absolute top-10 left-10 w-20 h-20 cyber-hexagon opacity-20"></div>
+      
+      {/* Data Streams */}
+      <div className="cyber-data-stream"></div>
+      <div className="cyber-data-stream"></div>
+      <div className="cyber-data-stream"></div>
       
       <div className="container mx-auto px-4">
         {/* Section Header */}

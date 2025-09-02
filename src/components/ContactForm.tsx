@@ -41,11 +41,16 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contato" className="py-20 relative section-light">
-      {/* Light Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/3 via-background to-secondary/3"></div>
-      <div className="absolute inset-0 grid-pattern-light opacity-20"></div>
-      <div className="cyber-corner absolute inset-0 opacity-40"></div>
+    <section id="contato" className="py-20 relative section-green">
+      {/* Green Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background/10 to-secondary/3"></div>
+      <div className="absolute inset-0 grid-pattern-light opacity-30"></div>
+      <div className="cyber-corner absolute inset-0 opacity-50"></div>
+      <div className="cyber-circuit absolute inset-0"></div>
+      
+      {/* Additional Cyber Elements */}
+      <div className="absolute top-10 right-10 w-24 h-24 cyber-hexagon opacity-25"></div>
+      <div className="absolute bottom-10 left-10 w-18 h-18 border border-primary/40 rotate-45"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
@@ -62,7 +67,7 @@ const ContactForm = () => {
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Info */}
           <div className="space-y-8">
-            <Card className="card-cyber-light">
+            <Card className="card-cyber-green">
               <CardHeader>
                 <CardTitle className="font-cyber text-2xl text-primary">
                   Informações de Contato
@@ -105,7 +110,7 @@ const ContactForm = () => {
             </Card>
 
             {/* Business Hours */}
-            <Card className="card-cyber-light">
+            <Card className="card-cyber-green">
               <CardHeader>
                 <CardTitle className="font-cyber text-xl text-secondary">
                   Horário de Funcionamento
@@ -129,7 +134,7 @@ const ContactForm = () => {
           </div>
 
           {/* Contact Form */}
-          <Card className="card-cyber-light">
+          <Card className="card-cyber-green">
             <CardHeader>
               <CardTitle className="font-cyber text-2xl text-primary">
                 Envie sua Mensagem

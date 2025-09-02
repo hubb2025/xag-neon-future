@@ -5,16 +5,30 @@ import heroImage from "@/assets/hero-drone.jpg";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden section-dark">
-      {/* Cyberpunk Background Elements */}
+      {/* Advanced Cyberpunk Background Elements */}
       <div className="absolute inset-0 grid-pattern opacity-20"></div>
       <div className="cyber-lines absolute inset-0"></div>
       <div className="cyber-corner absolute inset-0"></div>
+      <div className="cyber-circuit absolute inset-0"></div>
+      <div className="cyber-matrix absolute inset-0"></div>
+      
+      {/* Data Streams */}
+      <div className="cyber-data-stream"></div>
+      <div className="cyber-data-stream"></div>
+      <div className="cyber-data-stream"></div>
+      <div className="cyber-data-stream"></div>
+      <div className="cyber-data-stream"></div>
       
       {/* Geometric Elements */}
       <div className="absolute top-20 left-20 w-32 h-32 cyber-hexagon opacity-30"></div>
       <div className="absolute bottom-20 right-20 w-24 h-24 border-2 border-secondary/30 rotate-45 animate-cyber-pulse"></div>
       <div className="absolute top-1/2 right-10 w-2 h-20 bg-gradient-to-b from-primary via-transparent to-secondary opacity-50"></div>
       <div className="absolute bottom-10 left-1/3 w-40 h-2 bg-gradient-to-r from-transparent via-primary to-transparent opacity-60"></div>
+      
+      {/* Additional Cyber Elements */}
+      <div className="absolute top-32 right-32 w-16 h-16 border border-primary/40 transform rotate-45"></div>
+      <div className="absolute bottom-32 left-16 w-12 h-12 cyber-hexagon opacity-40"></div>
+      <div className="absolute top-64 left-64 w-1 h-32 bg-gradient-to-b from-secondary to-transparent opacity-60"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -69,7 +83,7 @@ const HeroSection = () => {
               <img
                 src={heroImage}
                 alt="Drone Futurista DRONES Xag"
-                className="w-full h-auto max-w-2xl mx-auto animate-float"
+                className="w-full h-auto max-w-2xl mx-auto"
               />
               
               {/* Glow Effects */}

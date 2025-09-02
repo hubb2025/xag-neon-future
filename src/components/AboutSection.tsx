@@ -32,6 +32,7 @@ const AboutSection = () => {
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
       <div className="cyber-corner absolute inset-0 opacity-30"></div>
+      <div className="cyber-circuit absolute inset-0"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
