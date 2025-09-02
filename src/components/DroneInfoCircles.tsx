@@ -83,9 +83,6 @@ const DroneInfoCircles = ({ droneImage, droneAlt, specs, className }: DroneInfoC
               filter: 'drop-shadow(8px 8px 16px rgba(0, 0, 0, 0.4)) drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.6)) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.8))',
             }}
           />
-          
-          {/* Central glow effect */}
-          <div className="absolute inset-0 bg-gradient-radial from-primary/20 via-transparent to-transparent blur-xl"></div>
         </div>
 
         {/* Info Circles */}
