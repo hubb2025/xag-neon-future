@@ -134,10 +134,6 @@ const DroneCarousel = () => {
 
         {/* View All Button */}
         <div className="text-center mt-12">
-          <Button className="btn-cyber text-lg px-8 py-4">
-            Ver Todos os Modelos
-            <ChevronRight className="ml-2 h-5 w-5" />
-          </Button>
         </div>
       </div>
     </section>
