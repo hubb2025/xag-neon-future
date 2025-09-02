@@ -166,7 +166,6 @@ const DroneProductSection = ({
               </div>
               
               <p className={`text-sm font-tech ${isReversed ? "text-muted-foreground" : "text-white/80"}`}>
-                💳 Parcelamento em até 24x sem juros | 🚚 Frete grátis para todo Brasil
               </p>
             </div>
           </div>
