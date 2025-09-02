@@ -129,31 +129,31 @@ const TrainingSection = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="card-cyber-light h-full group hover:card-cyber-green transition-all duration-500">
+              <Card className="card-cyber-light h-full group hover:bg-primary/90 hover:border-primary/50 hover:shadow-[0_8px_32px_hsl(var(--primary)/0.3)] transition-all duration-500">
                 <CardHeader className="text-center pb-4">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-colors duration-300">
-                    <div className="text-primary group-hover:text-neon-green transition-colors duration-300">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/20 flex items-center justify-center group-hover:bg-primary-foreground/20 transition-colors duration-300">
+                    <div className="text-primary group-hover:text-primary-foreground transition-colors duration-300">
                       {service.icon}
                     </div>
                   </div>
                   <div className="flex justify-center gap-2 mb-3">
-                    <Badge variant="outline" className="text-xs">{service.duration}</Badge>
-                    <Badge variant="secondary" className="text-xs">{service.level}</Badge>
+                    <Badge variant="outline" className="text-xs group-hover:bg-primary-foreground/20 group-hover:text-primary-foreground group-hover:border-primary-foreground/30 transition-colors duration-300">{service.duration}</Badge>
+                    <Badge variant="secondary" className="text-xs group-hover:bg-primary-foreground/20 group-hover:text-primary-foreground transition-colors duration-300">{service.level}</Badge>
                   </div>
-                  <CardTitle className="text-xl font-cyber text-foreground group-hover:text-white transition-colors duration-300">
+                  <CardTitle className="text-xl font-cyber text-foreground group-hover:text-primary-foreground transition-colors duration-300">
                     {service.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <p className="font-tech text-muted-foreground group-hover:text-white/90 transition-colors duration-300 text-center">
+                  <p className="font-tech text-muted-foreground group-hover:text-primary-foreground/90 transition-colors duration-300 text-center">
                     {service.description}
                   </p>
                   
                   <div className="space-y-3">
                     {service.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                        <span className="font-tech text-sm text-foreground group-hover:text-white transition-colors duration-300">
+                        <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0 group-hover:bg-primary-foreground transition-colors duration-300"></div>
+                        <span className="font-tech text-sm text-foreground group-hover:text-primary-foreground transition-colors duration-300">
                           {feature}
                         </span>
                       </div>
