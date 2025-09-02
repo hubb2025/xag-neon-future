@@ -155,11 +155,11 @@ const Footer = () => {
                 Receba novidades sobre lançamentos e promoções exclusivas
               </p>
             </div>
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <input
                 type="email"
                 placeholder="Seu melhor e-mail"
-                className="flex-1 px-4 py-3 bg-input/50 border border-border/50 rounded-lg focus:border-primary focus:outline-none font-tech"
+                className="flex-1 px-4 py-3 bg-input/50 border border-border/50 rounded-lg focus:border-primary focus:outline-none font-tech min-w-0"
               />
               <button className="btn-cyber px-6 py-3 whitespace-nowrap">
                 Inscrever
