@@ -184,10 +184,10 @@ const DroneProductSection = ({
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent rounded-lg blur-xl"></div>
               <div className="absolute inset-0 bg-gradient-to-b from-secondary/10 via-transparent to-transparent rounded-lg blur-xl"></div>
               
-              {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 border-2 border-primary rounded-full animate-ping"></div>
-              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-secondary/80 rounded-full animate-pulse"></div>
-              <div className="absolute top-1/2 -left-8 w-4 h-4 border border-primary/50 rounded-full animate-cyber-pulse"></div>
+              {/* Floating Elements - Reduced animations to prevent layout shift */}
+              <div className="absolute top-2 right-2 w-6 h-6 border-2 border-primary/30 rounded-full opacity-60"></div>
+              <div className="absolute bottom-2 left-2 w-4 h-4 bg-secondary/30 rounded-full opacity-50"></div>
+              <div className="absolute top-1/2 left-0 w-3 h-3 border border-primary/30 rounded-full opacity-40"></div>
             </div>
           </div>
         </div>

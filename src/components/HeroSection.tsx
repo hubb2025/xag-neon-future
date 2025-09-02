@@ -17,29 +17,29 @@ const HeroSection = () => {
 
       {/* Animated Background Grid - Disabled to prevent flickering */}
 
-      {/* Cyber Circuit Lines - Reduced animation */}
+      {/* Cyber Circuit Lines - Static to prevent layout shifts */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent hidden sm:block" style={{ animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
-        <div className="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-secondary/30 to-transparent hidden sm:block" style={{ animation: 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
-        <div className="absolute left-1/4 top-0 w-px h-full bg-gradient-to-b from-transparent via-accent/30 to-transparent hidden sm:block" style={{ animation: 'pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
-        <div className="absolute right-1/4 top-0 w-px h-full bg-gradient-to-b from-transparent via-destructive/30 to-transparent hidden sm:block" style={{ animation: 'pulse 7s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
+        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent hidden sm:block opacity-60"></div>
+        <div className="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-secondary/30 to-transparent hidden sm:block opacity-50"></div>
+        <div className="absolute left-1/4 top-0 w-px h-full bg-gradient-to-b from-transparent via-accent/30 to-transparent hidden sm:block opacity-40"></div>
+        <div className="absolute right-1/4 top-0 w-px h-full bg-gradient-to-b from-transparent via-destructive/30 to-transparent hidden sm:block opacity-30"></div>
       </div>
 
-      {/* Floating Geometric Shapes - Reduced animations */}
+      {/* Floating Geometric Shapes - Static positions to prevent layout shifts */}
       <div className="absolute inset-0 pointer-events-none hidden md:block">
-        <div className="absolute top-20 left-4 sm:left-20 w-4 h-4 border border-primary/40 rotate-45" style={{ animation: 'float 6s ease-in-out infinite' }}></div>
-        <div className="absolute top-40 right-8 sm:right-32 w-6 h-6 border border-secondary/40" style={{ animation: 'float 8s ease-in-out infinite' }}></div>
-        <div className="absolute bottom-32 left-8 sm:left-40 w-3 h-3 bg-accent/30 rotate-45" style={{ animation: 'float 7s ease-in-out infinite' }}></div>
-        <div className="absolute bottom-20 right-4 sm:right-20 w-5 h-5 border border-destructive/40 rotate-12" style={{ animation: 'float 9s ease-in-out infinite' }}></div>
+        <div className="absolute top-20 left-4 sm:left-20 w-4 h-4 border border-primary/40 rotate-45 opacity-60"></div>
+        <div className="absolute top-40 right-8 sm:right-32 w-6 h-6 border border-secondary/40 opacity-50"></div>
+        <div className="absolute bottom-32 left-8 sm:left-40 w-3 h-3 bg-accent/30 rotate-45 opacity-40"></div>
+        <div className="absolute bottom-20 right-4 sm:right-20 w-5 h-5 border border-destructive/40 rotate-12 opacity-50"></div>
 
-        {/* Larger decorative elements - Slower animations */}
-        <div className="absolute top-1/3 left-2 sm:left-10 w-16 sm:w-20 h-16 sm:h-20 border border-primary/20 rotate-45" style={{ animation: 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
-        <div className="absolute bottom-1/3 right-2 sm:right-10 w-12 sm:w-16 h-12 sm:h-16 border border-secondary/20" style={{ animation: 'pulse 10s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
+        {/* Larger decorative elements - Static */}
+        <div className="absolute top-1/3 left-2 sm:left-10 w-16 sm:w-20 h-16 sm:h-20 border border-primary/20 rotate-45 opacity-30"></div>
+        <div className="absolute bottom-1/3 right-2 sm:right-10 w-12 sm:w-16 h-12 sm:h-16 border border-secondary/20 opacity-25"></div>
       </div>
 
-      {/* Glowing Orbs - Slower animations */}
-      <div className="absolute top-1/4 left-1/4 w-24 sm:w-32 h-24 sm:h-32 bg-primary/10 rounded-full blur-3xl" style={{ animation: 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
-      <div className="absolute bottom-1/3 right-1/3 w-32 sm:w-40 h-32 sm:h-40 bg-secondary/10 rounded-full blur-3xl" style={{ animation: 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
+      {/* Glowing Orbs - Static to prevent layout shift */}
+      <div className="absolute top-1/4 left-1/4 w-24 sm:w-32 h-24 sm:h-32 bg-primary/10 rounded-full blur-3xl opacity-60"></div>
+      <div className="absolute bottom-1/3 right-1/3 w-32 sm:w-40 h-32 sm:h-40 bg-secondary/10 rounded-full blur-3xl opacity-50"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -74,7 +74,7 @@ const HeroSection = () => {
               <div className="relative">
                 <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-tech max-w-2xl pl-0 relative">
                   Eficiência, precisão e retorno garantido
-                  <span className="absolute -right-1 sm:-right-2 top-0 w-2 h-2 bg-primary animate-ping hidden sm:block"></span>
+                  <span className="absolute -right-1 sm:-right-2 top-0 w-2 h-2 bg-primary/60 rounded-full hidden sm:block"></span>
                 </p>
               </div>
             </div>
@@ -127,9 +127,9 @@ const HeroSection = () => {
               <div className="absolute inset-0 bg-gradient-radial from-primary/30 via-transparent to-transparent rounded-full blur-3xl scale-150 group-hover:scale-[1.6] transition-transform duration-1000"></div>
               <div className="absolute inset-0 bg-gradient-radial from-secondary/20 via-transparent to-transparent rounded-full blur-2xl scale-125 group-hover:scale-[1.4] transition-transform duration-1000 delay-200"></div>
 
-              {/* Scanning rings - reduced animation intensity */}
-              <div className="absolute inset-0 border-2 border-primary/20 rounded-full scale-110" style={{ animation: 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite' }}></div>
-              <div className="absolute inset-0 border border-secondary/30 rounded-full scale-125" style={{ animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
+              {/* Scanning rings - static to prevent layout shift */}
+              <div className="absolute inset-0 border-2 border-primary/20 rounded-full scale-110 opacity-40"></div>
+              <div className="absolute inset-0 border border-secondary/30 rounded-full scale-125 opacity-30"></div>
 
               <img
                 src={heroImage}
@@ -144,25 +144,21 @@ const HeroSection = () => {
               <div className="absolute right-0 top-1/2 h-px w-20 bg-gradient-to-l from-destructive to-transparent -translate-y-1/2 translate-x-10"></div>
             </div>
 
-            {/* Enhanced Floating Elements */}
-            <div className="absolute -top-8 -right-8 w-12 h-12 border-2 border-primary rounded-full" style={{ animation: 'ping 4s cubic-bezier(0, 0, 0.2, 1) infinite' }}>
-              <div className="absolute inset-2 bg-primary rounded-full" style={{ animation: 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
+            {/* Enhanced Floating Elements - Static positions to prevent overflow */}
+            <div className="absolute top-2 right-2 w-8 h-8 border-2 border-primary/30 rounded-full opacity-60">
+              <div className="absolute inset-1 bg-primary/20 rounded-full"></div>
             </div>
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 bg-secondary rounded-full glow-green" style={{ animation: 'pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}>
-              <div className="absolute inset-1 border border-background rounded-full"></div>
+            <div className="absolute bottom-2 left-2 w-6 h-6 bg-secondary/30 rounded-full opacity-50">
+              <div className="absolute inset-1 border border-background/50 rounded-full"></div>
             </div>
 
-            {/* Tech readout elements */}
-            <div className="absolute top-20 -left-10 bg-background/90 border border-primary/30 rounded px-3 py-1 text-xs font-tech">
+            {/* Tech readout elements - Positioned inside container */}
+            <div className="absolute top-4 left-4 bg-background/90 border border-primary/30 rounded px-2 py-1 text-xs font-tech">
               <div className="text-primary">STATUS: ONLINE</div>
             </div>
-            <div className="absolute bottom-20 -right-10 bg-background/90 border border-secondary/30 rounded px-3 py-1 text-xs font-tech">
+            <div className="absolute bottom-4 right-4 bg-background/90 border border-secondary/30 rounded px-2 py-1 text-xs font-tech">
               <div className="text-secondary">SIGNAL: 100%</div>
             </div>
-
-            {/* Data stream elements */}
-            <div className="absolute top-1/3 -left-20 cyber-data-stream opacity-60"></div>
-            <div className="absolute bottom-1/3 -right-20 cyber-data-stream opacity-40"></div>
           </div>
         </div>
       </div>
