@@ -30,7 +30,10 @@ const Index = () => {
         flightTime: "65min",
         range: "15km",
         payload: "5kg",
-        camera: "8K/60fps"
+        camera: "8K/60fps",
+        capacity: "16L",
+        coverage: "12ha/h",
+        weight: "25kg"
       }
     },
     {
@@ -53,7 +56,10 @@ const Index = () => {
         flightTime: "75min",
         range: "25km",
         payload: "3kg",
-        camera: "8K+IR"
+        camera: "8K+IR",
+        capacity: "12L",
+        coverage: "15ha/h", 
+        weight: "22kg"
       }
     },
     {
@@ -75,7 +81,10 @@ const Index = () => {
         flightTime: "55min",
         range: "20km",
         payload: "10kg",
-        camera: "4K/30fps"
+        camera: "4K/30fps",
+        capacity: "20L",
+        coverage: "10ha/h",
+        weight: "35kg"
       }
     }
   ];

@@ -125,6 +125,9 @@ export default {
 			fontFamily: {
 				'cyber': ['Orbitron', 'monospace'],
 				'tech': ['Exo 2', 'sans-serif']
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 			}
 		}
 	},

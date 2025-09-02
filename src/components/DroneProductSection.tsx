@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Zap, Shield, Clock, ArrowRight } from "lucide-react";
+import DroneInfoCircles from "./DroneInfoCircles";
 
 interface DroneProductSectionProps {
   id: string;
@@ -19,6 +20,9 @@ interface DroneProductSectionProps {
     range: string;
     payload: string;
     camera: string;
+    capacity: string;
+    coverage: string;
+    weight: string;
   };
 }
 
@@ -170,24 +174,21 @@ const DroneProductSection = ({
             </div>
           </div>
 
-          {/* Image */}
+          {/* Image with Info Circles */}
           <div className={`relative ${isReversed ? 'lg:col-start-1' : ''}`}>
-            <div className="relative group">
-              <img
-                src={image}
-                alt={`${title} ${subtitle}`}
-                className="w-full h-auto max-w-2xl mx-auto group-hover:scale-105 transition-transform duration-700"
-              />
-              
-              {/* Glow Effects */}
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent rounded-lg blur-xl"></div>
-              <div className="absolute inset-0 bg-gradient-to-b from-secondary/10 via-transparent to-transparent rounded-lg blur-xl"></div>
-              
-              {/* Floating Elements - Reduced animations to prevent layout shift */}
-              <div className="absolute top-2 right-2 w-6 h-6 border-2 border-primary/30 rounded-full opacity-60"></div>
-              <div className="absolute bottom-2 left-2 w-4 h-4 bg-secondary/30 rounded-full opacity-50"></div>
-              <div className="absolute top-1/2 left-0 w-3 h-3 border border-primary/30 rounded-full opacity-40"></div>
-            </div>
+            <DroneInfoCircles 
+              droneImage={image}
+              droneAlt={`${title} ${subtitle}`}
+              specs={{
+                flightTime: specs.flightTime,
+                range: specs.range,
+                payload: specs.payload,
+                capacity: specs.capacity,
+                coverage: specs.coverage,
+                weight: specs.weight
+              }}
+              className="py-8"
+            />
           </div>
         </div>
       </div>
