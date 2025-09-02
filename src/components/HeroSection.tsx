@@ -59,12 +59,12 @@ const HeroSection = () => {
                 </div>
 
                 <h1 className="text-4xl md:text-5xl lg:text-7xl font-cyber font-black leading-tight relative">
-                  <span className="text-foreground glow-green">A Tecnologia que põe</span>
+                  <span className="text-primary">A Tecnologia que põe</span>
                   <br />
                   <span className="text-foreground">dinheiro no bolso
                   </span>
                   <br />
-                  <span className="text-foreground glow-green">do Agricultor</span>
+                  <span className="text-primary">do Agricultor</span>
                 </h1>
 
 
