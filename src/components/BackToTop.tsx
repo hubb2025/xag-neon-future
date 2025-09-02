@@ -24,24 +24,15 @@ const BackToTop = () => {
   const scrollToTop = () => {
     setIsFlying(true);
     
-    // Create drone flying animation
-    const droneElement = document.querySelector('.drone-icon');
-    if (droneElement) {
-      droneElement.classList.add('drone-takeoff');
-    }
-    
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
     
-    // Reset flying state after animation
+    // Reset flying state after scroll animation completes
     setTimeout(() => {
       setIsFlying(false);
-      if (droneElement) {
-        droneElement.classList.remove('drone-takeoff');
-      }
-    }, 1500);
+    }, 2000);
   };
 
   return (
@@ -72,20 +63,79 @@ const BackToTop = () => {
       <style dangerouslySetInnerHTML={{
         __html: `
           @keyframes dronefly {
-            0% { transform: rotate(45deg) scale(1); }
-            25% { transform: rotate(0deg) scale(1.2); }
-            50% { transform: rotate(-15deg) scale(1.4) translateY(-10px); }
-            75% { transform: rotate(-30deg) scale(1.6) translateY(-20px); }
-            100% { transform: rotate(-45deg) scale(1.8) translateY(-40px); }
+            0% { 
+              transform: rotate(45deg) scale(1); 
+              opacity: 1;
+            }
+            20% { 
+              transform: rotate(15deg) scale(1.1) translateY(-5px); 
+              opacity: 0.9;
+            }
+            40% { 
+              transform: rotate(-10deg) scale(1.2) translateY(-15px); 
+              opacity: 0.7;
+            }
+            60% { 
+              transform: rotate(-25deg) scale(1.3) translateY(-30px); 
+              opacity: 0.5;
+            }
+            80% { 
+              transform: rotate(-35deg) scale(1.4) translateY(-50px); 
+              opacity: 0.3;
+            }
+            100% { 
+              transform: rotate(-45deg) scale(1.5) translateY(-70px); 
+              opacity: 0;
+            }
           }
           
           .btn-cyber:hover .drone-icon:not(.animate-bounce) {
-            animation: hover-float 2s ease-in-out infinite;
+            animation: hover-float 2.5s ease-in-out infinite;
           }
           
           @keyframes hover-float {
-            0%, 100% { transform: rotate(45deg) translateY(0px); }
-            50% { transform: rotate(45deg) translateY(-3px); }
+            0%, 100% { 
+              transform: rotate(45deg) translateY(0px) scale(1); 
+            }
+            25% { 
+              transform: rotate(40deg) translateY(-2px) scale(1.05); 
+            }
+            50% { 
+              transform: rotate(45deg) translateY(-4px) scale(1.1); 
+            }
+            75% { 
+              transform: rotate(50deg) translateY(-2px) scale(1.05); 
+            }
+          }
+          
+          /* Responsive adjustments */
+          @media (max-width: 768px) {
+            @keyframes dronefly {
+              0% { 
+                transform: rotate(45deg) scale(1); 
+                opacity: 1;
+              }
+              20% { 
+                transform: rotate(15deg) scale(1.05) translateY(-3px); 
+                opacity: 0.9;
+              }
+              40% { 
+                transform: rotate(-10deg) scale(1.1) translateY(-10px); 
+                opacity: 0.7;
+              }
+              60% { 
+                transform: rotate(-25deg) scale(1.15) translateY(-20px); 
+                opacity: 0.5;
+              }
+              80% { 
+                transform: rotate(-35deg) scale(1.2) translateY(-35px); 
+                opacity: 0.3;
+              }
+              100% { 
+                transform: rotate(-45deg) scale(1.25) translateY(-50px); 
+                opacity: 0;
+              }
+            }
           }
         `
       }} />
