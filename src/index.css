@@ -470,19 +470,19 @@ All colors MUST be HSL.
   }
 
   /* ================================================ */
-  /* ADMIN PANEL STYLES - COMPLETELY SEPARATE FROM MAIN SITE */
+  /* ADMIN PANEL STYLES - USING MAIN SITE COLORS */
   /* ================================================ */
 
   /* Admin Layout Base */
   .admin-layout {
     @apply min-h-screen flex w-full;
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    background: linear-gradient(135deg, hsl(var(--cyber-dark)), hsl(var(--metallic)));
   }
 
   /* Admin Loading Screen */
   .admin-loading-screen {
     @apply min-h-screen flex items-center justify-center;
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    background: linear-gradient(135deg, hsl(var(--cyber-dark)), hsl(var(--metallic)));
   }
 
   .admin-loading-content {
@@ -492,13 +492,13 @@ All colors MUST be HSL.
 
   .admin-loading-spinner {
     @apply h-12 w-12 mx-auto mb-4;
-    color: #10b981;
+    color: hsl(var(--primary));
     animation: spin 1s linear infinite;
   }
 
   .admin-loading-text {
     @apply text-lg;
-    color: #94a3b8;
+    color: hsl(var(--muted-foreground));
   }
 
   /* Admin Sidebar Container */
@@ -509,8 +509,8 @@ All colors MUST be HSL.
 
   .admin-sidebar {
     @apply border-r-0 shadow-2xl;
-    background: linear-gradient(180deg, #059669 0%, #047857 100%);
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(180deg, hsl(var(--cyber-dark)), hsl(var(--metallic)));
+    border-right: 1px solid hsl(var(--border));
     position: relative;
   }
 
@@ -521,7 +521,21 @@ All colors MUST be HSL.
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+    background: var(--gradient-cyber);
+    opacity: 0.8;
+    pointer-events: none;
+  }
+
+  .admin-sidebar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 50%, hsl(var(--primary) / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(var(--secondary) / 0.05) 0%, transparent 50%);
     pointer-events: none;
   }
 
@@ -544,8 +558,8 @@ All colors MUST be HSL.
   /* Admin Header */
   .admin-header {
     @apply p-6 border-b;
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.08);
+    border-color: hsl(var(--border));
+    background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(20px);
   }
 
@@ -555,17 +569,16 @@ All colors MUST be HSL.
 
   .admin-logo {
     @apply p-3 rounded-xl flex items-center justify-center;
-    background: rgba(255, 255, 255, 0.2);
+    background: hsl(var(--primary) / 0.2);
     backdrop-filter: blur(10px);
-    box-shadow: 
-      0 8px 25px rgba(0, 0, 0, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow-neon-green);
+    border: 1px solid hsl(var(--primary) / 0.3);
   }
 
   .admin-logo-icon {
     @apply h-8 w-8;
-    color: white;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    color: hsl(var(--primary));
+    filter: drop-shadow(0 0 5px hsl(var(--primary) / 0.5));
   }
 
   .admin-brand {
@@ -574,22 +587,22 @@ All colors MUST be HSL.
 
   .admin-brand-title {
     @apply font-bold text-2xl mb-1;
-    color: white;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    color: hsl(var(--primary));
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.5);
     letter-spacing: -0.5px;
   }
 
   .admin-brand-subtitle {
     @apply text-sm font-medium;
-    color: rgba(255, 255, 255, 0.9);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    color: hsl(var(--muted-foreground));
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
 
   /* Admin User Section */
   .admin-user-section {
     @apply p-6 border-b;
-    border-color: rgba(255, 255, 255, 0.15);
-    background: rgba(255, 255, 255, 0.05);
+    border-color: hsl(var(--border));
+    background: rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
   }
 
@@ -599,18 +612,16 @@ All colors MUST be HSL.
 
   .admin-avatar {
     @apply w-16 h-16 rounded-full flex items-center justify-center;
-    background: rgba(255, 255, 255, 0.2);
+    background: hsl(var(--primary) / 0.2);
     backdrop-filter: blur(15px);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 
-      0 8px 25px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    border: 2px solid hsl(var(--primary) / 0.4);
+    box-shadow: var(--shadow-neon-green);
   }
 
   .admin-avatar-text {
     @apply text-xl font-bold;
-    color: white;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    color: hsl(var(--primary));
+    text-shadow: 0 0 5px hsl(var(--primary) / 0.5);
   }
 
   .admin-user-details {
@@ -619,18 +630,19 @@ All colors MUST be HSL.
 
   .admin-user-name {
     @apply text-base font-semibold mb-2;
-    color: white;
+    color: hsl(var(--foreground));
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
 
   .admin-user-role {
     @apply text-xs font-semibold px-3 py-1.5 rounded-full;
-    background: rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.95);
+    background: hsl(var(--primary) / 0.2);
+    color: hsl(var(--primary));
     backdrop-filter: blur(10px);
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid hsl(var(--primary) / 0.3);
+    box-shadow: 0 0 10px hsl(var(--primary) / 0.2);
   }
 
   /* Admin Menu */
@@ -640,9 +652,9 @@ All colors MUST be HSL.
 
   .admin-menu-label {
     @apply px-6 py-4 font-bold text-xs uppercase tracking-widest;
-    color: rgba(255, 255, 255, 0.8);
+    color: hsl(var(--muted-foreground));
     letter-spacing: 0.1em;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
 
   .admin-menu {
@@ -659,30 +671,32 @@ All colors MUST be HSL.
   }
 
   .admin-nav-item {
-    color: rgba(255, 255, 255, 0.85);
+    color: hsl(var(--muted-foreground));
     background: transparent;
   }
 
   .admin-nav-item:hover {
-    color: white;
-    background: rgba(255, 255, 255, 0.15);
+    color: hsl(var(--primary));
+    background: hsl(var(--primary) / 0.1);
     backdrop-filter: blur(10px);
     transform: translateX(4px);
     box-shadow: 
-      0 8px 25px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      0 4px 15px hsl(var(--primary) / 0.2),
+      inset 0 1px 0 hsl(var(--primary) / 0.2);
+    text-shadow: 0 0 5px hsl(var(--primary) / 0.3);
   }
 
   .admin-nav-active {
-    color: white !important;
-    background: rgba(255, 255, 255, 0.25) !important;
+    color: hsl(var(--primary)) !important;
+    background: hsl(var(--primary) / 0.15) !important;
     backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid hsl(var(--primary) / 0.3);
     box-shadow: 
-      0 8px 32px rgba(0, 0, 0, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      var(--shadow-neon-green),
+      inset 0 1px 0 hsl(var(--primary) / 0.2);
     position: relative;
     font-weight: 600;
+    text-shadow: 0 0 8px hsl(var(--primary) / 0.5);
   }
 
   .admin-nav-active::after {
@@ -693,44 +707,45 @@ All colors MUST be HSL.
     transform: translateY(-50%);
     width: 4px;
     height: 28px;
-    background: white;
+    background: hsl(var(--primary));
     border-radius: 2px 0 0 2px;
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 10px hsl(var(--primary) / 0.6);
   }
 
   .admin-menu-icon {
     @apply h-6 w-6 flex-shrink-0;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
   }
 
   .admin-menu-text {
     @apply font-semibold;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
 
   /* Admin Logout Section */
   .admin-logout-section {
     @apply mt-auto p-6 border-t;
-    border-color: rgba(255, 255, 255, 0.15);
-    background: rgba(255, 255, 255, 0.05);
+    border-color: hsl(var(--border));
+    background: rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
   }
 
   .admin-logout-btn {
     @apply w-full justify-start gap-4 px-4 py-4 rounded-2xl transition-all duration-300;
-    color: white;
-    background: rgba(239, 68, 68, 0.15);
-    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: hsl(var(--secondary));
+    background: hsl(var(--secondary) / 0.1);
+    border: 1px solid hsl(var(--secondary) / 0.3);
     backdrop-filter: blur(10px);
   }
 
   .admin-logout-btn:hover {
-    color: white !important;
-    background: rgba(239, 68, 68, 0.25) !important;
+    color: hsl(var(--secondary)) !important;
+    background: hsl(var(--secondary) / 0.2) !important;
     transform: translateY(-2px);
     box-shadow: 
-      0 8px 25px rgba(239, 68, 68, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      var(--shadow-neon-red),
+      inset 0 1px 0 hsl(var(--secondary) / 0.2);
+    text-shadow: 0 0 5px hsl(var(--secondary) / 0.3);
   }
 
   .admin-logout-collapsed {
@@ -739,41 +754,41 @@ All colors MUST be HSL.
 
   .admin-logout-icon {
     @apply h-6 w-6 flex-shrink-0;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
   }
 
   .admin-logout-text {
     @apply font-semibold;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
 
   /* Admin Main Container */
   .admin-main-container {
     @apply flex-1 flex flex-col min-w-0;
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    background: linear-gradient(135deg, hsl(var(--cyber-dark)), hsl(var(--metallic)));
   }
 
   /* Admin Main Header */
   .admin-main-header {
     @apply h-16 border-b flex items-center px-4 lg:px-6 gap-4 sticky top-0 z-30;
-    background: rgba(255, 255, 255, 0.95);
+    background: hsl(var(--card) / 0.95);
     backdrop-filter: blur(20px);
-    border-color: rgba(148, 163, 184, 0.2);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-color: hsl(var(--border));
+    box-shadow: var(--shadow-cyber);
     animation: fadeIn 0.5s ease-out;
   }
 
   .admin-sidebar-trigger {
     @apply p-2 rounded-xl transition-all duration-200;
-    background: rgba(16, 185, 129, 0.1);
-    color: #059669;
-    border: 1px solid rgba(16, 185, 129, 0.2);
+    background: hsl(var(--primary) / 0.1);
+    color: hsl(var(--primary));
+    border: 1px solid hsl(var(--primary) / 0.2);
   }
 
   .admin-sidebar-trigger:hover {
-    background: rgba(16, 185, 129, 0.15);
+    background: hsl(var(--primary) / 0.15);
     transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+    box-shadow: 0 0 15px hsl(var(--primary) / 0.3);
   }
 
   .admin-sidebar-trigger-icon {
@@ -790,32 +805,32 @@ All colors MUST be HSL.
 
   .admin-header-title {
     @apply text-xl font-bold;
-    color: #1e293b;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: hsl(var(--foreground));
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   }
 
   .admin-header-subtitle {
     @apply text-sm font-medium;
-    color: #64748b;
+    color: hsl(var(--muted-foreground));
   }
 
   .admin-user-badge {
     @apply flex items-center gap-3 px-4 py-2 rounded-xl;
-    background: rgba(16, 185, 129, 0.1);
-    border: 1px solid rgba(16, 185, 129, 0.2);
+    background: hsl(var(--primary) / 0.1);
+    border: 1px solid hsl(var(--primary) / 0.2);
     backdrop-filter: blur(10px);
-    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1);
+    box-shadow: 0 0 15px hsl(var(--primary) / 0.1);
   }
 
   .admin-user-badge-avatar {
     @apply w-10 h-10 rounded-full flex items-center justify-center;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--glow-green)));
+    box-shadow: var(--shadow-neon-green);
   }
 
   .admin-user-badge-initial {
     @apply text-sm font-bold;
-    color: white;
+    color: hsl(var(--primary-foreground));
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   }
 
@@ -825,18 +840,18 @@ All colors MUST be HSL.
 
   .admin-user-badge-name {
     @apply text-sm font-semibold;
-    color: #1e293b;
+    color: hsl(var(--foreground));
   }
 
   .admin-user-badge-role {
     @apply text-xs font-medium capitalize;
-    color: #64748b;
+    color: hsl(var(--muted-foreground));
   }
 
   /* Admin Main Content */
   .admin-main-content {
     @apply flex-1 p-4 lg:p-6 overflow-auto;
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    background: linear-gradient(135deg, hsl(var(--cyber-dark)), hsl(var(--metallic)));
   }
 
   .admin-content-wrapper {
