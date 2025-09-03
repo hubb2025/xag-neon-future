@@ -11,7 +11,6 @@ import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Plus, Search, Edit, MessageCircle, Clock, AlertTriangle, Eye } from 'lucide-react';
-import { TicketMessages } from '@/components/TicketMessages';
 
 interface SupportTicket {
   id: string;
@@ -271,14 +270,70 @@ export default function Support() {
   const openTicketsCount = tickets.filter(t => t.status === 'open').length;
   const inProgressTicketsCount = tickets.filter(t => t.status === 'in_progress').length;
 
-  // Show ticket messages view
+  // Show ticket details view
   if (selectedTicketId) {
+    const selectedTicket = tickets.find(t => t.id === selectedTicketId);
+    if (!selectedTicket) return null;
+
     return (
       <div className="space-y-6">
-        <TicketMessages 
-          ticketId={selectedTicketId} 
-          onClose={() => setSelectedTicketId(null)} 
-        />
+        <Card>
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle>Detalhes do Ticket - {selectedTicket.ticket_number}</CardTitle>
+                <CardDescription>
+                  Informações enviadas pelo cliente
+                </CardDescription>
+              </div>
+              <Button variant="outline" onClick={() => setSelectedTicketId(null)}>
+                Voltar
+              </Button>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label className="font-semibold">Cliente:</Label>
+                <p>{selectedTicket.customers?.full_name} ({selectedTicket.customers?.email})</p>
+              </div>
+              <div>
+                <Label className="font-semibold">Status:</Label>
+                <div className="mt-1">{getStatusBadge(selectedTicket.status)}</div>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label className="font-semibold">Prioridade:</Label>
+                <div className="mt-1">{getPriorityBadge(selectedTicket.priority)}</div>
+              </div>
+              <div>
+                <Label className="font-semibold">Criado em:</Label>
+                <p>{new Date(selectedTicket.created_at).toLocaleString('pt-BR')}</p>
+              </div>
+            </div>
+
+            <div>
+              <Label className="font-semibold">Assunto:</Label>
+              <p className="mt-1">{selectedTicket.subject}</p>
+            </div>
+
+            <div>
+              <Label className="font-semibold">Descrição do problema:</Label>
+              <div className="mt-1 p-4 bg-muted rounded-lg">
+                <p className="whitespace-pre-wrap">{selectedTicket.description}</p>
+              </div>
+            </div>
+
+            <div className="flex gap-2 pt-4">
+              <Button onClick={() => handleEdit(selectedTicket)}>
+                <Edit className="mr-2 h-4 w-4" />
+                Editar Status
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     );
   }

@@ -11,6 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Plus, Search, Edit, Trash2, Package, AlertCircle } from 'lucide-react';
+import { ConfirmationDialog } from '@/components/ui/confirmation-dialog';
 
 interface Drone {
   id: string;
@@ -183,14 +184,23 @@ export default function Drones() {
     setIsDialogOpen(true);
   };
 
+  const [deleteDialog, setDeleteDialog] = useState<{open: boolean, droneId: string | null}>({
+    open: false,
+    droneId: null
+  });
+
   const handleDelete = async (droneId: string) => {
-    if (!confirm('Tem certeza que deseja excluir este drone?')) return;
+    setDeleteDialog({ open: true, droneId });
+  };
+
+  const confirmDelete = async () => {
+    if (!deleteDialog.droneId) return;
 
     try {
       const { error } = await supabase
         .from('drones')
         .delete()
-        .eq('id', droneId);
+        .eq('id', deleteDialog.droneId);
 
       if (error) throw error;
       
@@ -199,12 +209,9 @@ export default function Drones() {
         description: "Drone foi removido com sucesso.",
       });
       fetchDrones();
-    } catch (error: any) {
-      toast({
-        title: "Erro",
-        description: error.message || "Não foi possível excluir o drone.",
-        variant: "destructive",
-      });
+    } finally {
+      setLoading(false);
+      setDeleteDialog({ open: false, droneId: null });
     }
   };
 
@@ -480,6 +487,16 @@ export default function Drones() {
           </Table>
         </CardContent>
       </Card>
+
+      <ConfirmationDialog
+        open={deleteDialog.open}
+        onOpenChange={(open) => setDeleteDialog({ open, droneId: null })}
+        title="Confirmar exclusão"
+        description="Tem certeza que deseja excluir este drone? Esta ação não pode ser desfeita."
+        onConfirm={confirmDelete}
+        confirmText="Excluir"
+        variant="destructive"
+      />
     </div>
   );
 }
