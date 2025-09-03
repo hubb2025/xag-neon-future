@@ -68,24 +68,23 @@ export default function Team() {
     }
 
     try {
-      // Criar usuário no auth
-      const { data: authData, error: authError } = await supabase.auth.admin.createUser({
-        email: newMember.email,
-        password: Math.random().toString(36).slice(-8), // Senha temporária
-        email_confirm: true,
-        user_metadata: {
-          full_name: newMember.full_name,
-          role: newMember.role
-        }
-      });
+      // Verificar se o email já existe
+      const { data: existingProfiles, error: checkError } = await supabase
+        .from('profiles')
+        .select('email')
+        .eq('email', newMember.email)
+        .single();
 
-      if (authError) throw authError;
+      if (existingProfiles) {
+        toast.error('Este email já está cadastrado na equipe');
+        return;
+      }
 
-      // Atualizar perfil
+      // Criar perfil de membro convidado
       const { error: profileError } = await supabase
         .from('profiles')
-        .upsert({
-          user_id: authData.user.id,
+        .insert({
+          user_id: crypto.randomUUID(), // ID temporário
           email: newMember.email,
           full_name: newMember.full_name,
           role: newMember.role
@@ -93,13 +92,13 @@ export default function Team() {
 
       if (profileError) throw profileError;
 
-      toast.success('Membro da equipe convidado com sucesso!');
+      toast.success('Membro adicionado à equipe! Eles podem criar uma conta usando este email.');
       setIsDialogOpen(false);
       setNewMember({ email: '', full_name: '', role: 'support' });
       fetchTeamMembers();
     } catch (error) {
-      console.error('Erro ao convidar membro:', error);
-      toast.error('Erro ao convidar membro da equipe');
+      console.error('Erro ao adicionar membro:', error);
+      toast.error('Erro ao adicionar membro da equipe');
     }
   };
 
