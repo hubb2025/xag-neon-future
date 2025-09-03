@@ -26,32 +26,15 @@ const ContactForm = () => {
     setLoading(true);
 
     try {
-      // First, check if customer exists or create one
-      let customerId: string;
-      
-      const { data: existingCustomer } = await supabase
-        .from('customers')
-        .select('id')
-        .eq('email', formData.email)
-        .maybeSingle();
+      // Use secure function to get or create customer
+      const { data: customerId, error: customerError } = await supabase
+        .rpc('get_or_create_customer', {
+          p_full_name: formData.name,
+          p_email: formData.email,
+          p_phone: formData.phone || null
+        });
 
-      if (existingCustomer) {
-        customerId = existingCustomer.id;
-      } else {
-        // Create new customer
-        const { data: newCustomer, error: customerError } = await supabase
-          .from('customers')
-          .insert([{
-            full_name: formData.name,
-            email: formData.email,
-            phone: formData.phone || null
-          }])
-          .select('id')
-          .single();
-
-        if (customerError) throw customerError;
-        customerId = newCustomer.id;
-      }
+      if (customerError) throw customerError;
 
       // Create support ticket
       const { error: ticketError } = await supabase

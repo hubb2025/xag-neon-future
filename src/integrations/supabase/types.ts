@@ -451,6 +451,10 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: undefined
       }
+      get_or_create_customer: {
+        Args: { p_email: string; p_full_name: string; p_phone?: string }
+        Returns: string
+      }
       is_admin_user: {
         Args: Record<PropertyKey, never>
         Returns: boolean
