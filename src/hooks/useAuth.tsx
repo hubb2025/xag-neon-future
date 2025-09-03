@@ -34,15 +34,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Set up auth state listener FIRST
+    // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      (event, session) => {
         setSession(session);
         setUser(session?.user ?? null);
+        setLoading(false);
         
+        // Handle profile fetch outside the callback to avoid deadlock
         if (session?.user) {
-          // Fetch user profile
-          setTimeout(async () => {
+          // Use a microtask to defer profile fetching
+          Promise.resolve().then(async () => {
             const { data: profileData } = await supabase
               .from('profiles')
               .select('*')
@@ -50,20 +52,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               .single();
             
             setProfile(profileData);
-          }, 0);
+          });
         } else {
           setProfile(null);
         }
-        
-        setLoading(false);
       }
     );
 
-    // THEN check for existing session
+    // Check for existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      setLoading(false);
+      if (!session) {
+        setLoading(false);
+      }
+      // The onAuthStateChange callback will handle the session
     });
 
     return () => subscription.unsubscribe();
