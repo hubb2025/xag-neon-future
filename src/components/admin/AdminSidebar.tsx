@@ -58,10 +58,14 @@ export function AdminSidebar() {
 
   return (
     <Sidebar 
-      className={`${collapsed ? "w-16" : "w-64"} bg-gradient-to-b from-green-600 to-green-700 border-r-0 shadow-xl animate-slide-in-right`} 
+      className={`${collapsed ? "w-16" : "w-64"} !bg-gradient-to-b !from-green-600 !to-green-700 border-r-0 shadow-xl animate-slide-in-right`} 
       collapsible="icon"
+      style={{ background: 'linear-gradient(180deg, rgb(34, 197, 94), rgb(21, 128, 61))' }}
     >
-      <SidebarContent className="bg-transparent">
+      <SidebarContent 
+        className="!bg-transparent" 
+        style={{ background: 'transparent' }}
+      >
         {/* Header */}
         <div className="p-4 border-b border-white/20">
           <div className="flex items-center gap-3">
