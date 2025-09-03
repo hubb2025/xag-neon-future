@@ -51,86 +51,83 @@ export function AdminSidebar() {
     return currentPath.startsWith(path);
   };
 
-  const getNavCls = (path: string) =>
-    isActive(path) 
-      ? "admin-nav-active" 
-      : "admin-nav-item";
-
   return (
-    <Sidebar 
-      className={`admin-sidebar ${collapsed ? "admin-sidebar-collapsed" : "admin-sidebar-expanded"}`} 
-      collapsible="icon"
-    >
-      <SidebarContent className="admin-sidebar-content">
-        {/* Header */}
-        <div className="admin-header">
-          <div className="admin-header-content">
-            <div className="admin-logo">
-              <Plane className="admin-logo-icon" />
-            </div>
-            {!collapsed && (
-              <div className="admin-brand">
-                <h2 className="admin-brand-title">DroneXag</h2>
-                <p className="admin-brand-subtitle">Painel Administrativo</p>
+    <div className="admin-sidebar-container">
+      <Sidebar 
+        className={`admin-sidebar ${collapsed ? "admin-sidebar-collapsed" : "admin-sidebar-expanded"}`} 
+        collapsible="icon"
+      >
+        <SidebarContent className="admin-sidebar-content">
+          {/* Header */}
+          <div className="admin-header">
+            <div className="admin-header-content">
+              <div className="admin-logo">
+                <Plane className="admin-logo-icon" />
               </div>
-            )}
-          </div>
-        </div>
-
-        {/* User Info */}
-        {!collapsed && profile && (
-          <div className="admin-user-section">
-            <div className="admin-user-info">
-              <div className="admin-avatar">
-                <span className="admin-avatar-text">
-                  {profile.full_name.charAt(0).toUpperCase()}
-                </span>
-              </div>
-              <div className="admin-user-details">
-                <p className="admin-user-name">{profile.full_name}</p>
-                <span className="admin-user-role">{profile.role}</span>
-              </div>
+              {!collapsed && (
+                <div className="admin-brand">
+                  <h2 className="admin-brand-title">DroneXag</h2>
+                  <p className="admin-brand-subtitle">Painel Administrativo</p>
+                </div>
+              )}
             </div>
           </div>
-        )}
 
-        <SidebarGroup className="admin-menu-group">
-          {!collapsed && (
-            <SidebarGroupLabel className="admin-menu-label">
-              Menu Principal
-            </SidebarGroupLabel>
+          {/* User Info */}
+          {!collapsed && profile && (
+            <div className="admin-user-section">
+              <div className="admin-user-info">
+                <div className="admin-avatar">
+                  <span className="admin-avatar-text">
+                    {profile.full_name.charAt(0).toUpperCase()}
+                  </span>
+                </div>
+                <div className="admin-user-details">
+                  <p className="admin-user-name">{profile.full_name}</p>
+                  <span className="admin-user-role">{profile.role}</span>
+                </div>
+              </div>
+            </div>
           )}
-          <SidebarGroupContent>
-            <SidebarMenu className="admin-menu">
-              {menuItems.map((item, index) => (
-                <SidebarMenuItem key={item.title} className="admin-menu-item-wrapper" style={{ animationDelay: `${index * 0.05}s` }}>
-                  <SidebarMenuButton asChild>
-                    <NavLink 
-                      to={item.url} 
-                      className={`admin-menu-link ${getNavCls(item.url)}`}
-                    >
-                      <item.icon className="admin-menu-icon" />
-                      {!collapsed && <span className="admin-menu-text">{item.title}</span>}
-                    </NavLink>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
 
-        {/* Logout Button */}
-        <div className="admin-logout-section">
-          <Button
-            variant="ghost"
-            onClick={signOut}
-            className={`admin-logout-btn ${collapsed ? "admin-logout-collapsed" : ""}`}
-          >
-            <LogOut className="admin-logout-icon" />
-            {!collapsed && <span className="admin-logout-text">Sair</span>}
-          </Button>
-        </div>
-      </SidebarContent>
-    </Sidebar>
+          <SidebarGroup className="admin-menu-group">
+            {!collapsed && (
+              <SidebarGroupLabel className="admin-menu-label">
+                MENU PRINCIPAL
+              </SidebarGroupLabel>
+            )}
+            <SidebarGroupContent>
+              <SidebarMenu className="admin-menu">
+                {menuItems.map((item, index) => (
+                  <SidebarMenuItem key={item.title} className="admin-menu-item-wrapper" style={{ animationDelay: `${index * 0.05}s` }}>
+                    <SidebarMenuButton asChild>
+                      <NavLink 
+                        to={item.url} 
+                        className={`admin-menu-link ${isActive(item.url) ? "admin-nav-active" : "admin-nav-item"}`}
+                      >
+                        <item.icon className="admin-menu-icon" />
+                        {!collapsed && <span className="admin-menu-text">{item.title}</span>}
+                      </NavLink>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+
+          {/* Logout Button */}
+          <div className="admin-logout-section">
+            <Button
+              variant="ghost"
+              onClick={signOut}
+              className={`admin-logout-btn ${collapsed ? "admin-logout-collapsed" : ""}`}
+            >
+              <LogOut className="admin-logout-icon" />
+              {!collapsed && <span className="admin-logout-text">Sair</span>}
+            </Button>
+          </div>
+        </SidebarContent>
+      </Sidebar>
+    </div>
   );
 }

@@ -470,14 +470,59 @@ All colors MUST be HSL.
   }
 
   /* ================================================ */
-  /* ADMIN PANEL STYLES - SEPARATE FROM MAIN SITE */
+  /* ADMIN PANEL STYLES - COMPLETELY SEPARATE FROM MAIN SITE */
   /* ================================================ */
 
+  /* Admin Layout Base */
+  .admin-layout {
+    @apply min-h-screen flex w-full;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  }
+
+  /* Admin Loading Screen */
+  .admin-loading-screen {
+    @apply min-h-screen flex items-center justify-center;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  }
+
+  .admin-loading-content {
+    @apply text-center;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .admin-loading-spinner {
+    @apply h-12 w-12 mx-auto mb-4;
+    color: #10b981;
+    animation: spin 1s linear infinite;
+  }
+
+  .admin-loading-text {
+    @apply text-lg;
+    color: #94a3b8;
+  }
+
   /* Admin Sidebar Container */
+  .admin-sidebar-container {
+    position: relative;
+    z-index: 40;
+  }
+
   .admin-sidebar {
     @apply border-r-0 shadow-2xl;
-    background: linear-gradient(180deg, hsl(142 76% 36%), hsl(142 71% 25%));
+    background: linear-gradient(180deg, #059669 0%, #047857 100%);
     border-right: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+  }
+
+  .admin-sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+    pointer-events: none;
   }
 
   .admin-sidebar-expanded {
@@ -492,13 +537,16 @@ All colors MUST be HSL.
 
   .admin-sidebar-content {
     @apply !bg-transparent flex flex-col h-full;
+    position: relative;
+    z-index: 1;
   }
 
   /* Admin Header */
   .admin-header {
     @apply p-6 border-b;
-    border-color: rgba(255, 255, 255, 0.15);
-    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
   }
 
   .admin-header-content {
@@ -507,35 +555,42 @@ All colors MUST be HSL.
 
   .admin-logo {
     @apply p-3 rounded-xl flex items-center justify-center;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 
+      0 8px 25px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 
   .admin-logo-icon {
-    @apply h-7 w-7 text-white;
+    @apply h-8 w-8;
+    color: white;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
   }
 
   .admin-brand {
-    @apply animate-in slide-in-from-left-5 duration-300;
+    animation: slideInLeft 0.5s ease-out;
   }
 
   .admin-brand-title {
-    @apply font-bold text-2xl text-white;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    @apply font-bold text-2xl mb-1;
+    color: white;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    letter-spacing: -0.5px;
   }
 
   .admin-brand-subtitle {
-    @apply text-sm;
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: 500;
+    @apply text-sm font-medium;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   }
 
   /* Admin User Section */
   .admin-user-section {
     @apply p-6 border-b;
     border-color: rgba(255, 255, 255, 0.15);
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
   }
 
   .admin-user-info {
@@ -543,15 +598,19 @@ All colors MUST be HSL.
   }
 
   .admin-avatar {
-    @apply w-14 h-14 rounded-full flex items-center justify-center;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    @apply w-16 h-16 rounded-full flex items-center justify-center;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 
+      0 8px 25px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
 
   .admin-avatar-text {
-    @apply text-xl font-bold text-white;
+    @apply text-xl font-bold;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 
   .admin-user-details {
@@ -559,16 +618,19 @@ All colors MUST be HSL.
   }
 
   .admin-user-name {
-    @apply text-base font-semibold text-white truncate mb-1;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    @apply text-base font-semibold mb-2;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
 
   .admin-user-role {
-    @apply text-xs font-medium px-3 py-1 rounded-full;
-    background: rgba(255, 255, 255, 0.15);
-    color: rgba(255, 255, 255, 0.9);
+    @apply text-xs font-semibold px-3 py-1.5 rounded-full;
+    background: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    text-transform: capitalize;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
   /* Admin Menu */
@@ -577,9 +639,10 @@ All colors MUST be HSL.
   }
 
   .admin-menu-label {
-    @apply px-6 py-4 font-semibold text-xs uppercase tracking-widest;
-    color: rgba(255, 255, 255, 0.7);
+    @apply px-6 py-4 font-bold text-xs uppercase tracking-widest;
+    color: rgba(255, 255, 255, 0.8);
     letter-spacing: 0.1em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   }
 
   .admin-menu {
@@ -587,7 +650,7 @@ All colors MUST be HSL.
   }
 
   .admin-menu-item-wrapper {
-    @apply animate-in slide-in-from-left-5 duration-500;
+    animation: slideInLeft 0.6s ease-out;
   }
 
   .admin-menu-link {
@@ -595,43 +658,31 @@ All colors MUST be HSL.
     position: relative;
   }
 
-  .admin-menu-link::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.05);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 1rem;
-  }
-
   .admin-nav-item {
-    @apply text-white/90;
+    color: rgba(255, 255, 255, 0.85);
+    background: transparent;
   }
 
   .admin-nav-item:hover {
-    @apply text-white transform scale-105;
-    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  }
-
-  .admin-nav-item:hover::before {
-    opacity: 1;
-  }
-
-  .admin-nav-active {
-    @apply text-white font-semibold;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform: translateX(4px);
     box-shadow: 
       0 8px 25px rgba(0, 0, 0, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .admin-nav-active {
+    color: white !important;
+    background: rgba(255, 255, 255, 0.25) !important;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
     position: relative;
+    font-weight: 600;
   }
 
   .admin-nav-active::after {
@@ -641,40 +692,45 @@ All colors MUST be HSL.
     top: 50%;
     transform: translateY(-50%);
     width: 4px;
-    height: 24px;
+    height: 28px;
     background: white;
     border-radius: 2px 0 0 2px;
-    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
   }
 
   .admin-menu-icon {
     @apply h-6 w-6 flex-shrink-0;
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
   }
 
   .admin-menu-text {
-    @apply font-medium;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    @apply font-semibold;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   }
 
   /* Admin Logout Section */
   .admin-logout-section {
     @apply mt-auto p-6 border-t;
     border-color: rgba(255, 255, 255, 0.15);
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
   }
 
   .admin-logout-btn {
-    @apply w-full justify-start gap-4 px-4 py-4 rounded-2xl transition-all duration-300 text-white;
-    background: rgba(239, 68, 68, 0.1);
-    border: 1px solid rgba(239, 68, 68, 0.2);
+    @apply w-full justify-start gap-4 px-4 py-4 rounded-2xl transition-all duration-300;
+    color: white;
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    backdrop-filter: blur(10px);
   }
 
   .admin-logout-btn:hover {
-    @apply text-white transform scale-105;
-    background: rgba(239, 68, 68, 0.2);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(239, 68, 68, 0.2);
+    color: white !important;
+    background: rgba(239, 68, 68, 0.25) !important;
+    transform: translateY(-2px);
+    box-shadow: 
+      0 8px 25px rgba(239, 68, 68, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 
   .admin-logout-collapsed {
@@ -683,12 +739,109 @@ All colors MUST be HSL.
 
   .admin-logout-icon {
     @apply h-6 w-6 flex-shrink-0;
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
   }
 
   .admin-logout-text {
-    @apply font-medium;
+    @apply font-semibold;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Admin Main Container */
+  .admin-main-container {
+    @apply flex-1 flex flex-col min-w-0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  }
+
+  /* Admin Main Header */
+  .admin-main-header {
+    @apply h-16 border-b flex items-center px-4 lg:px-6 gap-4 sticky top-0 z-30;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-color: rgba(148, 163, 184, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .admin-sidebar-trigger {
+    @apply p-2 rounded-xl transition-all duration-200;
+    background: rgba(16, 185, 129, 0.1);
+    color: #059669;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+  }
+
+  .admin-sidebar-trigger:hover {
+    background: rgba(16, 185, 129, 0.15);
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+  }
+
+  .admin-sidebar-trigger-icon {
+    @apply h-5 w-5;
+  }
+
+  .admin-header-content-main {
+    @apply flex-1 flex items-center justify-between;
+  }
+
+  .admin-header-info {
+    @apply flex flex-col;
+  }
+
+  .admin-header-title {
+    @apply text-xl font-bold;
+    color: #1e293b;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .admin-header-subtitle {
+    @apply text-sm font-medium;
+    color: #64748b;
+  }
+
+  .admin-user-badge {
+    @apply flex items-center gap-3 px-4 py-2 rounded-xl;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1);
+  }
+
+  .admin-user-badge-avatar {
+    @apply w-10 h-10 rounded-full flex items-center justify-center;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  }
+
+  .admin-user-badge-initial {
+    @apply text-sm font-bold;
+    color: white;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .admin-user-badge-info {
+    @apply flex flex-col;
+  }
+
+  .admin-user-badge-name {
+    @apply text-sm font-semibold;
+    color: #1e293b;
+  }
+
+  .admin-user-badge-role {
+    @apply text-xs font-medium capitalize;
+    color: #64748b;
+  }
+
+  /* Admin Main Content */
+  .admin-main-content {
+    @apply flex-1 p-4 lg:p-6 overflow-auto;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  }
+
+  .admin-content-wrapper {
+    @apply max-w-7xl mx-auto;
+    animation: fadeInUp 0.6s ease-out;
   }
 
   /* Admin Responsive Adjustments */
@@ -703,6 +856,42 @@ All colors MUST be HSL.
     .admin-sidebar-collapsed {
       width: 0;
       overflow: hidden;
+    }
+
+    .admin-header-subtitle {
+      @apply hidden;
+    }
+
+    .admin-user-badge-info {
+      @apply hidden;
+    }
+  }
+
+  /* Admin Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeInUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+
+  @keyframes slideInLeft {
+    from { 
+      opacity: 0; 
+      transform: translateX(-20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateX(0); 
     }
   }
 }
