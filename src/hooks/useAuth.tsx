@@ -98,7 +98,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signUp = async (email: string, password: string, fullName: string) => {
     try {
-      const redirectUrl = `${window.location.origin}/admin`;
+      const redirectUrl = `${window.location.origin}/auth`;
       
       const { error } = await supabase.auth.signUp({
         email,
@@ -120,7 +120,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       } else {
         toast({
           title: "Cadastro realizado!",
-          description: "Verifique seu email para confirmar a conta.",
+          description: "Verifique seu email para confirmar a conta. O primeiro usuário cadastrado será o administrador principal.",
+          duration: 5000,
         });
       }
 

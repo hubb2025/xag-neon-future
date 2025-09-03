@@ -451,6 +451,10 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: undefined
       }
+      is_admin_user: {
+        Args: Record<PropertyKey, never>
+        Returns: boolean
+      }
     }
     Enums: {
       drone_status: "available" | "maintenance" | "sold" | "reserved"
