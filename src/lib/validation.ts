@@ -82,6 +82,26 @@ export const contactFormSchema = z.object({
   message: messageSchema,
 });
 
+// Customer validation schema
+export const customerSchema = z.object({
+  full_name: nameSchema,
+  email: emailSchema,
+  phone: phoneSchema,
+  company: z.string().max(200, 'Nome da empresa muito longo').optional(),
+  document: z.string()
+    .optional()
+    .refine(
+      (doc) => {
+        if (!doc) return true; // Optional field
+        // Remove all non-numeric characters for validation
+        const cleanDoc = doc.replace(/\D/g, '');
+        // Brazilian CPF (11 digits) or CNPJ (14 digits)
+        return cleanDoc.length === 11 || cleanDoc.length === 14;
+      },
+      'Documento deve ser CPF (11 dígitos) ou CNPJ (14 dígitos)'
+    ),
+});
+
 // Team invitation validation schema
 export const teamInvitationSchema = z.object({
   email: emailSchema,
@@ -90,6 +110,22 @@ export const teamInvitationSchema = z.object({
     required_error: 'Função é obrigatória',
   }),
 });
+
+// Password validation schema with strength requirements
+export const passwordSchema = z
+  .string()
+  .min(8, 'Senha deve ter pelo menos 8 caracteres')
+  .max(128, 'Senha muito longa')
+  .refine(
+    (password) => {
+      // At least one uppercase letter, one lowercase letter, one number
+      const hasUppercase = /[A-Z]/.test(password);
+      const hasLowercase = /[a-z]/.test(password);
+      const hasNumber = /\d/.test(password);
+      return hasUppercase && hasLowercase && hasNumber;
+    },
+    'Senha deve conter pelo menos uma letra maiúscula, uma minúscula e um número'
+  );
 
 // Input sanitization function
 export function sanitizeInput(input: string): string {
@@ -130,4 +166,5 @@ export function isValidInvitationToken(token: string): boolean {
 }
 
 export type ContactFormData = z.infer<typeof contactFormSchema>;
+export type CustomerData = z.infer<typeof customerSchema>;
 export type TeamInvitationData = z.infer<typeof teamInvitationSchema>;

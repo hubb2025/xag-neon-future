@@ -10,6 +10,10 @@ import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Plus, Search, Edit, Trash2, Mail, Phone, Building } from 'lucide-react';
 import { ConfirmationDialog } from '@/components/ui/confirmation-dialog';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { customerSchema, sanitizeInput, formatPhoneNumber, type CustomerData } from '@/lib/validation';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 
 interface Customer {
   id: string;
@@ -27,14 +31,18 @@ export default function Customers() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingCustomer, setEditingCustomer] = useState<Customer | null>(null);
-  const [formData, setFormData] = useState({
-    full_name: '',
-    email: '',
-    phone: '',
-    company: '',
-    document: '',
-  });
   const { toast } = useToast();
+
+  const form = useForm<CustomerData>({
+    resolver: zodResolver(customerSchema),
+    defaultValues: {
+      full_name: '',
+      email: '',
+      phone: '',
+      company: '',
+      document: '',
+    },
+  });
 
   useEffect(() => {
     fetchCustomers();
@@ -61,15 +69,23 @@ export default function Customers() {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (data: CustomerData) => {
     setLoading(true);
 
     try {
+      // Sanitize all text inputs
+      const sanitizedData = {
+        full_name: sanitizeInput(data.full_name),
+        email: data.email.toLowerCase().trim(), // Email is already validated by Zod
+        phone: data.phone ? formatPhoneNumber(data.phone) : undefined,
+        company: data.company ? sanitizeInput(data.company) : undefined,
+        document: data.document ? data.document.replace(/\D/g, '') : undefined, // Keep only numbers
+      };
+
       if (editingCustomer) {
         const { error } = await supabase
           .from('customers')
-          .update(formData)
+          .update(sanitizedData)
           .eq('id', editingCustomer.id);
 
         if (error) throw error;
@@ -80,7 +96,7 @@ export default function Customers() {
       } else {
         const { error } = await supabase
           .from('customers')
-          .insert([formData]);
+          .insert([sanitizedData]);
 
         if (error) throw error;
         toast({
@@ -91,13 +107,7 @@ export default function Customers() {
 
       setIsDialogOpen(false);
       setEditingCustomer(null);
-      setFormData({
-        full_name: '',
-        email: '',
-        phone: '',
-        company: '',
-        document: '',
-      });
+      form.reset();
       fetchCustomers();
     } catch (error: any) {
       toast({
@@ -112,7 +122,7 @@ export default function Customers() {
 
   const handleEdit = (customer: Customer) => {
     setEditingCustomer(customer);
-    setFormData({
+    form.reset({
       full_name: customer.full_name,
       email: customer.email,
       phone: customer.phone || '',
@@ -172,7 +182,7 @@ export default function Customers() {
           <DialogTrigger asChild>
             <Button onClick={() => {
               setEditingCustomer(null);
-              setFormData({
+              form.reset({
                 full_name: '',
                 email: '',
                 phone: '',
@@ -196,58 +206,96 @@ export default function Customers() {
                 }
               </DialogDescription>
             </DialogHeader>
-            <form onSubmit={handleSubmit}>
-              <div className="grid gap-4 py-4">
-                <div className="grid gap-2">
-                  <Label htmlFor="full_name">Nome completo *</Label>
-                  <Input
-                    id="full_name"
-                    value={formData.full_name}
-                    onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-                    required
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(handleSubmit)}>
+                <div className="grid gap-4 py-4">
+                  <FormField
+                    control={form.control}
+                    name="full_name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Nome completo *</FormLabel>
+                        <FormControl>
+                          <Input {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email *</FormLabel>
+                        <FormControl>
+                          <Input type="email" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Telefone</FormLabel>
+                        <FormControl>
+                          <Input 
+                            {...field} 
+                            placeholder="(11) 99999-9999"
+                            onChange={(e) => {
+                              const formatted = formatPhoneNumber(e.target.value);
+                              field.onChange(formatted);
+                            }}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="company"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Empresa</FormLabel>
+                        <FormControl>
+                          <Input {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="document"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Documento (CPF/CNPJ)</FormLabel>
+                        <FormControl>
+                          <Input 
+                            {...field} 
+                            placeholder="000.000.000-00 ou 00.000.000/0000-00"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
                 </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="email">Email *</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    required
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="phone">Telefone</Label>
-                  <Input
-                    id="phone"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="company">Empresa</Label>
-                  <Input
-                    id="company"
-                    value={formData.company}
-                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="document">Documento (CPF/CNPJ)</Label>
-                  <Input
-                    id="document"
-                    value={formData.document}
-                    onChange={(e) => setFormData({ ...formData, document: e.target.value })}
-                  />
-                </div>
-              </div>
-              <DialogFooter>
-                <Button type="submit" disabled={loading}>
-                  {editingCustomer ? 'Atualizar' : 'Criar'}
-                </Button>
-              </DialogFooter>
-            </form>
+                <DialogFooter>
+                  <Button type="submit" disabled={loading}>
+                    {editingCustomer ? 'Atualizar' : 'Criar'}
+                  </Button>
+                </DialogFooter>
+              </form>
+            </Form>
           </DialogContent>
         </Dialog>
       </div>
