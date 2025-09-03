@@ -23,18 +23,19 @@ const Index = () => {
 
   const droneModels = [
     {
-      id: "xag-phantom-pro",
-      title: "XAG PHANTOM",
-      subtitle: "PRO SERIES",
+      id: "XAG P60",
+      title: "XAG P60",
+      subtitle: "Modelo Compacto",
       description: "O drone mais avançado para operações comerciais e de vigilância. Equipado com tecnologia de ponta e sistema de navegação autônoma.",
       image: "/lovable-uploads/80bab24b-15fb-47fe-ade1-dda75319c061.png",
       badge: "MAIS VENDIDO",
       features: [
-        "Sistema de navegação GPS avançado com precisão centimétrica",
+        "Cobertura: 12 hectares/hora",
         "Câmera 8K com estabilização em 3 eixos para imagens profissionais",
-        "Resistência IP67 contra água e poeira para operação em qualquer clima",
+        "Taxa de fluxo: 16 L/min",
         "Sistema anti-colisão com sensores 360° para máxima segurança",
-        "Modo autônomo inteligente com planejamento de rota automatizado"
+        "Capacidade do tanque: 30L",
+        "Autonomia: 12 minutos"
       ],
       specs: {
         flightTime: "65min",
@@ -47,9 +48,9 @@ const Index = () => {
       }
     },
     {
-      id: "xag-stealth-elite",
-      title: "XAG STEALTH",
-      subtitle: "ELITE EDITION",
+      id: "XAG P100 PRO",
+      title: "XAG P100 PRO",
+      subtitle: "Modelo Intermediário",
       description: "Versão otimizada para missões táticas e operações noturnas. Design furtivo com tecnologia de camuflagem avançada.",
       image: "/lovable-uploads/a716d702-40cb-40bb-a842-a73475fd5abe.png",
       badge: "LANÇAMENTO",
@@ -71,9 +72,9 @@ const Index = () => {
       }
     },
     {
-      id: "xag-cargo-master",
-      title: "XAG CARGO",
-      subtitle: "MASTER CLASS",
+      id: "XAG P150",
+      title: "XAG P150",
+      subtitle: "Modelo Premium",
       description: "Especialmente desenvolvido para transporte de cargas pesadas e entregas comerciais em larga escala.",
       image: "/lovable-uploads/e004268f-665d-4e77-a00e-241c47a47044.png",
       badge: "PROFISSIONAL",

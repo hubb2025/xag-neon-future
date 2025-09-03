@@ -57,14 +57,22 @@ const AboutSection = () => {
                 Nossa Missão
               </h3>
               <p className="text-lg text-muted-foreground font-tech leading-relaxed">
-                Revolucionar o mercado de drones no Brasil através da tecnologia mais
-                avançada disponível, oferecendo produtos que combinam performance
-                excepcional com design cyberpunk único.
+                Oferecer soluções que promovam desenvolvimento sustentável, inovação e impacto positivo na vida das pessoas, valorizando a qualidade, a ética e a responsabilidade em cada ação.
               </p>
               <p className="text-lg text-muted-foreground font-tech leading-relaxed">
-                Desde nossa fundação, já entregamos mais de 10.000 drones para clientes
-                em todo o país, desde entusiastas até grandes empresas que confiam em
-                nossa expertise.
+                Ser reconhecida como referência em inovação, excelência e compromisso com o bem-estar social, ambiental e econômico, inspirando pessoas e organizações a alcançarem seus objetivos de forma consciente e transformadora.
+              </p>
+
+              <p className="text-lg text-muted-foreground font-tech leading-relaxed">
+                Inovação: buscar constantemente novas ideias e melhorias.
+                <br />
+                Sustentabilidade: promover práticas que respeitem o meio ambiente.
+                <br />
+                Colaboração: valorizar o trabalho em equipe e as parcerias.
+                <br />
+                Excelência: entregar resultados com qualidade e dedicação.
+                <br />
+                Respeito às Pessoas: reconhecer a diversidade e promover a inclusão.
               </p>
             </div>
 
