@@ -264,6 +264,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "order_items_drone_id_fkey"
+            columns: ["drone_id"]
+            isOneToOne: false
+            referencedRelation: "drones_public"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "order_items_order_id_fkey"
             columns: ["order_id"]
             isOneToOne: false
@@ -486,7 +493,47 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      drones_public: {
+        Row: {
+          category_id: string | null
+          created_at: string | null
+          description: string | null
+          id: string | null
+          image_url: string | null
+          model: string | null
+          name: string | null
+          status: Database["public"]["Enums"]["drone_status"] | null
+        }
+        Insert: {
+          category_id?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string | null
+          image_url?: string | null
+          model?: string | null
+          name?: string | null
+          status?: Database["public"]["Enums"]["drone_status"] | null
+        }
+        Update: {
+          category_id?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string | null
+          image_url?: string | null
+          model?: string | null
+          name?: string | null
+          status?: Database["public"]["Enums"]["drone_status"] | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "drones_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "drone_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Functions: {
       create_first_admin: {
