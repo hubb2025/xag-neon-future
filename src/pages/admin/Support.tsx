@@ -10,7 +10,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { Plus, Search, Edit, MessageCircle, Clock, AlertTriangle } from 'lucide-react';
+import { Plus, Search, Edit, MessageCircle, Clock, AlertTriangle, Eye } from 'lucide-react';
+import { TicketMessages } from '@/components/TicketMessages';
 
 interface SupportTicket {
   id: string;
@@ -47,6 +48,7 @@ export default function Support() {
   const [statusFilter, setStatusFilter] = useState('all');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingTicket, setEditingTicket] = useState<SupportTicket | null>(null);
+  const [selectedTicketId, setSelectedTicketId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     customer_id: '',
     assigned_to: 'unassigned',
@@ -61,6 +63,7 @@ export default function Support() {
     fetchTickets();
     fetchCustomers();
     fetchProfiles();
+    setupRealtimeSubscription();
   }, []);
 
   const fetchTickets = async () => {
@@ -123,6 +126,40 @@ export default function Support() {
 
   const generateTicketNumber = () => {
     return `TK-${Date.now().toString().slice(-6)}`;
+  };
+
+  const setupRealtimeSubscription = () => {
+    const channel = supabase
+      .channel('support-tickets')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'support_tickets'
+        },
+        () => {
+          // Refetch tickets when new ones are created
+          fetchTickets();
+        }
+      )
+      .on(
+        'postgres_changes',
+        {
+          event: 'UPDATE',
+          schema: 'public',
+          table: 'support_tickets'
+        },
+        () => {
+          // Refetch tickets when they are updated
+          fetchTickets();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -233,6 +270,18 @@ export default function Support() {
 
   const openTicketsCount = tickets.filter(t => t.status === 'open').length;
   const inProgressTicketsCount = tickets.filter(t => t.status === 'in_progress').length;
+
+  // Show ticket messages view
+  if (selectedTicketId) {
+    return (
+      <div className="space-y-6">
+        <TicketMessages 
+          ticketId={selectedTicketId} 
+          onClose={() => setSelectedTicketId(null)} 
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -473,13 +522,24 @@ export default function Support() {
                     {new Date(ticket.created_at).toLocaleDateString('pt-BR')}
                   </TableCell>
                   <TableCell className="text-right">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => handleEdit(ticket)}
-                    >
-                      <Edit className="h-4 w-4" />
-                    </Button>
+                    <div className="flex gap-1 justify-end">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSelectedTicketId(ticket.id)}
+                        title="Ver mensagens"
+                      >
+                        <Eye className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleEdit(ticket)}
+                        title="Editar ticket"
+                      >
+                        <Edit className="h-4 w-4" />
+                      </Button>
+                    </div>
                   </TableCell>
                 </TableRow>
               ))}

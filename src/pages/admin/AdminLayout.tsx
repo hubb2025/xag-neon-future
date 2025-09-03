@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import { AdminSidebar } from '@/components/admin/AdminSidebar';
+import { NotificationBell } from '@/components/NotificationBell';
 import { useAuth } from '@/hooks/useAuth';
 import { Loader2, Menu } from 'lucide-react';
 
@@ -52,23 +53,26 @@ export default function AdminLayout() {
                 </p>
               </div>
               
-              {profile && (
-                <div className="admin-user-badge">
-                  <div className="admin-user-badge-avatar">
-                    <span className="admin-user-badge-initial">
-                      {profile.full_name.charAt(0).toUpperCase()}
-                    </span>
+              <div className="flex items-center gap-4">
+                <NotificationBell />
+                {profile && (
+                  <div className="admin-user-badge">
+                    <div className="admin-user-badge-avatar">
+                      <span className="admin-user-badge-initial">
+                        {profile.full_name.charAt(0).toUpperCase()}
+                      </span>
+                    </div>
+                    <div className="admin-user-badge-info">
+                      <p className="admin-user-badge-name">
+                        {profile.full_name}
+                      </p>
+                      <p className="admin-user-badge-role">
+                        {profile.role}
+                      </p>
+                    </div>
                   </div>
-                  <div className="admin-user-badge-info">
-                    <p className="admin-user-badge-name">
-                      {profile.full_name}
-                    </p>
-                    <p className="admin-user-badge-role">
-                      {profile.role}
-                    </p>
-                  </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </header>
           

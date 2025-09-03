@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -13,24 +14,82 @@ const ContactForm = () => {
     phone: "",
     message: ""
   });
+  const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const generateTicketNumber = () => {
+    return `WEB-${Date.now().toString().slice(-6)}`;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
 
-    // Simulate form submission
-    toast({
-      title: "Mensagem enviada!",
-      description: "Entraremos em contato em breve. Obrigado pelo interesse!",
-    });
+    try {
+      // First, check if customer exists or create one
+      let customerId: string;
+      
+      const { data: existingCustomer } = await supabase
+        .from('customers')
+        .select('id')
+        .eq('email', formData.email)
+        .maybeSingle();
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      message: ""
-    });
+      if (existingCustomer) {
+        customerId = existingCustomer.id;
+      } else {
+        // Create new customer
+        const { data: newCustomer, error: customerError } = await supabase
+          .from('customers')
+          .insert([{
+            full_name: formData.name,
+            email: formData.email,
+            phone: formData.phone || null
+          }])
+          .select('id')
+          .single();
+
+        if (customerError) throw customerError;
+        customerId = newCustomer.id;
+      }
+
+      // Create support ticket
+      const { error: ticketError } = await supabase
+        .from('support_tickets')
+        .insert([{
+          ticket_number: generateTicketNumber(),
+          customer_id: customerId,
+          subject: 'Novo contato via website',
+          description: `Nome: ${formData.name}\nEmail: ${formData.email}\nTelefone: ${formData.phone || 'Não informado'}\n\nMensagem:\n${formData.message}`,
+          status: 'open',
+          priority: 'medium'
+        }]);
+
+      if (ticketError) throw ticketError;
+
+      toast({
+        title: "Mensagem enviada com sucesso!",
+        description: "Seu ticket foi criado e nossa equipe entrará em contato em breve. Obrigado pelo interesse!",
+      });
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: ""
+      });
+
+    } catch (error) {
+      console.error('Error creating support ticket:', error);
+      toast({
+        title: "Erro ao enviar mensagem",
+        description: "Houve um problema ao processar sua solicitação. Tente novamente ou entre em contato por telefone.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -200,9 +259,9 @@ const ContactForm = () => {
                   />
                 </div>
 
-                <Button type="submit" className="btn-cyber w-full text-lg py-3">
+                <Button type="submit" disabled={loading} className="btn-cyber w-full text-lg py-3">
                   <Send className="mr-2 h-5 w-5" />
-                  Enviar Mensagem
+                  {loading ? "Enviando..." : "Enviar Mensagem"}
                 </Button>
               </form>
             </CardContent>
