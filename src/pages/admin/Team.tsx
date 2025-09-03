@@ -69,36 +69,42 @@ export default function Team() {
 
     try {
       // Verificar se o email já existe
-      const { data: existingProfiles, error: checkError } = await supabase
+      const { data: existingProfiles } = await supabase
         .from('profiles')
         .select('email')
         .eq('email', newMember.email)
-        .single();
+        .maybeSingle();
 
       if (existingProfiles) {
         toast.error('Este email já está cadastrado na equipe');
         return;
       }
 
-      // Criar perfil de membro convidado
+      // Gerar ID único para o novo membro
+      const newUserId = crypto.randomUUID();
+
+      // Criar perfil do membro da equipe
       const { error: profileError } = await supabase
         .from('profiles')
         .insert({
-          user_id: crypto.randomUUID(), // ID temporário
+          user_id: newUserId,
           email: newMember.email,
           full_name: newMember.full_name,
           role: newMember.role
         });
 
-      if (profileError) throw profileError;
+      if (profileError) {
+        console.error('Erro ao criar perfil:', profileError);
+        throw profileError;
+      }
 
-      toast.success('Membro adicionado à equipe! Eles podem criar uma conta usando este email.');
+      toast.success(`Membro ${newMember.full_name} adicionado à equipe com sucesso!`);
       setIsDialogOpen(false);
       setNewMember({ email: '', full_name: '', role: 'support' });
       fetchTeamMembers();
     } catch (error) {
       console.error('Erro ao adicionar membro:', error);
-      toast.error('Erro ao adicionar membro da equipe');
+      toast.error('Erro ao adicionar membro da equipe. Verifique se você tem permissão de administrador.');
     }
   };
 
