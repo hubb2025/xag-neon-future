@@ -22,6 +22,8 @@ interface AuthContextType {
   signIn: (email: string, password: string) => Promise<{ error: any }>;
   signUp: (email: string, password: string, fullName: string) => Promise<{ error: any }>;
   signOut: () => Promise<void>;
+  isAdmin: boolean;
+  hasRole: (role: 'admin' | 'support' | 'it') => boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -32,6 +34,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
+
+  // Derived security properties
+  const isAdmin = profile?.role === 'admin';
+  const hasRole = (role: 'admin' | 'support' | 'it') => profile?.role === role;
 
   useEffect(() => {
     // Set up auth state listener
@@ -156,6 +162,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     signIn,
     signUp,
     signOut,
+    isAdmin,
+    hasRole,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
