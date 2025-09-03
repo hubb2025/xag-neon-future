@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Play } from "lucide-react";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import heroImage from "@/assets/img-hero.png";
 import backgroundImage from "@/assets/agricultural-field-bg.jpg";
 
@@ -91,7 +92,12 @@ const HeroSection = () => {
             <div className="absolute -bottom-4 sm:-bottom-8 -right-4 sm:-right-8 w-8 sm:w-16 h-8 sm:h-16 border-r-2 border-b-2 border-secondary/40 hidden sm:block"></div>
 
             <div className="space-y-4 lg:space-y-6">
-              <div className="relative">
+              <motion.div 
+                className="relative"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
                 {/* Animated text glow effect */}
                 <div className="absolute inset-0 blur-md hidden md:block">
                   <h1 className="text-4xl md:text-5xl lg:text-7xl font-cyber font-black leading-tight text-primary/20">
@@ -100,27 +106,56 @@ const HeroSection = () => {
                 </div>
 
                 <h1 className="text-4xl md:text-5xl lg:text-7xl font-cyber font-black leading-tight relative">
-                  <span className="text-primary">A Tecnologia que põe</span>
+                  <motion.span 
+                    className="text-primary"
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                  >
+                    A Tecnologia que põe
+                  </motion.span>
                   <br />
-                  <span className="text-primary">dinheiro no bolso
-                  </span>
+                  <motion.span 
+                    className="text-primary"
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                  >
+                    dinheiro no bolso
+                  </motion.span>
                   <br />
-                  <span className="text-primary">do Agricultor</span>
+                  <motion.span 
+                    className="text-primary"
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.8 }}
+                  >
+                    do Agricultor
+                  </motion.span>
                 </h1>
 
-
                 {/* Scanning line effect disabled to prevent flickering */}
-              </div>
+              </motion.div>
 
-              <div className="relative">
+              <motion.div 
+                className="relative"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.0 }}
+              >
                 <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-tech max-w-2xl pl-0 relative">
                   Eficiência, precisão e retorno garantido
                   <span className="absolute -right-1 sm:-right-2 top-0 w-2 h-2 bg-primary/60 rounded-full hidden sm:block"></span>
                 </p>
-              </div>
+              </motion.div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 relative">
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 relative"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.2 }}
+            >
               <div className="absolute -top-2 -left-2 w-4 h-4 border border-primary/50 hidden sm:block"></div>
               <Button className="btn-cyber group text-base lg:text-lg px-6 lg:px-8 py-3 lg:py-4 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
@@ -133,7 +168,7 @@ const HeroSection = () => {
                 <Play className="mr-2 h-4 lg:h-5 w-4 lg:w-5 group-hover:scale-110 transition-transform relative" />
                 <span className="relative">Ver Demo</span>
               </Button>
-            </div>
+            </motion.div>
 
             {/* Tech Stats - Desktop Only with Animation */}
             <div className="hidden lg:flex gap-4 lg:gap-8 pt-4">
@@ -162,7 +197,12 @@ const HeroSection = () => {
           </div>
 
           {/* Hero Image - Only visible on desktop */}
-          <div className="relative order-first lg:order-last hidden lg:block">
+          <motion.div 
+            className="relative order-first lg:order-last hidden lg:block"
+            initial={{ opacity: 0, scale: 0.8, x: 50 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
             {/* Hexagonal frame */}
             <div className="absolute inset-0 scale-110">
               <div className="cyber-hexagon opacity-30"></div>
@@ -206,10 +246,9 @@ const HeroSection = () => {
             <div className="absolute bottom-4 right-4 bg-background/90 border border-secondary/30 rounded px-2 py-1 text-xs font-tech">
               <div className="text-secondary">SIGNAL: 100%</div>
             </div>
-          </div>
+           </motion.div>
         </div>
       </div>
-
     </section>
   );
 };

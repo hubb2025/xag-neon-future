@@ -26,7 +26,14 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-border/30">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-green-200/50 relative">
+      {/* Green decorative lines */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-green-400/30 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-green-300/20 to-transparent"></div>
+        <div className="absolute top-2 left-1/4 w-16 h-px bg-green-400/20"></div>
+        <div className="absolute bottom-2 right-1/4 w-20 h-px bg-green-300/15"></div>
+      </div>
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
