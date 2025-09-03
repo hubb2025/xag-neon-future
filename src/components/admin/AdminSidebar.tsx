@@ -93,7 +93,6 @@ export function AdminSidebar() {
           <SidebarGroup className="admin-menu-group">
             {!collapsed && (
               <SidebarGroupLabel className="admin-menu-label">
-                MENU PRINCIPAL
               </SidebarGroupLabel>
             )}
             <SidebarGroupContent>

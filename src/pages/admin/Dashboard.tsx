@@ -177,28 +177,29 @@ export default function Dashboard() {
           <span className="text-sm font-medium text-green-700 dark:text-green-400">Sistema Online</span>
         </div>
       </div>
-      
+
+      {/* Stats Grid */}
       {/* Stats Grid */}
       <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {statCards.map((card, index) => (
-          <Card 
-            key={index} 
-            className={`admin-card animate-fade-in ${card.bgColor} border-0 shadow-lg hover:shadow-xl transition-all duration-300`}
+          <Card
+            key={index}
+            className="border border-green-500 rounded-xl bg-gray-900 shadow-sm hover:shadow-md transition-all duration-300"
             style={{ animationDelay: `${index * 100}ms` }}
           >
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
-              <CardTitle className={`text-sm font-semibold ${card.textColor}`}>
+              <CardTitle className="text-sm font-semibold text-white">
                 {card.title}
               </CardTitle>
-              <div className={`p-2 rounded-lg bg-gradient-to-r ${card.gradient}`}>
-                <card.icon className="h-4 w-4 text-white" />
+              <div className="p-2 rounded-lg border border-green-500 bg-gray-800">
+                <card.icon className="h-4 w-4 text-green-400" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className={`text-2xl sm:text-3xl font-bold ${card.textColor} mb-1`}>
+              <div className="text-2xl sm:text-3xl font-bold text-white mb-1">
                 {card.value}
               </div>
-              <p className="text-xs text-gray-600 dark:text-gray-400">
+              <p className="text-xs text-gray-300">
                 {card.description}
               </p>
             </CardContent>
