@@ -10,29 +10,31 @@ import { Loader2, Shield, Eye, EyeOff } from 'lucide-react';
 export default function Auth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   
-  const { signIn, user } = useAuth();
+  const { signIn, user, profile, loading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) {
+    // Only redirect when we have both user and profile loaded
+    if (user && profile && !loading) {
       navigate('/admin');
     }
-  }, [user, navigate]);
+  }, [user, profile, loading, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    setSubmitting(true);
 
     try {
       const { error } = await signIn(email, password);
-      if (!error) {
-        navigate('/admin');
+      // Let the useEffect handle the redirect after profile is loaded
+      if (error) {
+        setSubmitting(false);
       }
-    } finally {
-      setLoading(false);
+    } catch (err) {
+      setSubmitting(false);
     }
   };
 
@@ -87,8 +89,8 @@ export default function Auth() {
                 </Button>
               </div>
             </div>
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            <Button type="submit" className="w-full" disabled={submitting || loading}>
+              {(submitting || loading) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               Entrar
             </Button>
             <div className="text-center mt-4">
