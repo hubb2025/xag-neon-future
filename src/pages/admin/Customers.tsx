@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Plus, Search, Edit, Trash2, Mail, Phone, Building } from 'lucide-react';
+import { ConfirmationDialog } from '@/components/ui/confirmation-dialog';
 
 interface Customer {
   id: string;
@@ -121,14 +122,23 @@ export default function Customers() {
     setIsDialogOpen(true);
   };
 
+  const [deleteDialog, setDeleteDialog] = useState<{open: boolean, customerId: string | null}>({
+    open: false,
+    customerId: null
+  });
+
   const handleDelete = async (customerId: string) => {
-    if (!confirm('Tem certeza que deseja excluir este cliente?')) return;
+    setDeleteDialog({ open: true, customerId });
+  };
+
+  const confirmDelete = async () => {
+    if (!deleteDialog.customerId) return;
 
     try {
       const { error } = await supabase
         .from('customers')
         .delete()
-        .eq('id', customerId);
+        .eq('id', deleteDialog.customerId);
 
       if (error) throw error;
       
@@ -137,12 +147,9 @@ export default function Customers() {
         description: "Cliente foi removido com sucesso.",
       });
       fetchCustomers();
-    } catch (error: any) {
-      toast({
-        title: "Erro",
-        description: error.message || "Não foi possível excluir o cliente.",
-        variant: "destructive",
-      });
+    } finally {
+      setLoading(false);
+      setDeleteDialog({ open: false, customerId: null });
     }
   };
 
@@ -338,6 +345,16 @@ export default function Customers() {
           </Table>
         </CardContent>
       </Card>
+
+      <ConfirmationDialog
+        open={deleteDialog.open}
+        onOpenChange={(open) => setDeleteDialog({ open, customerId: null })}
+        title="Confirmar exclusão"
+        description="Tem certeza que deseja excluir este cliente? Esta ação não pode ser desfeita."
+        onConfirm={confirmDelete}
+        confirmText="Excluir"
+        variant="destructive"
+      />
     </div>
   );
 }
