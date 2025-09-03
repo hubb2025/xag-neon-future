@@ -14,7 +14,434 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      addresses: {
+        Row: {
+          city: string
+          complement: string | null
+          country: string
+          created_at: string
+          customer_id: string
+          id: string
+          is_primary: boolean
+          neighborhood: string
+          number: string
+          state: string
+          street: string
+          updated_at: string
+          zip_code: string
+        }
+        Insert: {
+          city: string
+          complement?: string | null
+          country?: string
+          created_at?: string
+          customer_id: string
+          id?: string
+          is_primary?: boolean
+          neighborhood: string
+          number: string
+          state: string
+          street: string
+          updated_at?: string
+          zip_code: string
+        }
+        Update: {
+          city?: string
+          complement?: string | null
+          country?: string
+          created_at?: string
+          customer_id?: string
+          id?: string
+          is_primary?: boolean
+          neighborhood?: string
+          number?: string
+          state?: string
+          street?: string
+          updated_at?: string
+          zip_code?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "addresses_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      api_tokens: {
+        Row: {
+          created_at: string
+          created_by: string
+          expires_at: string | null
+          id: string
+          is_active: boolean
+          last_used_at: string | null
+          name: string
+          permissions: Json | null
+          token_hash: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean
+          last_used_at?: string | null
+          name: string
+          permissions?: Json | null
+          token_hash: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean
+          last_used_at?: string | null
+          name?: string
+          permissions?: Json | null
+          token_hash?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "api_tokens_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      customers: {
+        Row: {
+          company: string | null
+          created_at: string
+          document: string | null
+          email: string
+          full_name: string
+          id: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          document?: string | null
+          email: string
+          full_name: string
+          id?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          document?: string | null
+          email?: string
+          full_name?: string
+          id?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      drone_categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      drones: {
+        Row: {
+          category_id: string | null
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          model: string
+          name: string
+          price: number
+          specifications: Json | null
+          status: Database["public"]["Enums"]["drone_status"]
+          stock_quantity: number
+          updated_at: string
+        }
+        Insert: {
+          category_id?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          model: string
+          name: string
+          price: number
+          specifications?: Json | null
+          status?: Database["public"]["Enums"]["drone_status"]
+          stock_quantity?: number
+          updated_at?: string
+        }
+        Update: {
+          category_id?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          model?: string
+          name?: string
+          price?: number
+          specifications?: Json | null
+          status?: Database["public"]["Enums"]["drone_status"]
+          stock_quantity?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "drones_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "drone_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      order_items: {
+        Row: {
+          created_at: string
+          drone_id: string
+          id: string
+          order_id: string
+          quantity: number
+          total_price: number
+          unit_price: number
+        }
+        Insert: {
+          created_at?: string
+          drone_id: string
+          id?: string
+          order_id: string
+          quantity?: number
+          total_price: number
+          unit_price: number
+        }
+        Update: {
+          created_at?: string
+          drone_id?: string
+          id?: string
+          order_id?: string
+          quantity?: number
+          total_price?: number
+          unit_price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_items_drone_id_fkey"
+            columns: ["drone_id"]
+            isOneToOne: false
+            referencedRelation: "drones"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          created_at: string
+          customer_id: string
+          id: string
+          notes: string | null
+          order_number: string
+          status: Database["public"]["Enums"]["order_status"]
+          total_amount: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          customer_id: string
+          id?: string
+          notes?: string | null
+          order_number: string
+          status?: Database["public"]["Enums"]["order_status"]
+          total_amount: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          customer_id?: string
+          id?: string
+          notes?: string | null
+          order_number?: string
+          status?: Database["public"]["Enums"]["order_status"]
+          total_amount?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "orders_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          role: Database["public"]["Enums"]["user_role"]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          role?: Database["public"]["Enums"]["user_role"]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          role?: Database["public"]["Enums"]["user_role"]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      support_messages: {
+        Row: {
+          created_at: string
+          id: string
+          is_internal: boolean
+          message: string
+          sender_id: string | null
+          ticket_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_internal?: boolean
+          message: string
+          sender_id?: string | null
+          ticket_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_internal?: boolean
+          message?: string
+          sender_id?: string | null
+          ticket_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "support_messages_sender_id_fkey"
+            columns: ["sender_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "support_messages_ticket_id_fkey"
+            columns: ["ticket_id"]
+            isOneToOne: false
+            referencedRelation: "support_tickets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      support_tickets: {
+        Row: {
+          assigned_to: string | null
+          created_at: string
+          customer_id: string
+          description: string
+          id: string
+          priority: Database["public"]["Enums"]["support_priority"]
+          status: Database["public"]["Enums"]["support_status"]
+          subject: string
+          ticket_number: string
+          updated_at: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          created_at?: string
+          customer_id: string
+          description: string
+          id?: string
+          priority?: Database["public"]["Enums"]["support_priority"]
+          status?: Database["public"]["Enums"]["support_status"]
+          subject: string
+          ticket_number: string
+          updated_at?: string
+        }
+        Update: {
+          assigned_to?: string | null
+          created_at?: string
+          customer_id?: string
+          description?: string
+          id?: string
+          priority?: Database["public"]["Enums"]["support_priority"]
+          status?: Database["public"]["Enums"]["support_status"]
+          subject?: string
+          ticket_number?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "support_tickets_assigned_to_fkey"
+            columns: ["assigned_to"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "support_tickets_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +450,16 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      drone_status: "available" | "maintenance" | "sold" | "reserved"
+      order_status:
+        | "pending"
+        | "processing"
+        | "shipped"
+        | "delivered"
+        | "cancelled"
+      support_priority: "low" | "medium" | "high" | "critical"
+      support_status: "open" | "in_progress" | "resolved" | "closed"
+      user_role: "admin" | "support" | "it"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +586,18 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      drone_status: ["available", "maintenance", "sold", "reserved"],
+      order_status: [
+        "pending",
+        "processing",
+        "shipped",
+        "delivered",
+        "cancelled",
+      ],
+      support_priority: ["low", "medium", "high", "critical"],
+      support_status: ["open", "in_progress", "resolved", "closed"],
+      user_role: ["admin", "support", "it"],
+    },
   },
 } as const
