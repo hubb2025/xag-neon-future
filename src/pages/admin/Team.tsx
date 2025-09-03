@@ -6,11 +6,13 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { ConfirmationModal } from '@/components/ui/confirmation-modal';
+import { ConfirmationDialog } from '@/components/ui/confirmation-dialog';
 import { supabase } from '@/integrations/supabase/client';
-import { UserPlus, Users, Mail, Shield, Trash2, Edit, UserX, UserCheck, MoreVertical } from 'lucide-react';
+import { UserPlus, Users, Mail, Shield, Trash2, Edit, UserX, UserCheck, MoreVertical, AlertCircle } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { toast } from 'sonner';
+import { teamInvitationSchema, generateInvitationToken, type TeamInvitationData } from '@/lib/validation';
+import { z } from 'zod';
 
 type MemberStatus = 'pendente' | 'ativo' | 'suspenso';
 
@@ -21,6 +23,7 @@ interface TeamMember {
   role: 'admin' | 'support' | 'it';
   status: MemberStatus;
   created_at: string;
+  user_id: string | null; // Null if they haven't created their account yet
 }
 
 const roleLabels = {
@@ -51,27 +54,26 @@ export default function Team() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [validationErrors, setValidationErrors] = useState<Partial<Record<keyof TeamInvitationData, string>>>({});
   const [confirmModal, setConfirmModal] = useState<{
-    isOpen: boolean;
+    open: boolean;
     title: string;
     description: string;
-    variant: 'danger' | 'warning' | 'success';
+    variant: "default" | "destructive";
     confirmText: string;
     onConfirm: () => void;
-    loading: boolean;
   }>({
-    isOpen: false,
+    open: false,
     title: '',
     description: '',
-    variant: 'warning',
+    variant: "default",
     confirmText: 'Confirmar',
-    onConfirm: () => {},
-    loading: false
+    onConfirm: () => {}
   });
-  const [newMember, setNewMember] = useState({
+  const [newMember, setNewMember] = useState<TeamInvitationData>({
     email: '',
     full_name: '',
-    role: 'support' as const
+    role: 'support'
   });
 
   useEffect(() => {
@@ -82,7 +84,7 @@ export default function Team() {
     try {
       const { data, error } = await supabase
         .from('profiles')
-        .select('id, email, full_name, role, status, created_at')
+        .select('id, email, full_name, role, status, created_at, user_id')
         .order('created_at', { ascending: false });
 
       if (error) throw error;
@@ -96,46 +98,83 @@ export default function Team() {
   };
 
   const handleInviteMember = async () => {
-    if (!newMember.email || !newMember.full_name) {
-      toast.error('Preencha todos os campos obrigatórios');
-      return;
-    }
+    setValidationErrors({});
 
     try {
-      // Verificar se o email já existe
-      const { data: existingProfiles } = await supabase
-        .from('profiles')
-        .select('email')
-        .eq('email', newMember.email)
-        .maybeSingle();
+      // Validate form data with Zod schema
+      const validatedData = teamInvitationSchema.parse(newMember);
 
-      if (existingProfiles) {
+      // Check if email already exists in profiles or pending invitations
+      const [existingProfile, existingInvitation] = await Promise.all([
+        supabase
+          .from('profiles')
+          .select('email')
+          .eq('email', validatedData.email)
+          .maybeSingle(),
+        supabase
+          .from('team_invitations')
+          .select('email')
+          .eq('email', validatedData.email)
+          .eq('status', 'pending')
+          .maybeSingle()
+      ]);
+
+      if (existingProfile.data) {
         toast.error('Este email já está cadastrado na equipe');
         return;
       }
 
-      // Criar perfil do membro da equipe (user_id será null até eles criarem uma conta)
-      const { error: profileError } = await supabase
-        .from('profiles')
-        .insert({
-          user_id: null, // Será preenchido quando o usuário criar uma conta
-          email: newMember.email,
-          full_name: newMember.full_name,
-          role: newMember.role
-        });
-
-      if (profileError) {
-        console.error('Erro ao criar perfil:', profileError);
-        throw profileError;
+      if (existingInvitation.data) {
+        toast.error('Já existe um convite pendente para este email');
+        return;
       }
 
-      toast.success(`Membro ${newMember.full_name} adicionado à equipe com sucesso!`);
+      // Get current admin user ID
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        toast.error('Erro de autenticação');
+        return;
+      }
+
+      // Generate secure invitation token
+      const invitationToken = generateInvitationToken();
+
+      // Create secure invitation record
+      const { error: invitationError } = await supabase
+        .from('team_invitations')
+        .insert({
+          email: validatedData.email,
+          full_name: validatedData.full_name,
+          role: validatedData.role,
+          invitation_token: invitationToken,
+          invited_by: user.id
+        });
+
+      if (invitationError) {
+        console.error('Erro ao criar convite:', invitationError);
+        throw invitationError;
+      }
+
+      toast.success(`Convite enviado para ${validatedData.full_name}! Eles receberão instruções por email para criar sua conta.`);
       setIsDialogOpen(false);
       setNewMember({ email: '', full_name: '', role: 'support' });
+      setValidationErrors({});
       fetchTeamMembers();
     } catch (error) {
-      console.error('Erro ao adicionar membro:', error);
-      toast.error('Erro ao adicionar membro da equipe. Verifique se você tem permissão de administrador.');
+      if (error instanceof z.ZodError) {
+        // Handle validation errors
+        const errors: Partial<Record<keyof TeamInvitationData, string>> = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) {
+            errors[err.path[0] as keyof TeamInvitationData] = err.message;
+          }
+        });
+        setValidationErrors(errors);
+        toast.error('Por favor, corrija os erros no formulário');
+      } else {
+        console.error('Erro ao enviar convite:', error);
+        toast.error('Erro ao enviar convite. Verifique se você tem permissão de administrador.');
+      }
     }
   };
 
@@ -156,9 +195,7 @@ export default function Team() {
     }
   };
 
-  const handleUpdateStatus = async (memberId: string, newStatus: MemberStatus) => {
-    setConfirmModal(prev => ({ ...prev, loading: true }));
-    
+  const handleUpdateStatus = async (memberId: string, newStatus: MemberStatus) => {    
     try {
       const { error } = await supabase
         .from('profiles')
@@ -169,18 +206,14 @@ export default function Team() {
       
       toast.success(`Status atualizado para ${statusLabels[newStatus]}!`);
       fetchTeamMembers();
-      setConfirmModal(prev => ({ ...prev, isOpen: false }));
+      setConfirmModal(prev => ({ ...prev, open: false }));
     } catch (error) {
       console.error('Erro ao atualizar status:', error);
       toast.error('Erro ao atualizar status do membro');
-    } finally {
-      setConfirmModal(prev => ({ ...prev, loading: false }));
     }
   };
 
-  const handleDeleteMember = async (memberId: string) => {
-    setConfirmModal(prev => ({ ...prev, loading: true }));
-    
+  const handleDeleteMember = async (memberId: string) => {    
     try {
       const { error } = await supabase
         .from('profiles')
@@ -191,21 +224,33 @@ export default function Team() {
       
       toast.success('Membro removido da equipe!');
       fetchTeamMembers();
-      setConfirmModal(prev => ({ ...prev, isOpen: false }));
+      setConfirmModal(prev => ({ ...prev, open: false }));
     } catch (error) {
       console.error('Erro ao remover membro:', error);
       toast.error('Erro ao remover membro da equipe');
-    } finally {
-      setConfirmModal(prev => ({ ...prev, loading: false }));
     }
   };
 
-  const openConfirmModal = (config: Omit<typeof confirmModal, 'isOpen' | 'loading'>) => {
+  const openConfirmModal = (config: Omit<typeof confirmModal, 'open'>) => {
     setConfirmModal({
       ...config,
-      isOpen: true,
-      loading: false
+      open: true
     });
+  };
+
+  const handleMemberChange = (field: keyof TeamInvitationData, value: string) => {
+    // Clear validation error for this field when user starts typing
+    if (validationErrors[field]) {
+      setValidationErrors(prev => ({
+        ...prev,
+        [field]: undefined
+      }));
+    }
+    
+    setNewMember(prev => ({
+      ...prev,
+      [field]: value
+    }));
   };
 
   if (loading) {
@@ -261,8 +306,15 @@ export default function Team() {
                   type="email"
                   placeholder="email@exemplo.com"
                   value={newMember.email}
-                  onChange={(e) => setNewMember({...newMember, email: e.target.value})}
+                  onChange={(e) => handleMemberChange('email', e.target.value)}
+                  className={validationErrors.email ? "border-destructive" : ""}
                 />
+                {validationErrors.email && (
+                  <div className="flex items-center mt-1 text-sm text-destructive">
+                    <AlertCircle className="h-4 w-4 mr-1" />
+                    {validationErrors.email}
+                  </div>
+                )}
               </div>
               <div>
                 <Label htmlFor="name">Nome Completo</Label>
@@ -270,16 +322,23 @@ export default function Team() {
                   id="name"
                   placeholder="Nome do membro"
                   value={newMember.full_name}
-                  onChange={(e) => setNewMember({...newMember, full_name: e.target.value})}
+                  onChange={(e) => handleMemberChange('full_name', e.target.value)}
+                  className={validationErrors.full_name ? "border-destructive" : ""}
                 />
+                {validationErrors.full_name && (
+                  <div className="flex items-center mt-1 text-sm text-destructive">
+                    <AlertCircle className="h-4 w-4 mr-1" />
+                    {validationErrors.full_name}
+                  </div>
+                )}
               </div>
               <div>
                 <Label htmlFor="role">Função</Label>
                 <Select 
                   value={newMember.role} 
-                  onValueChange={(value: any) => setNewMember({...newMember, role: value})}
+                  onValueChange={(value: any) => handleMemberChange('role', value)}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger className={validationErrors.role ? "border-destructive" : ""}>
                     <SelectValue placeholder="Selecione uma função" />
                   </SelectTrigger>
                   <SelectContent>
@@ -288,6 +347,12 @@ export default function Team() {
                     <SelectItem value="admin">Administrador</SelectItem>
                   </SelectContent>
                 </Select>
+                {validationErrors.role && (
+                  <div className="flex items-center mt-1 text-sm text-destructive">
+                    <AlertCircle className="h-4 w-4 mr-1" />
+                    {validationErrors.role}
+                  </div>
+                )}
               </div>
               <div className="flex justify-end gap-2">
                 <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
@@ -295,7 +360,7 @@ export default function Team() {
                 </Button>
                 <Button onClick={handleInviteMember}>
                   <Mail className="h-4 w-4 mr-2" />
-                  Enviar Convite
+                  Enviar Convite Seguro
                 </Button>
               </div>
             </div>
@@ -405,7 +470,7 @@ export default function Team() {
                           onClick={() => openConfirmModal({
                             title: 'Suspender Membro',
                             description: `Tem certeza que deseja suspender ${member.full_name}? Eles não poderão mais acessar o sistema.`,
-                            variant: 'warning',
+                            variant: 'destructive',
                             confirmText: 'Suspender',
                             onConfirm: () => handleUpdateStatus(member.id, 'suspenso')
                           })}
@@ -418,7 +483,7 @@ export default function Team() {
                           onClick={() => openConfirmModal({
                             title: 'Ativar Membro',
                             description: `Tem certeza que deseja ativar ${member.full_name}? Eles poderão acessar o sistema novamente.`,
-                            variant: 'success',
+                            variant: 'default',
                             confirmText: 'Ativar',
                             onConfirm: () => handleUpdateStatus(member.id, 'ativo')
                           })}
@@ -431,7 +496,7 @@ export default function Team() {
                           onClick={() => openConfirmModal({
                             title: 'Ativar Membro',
                             description: `Tem certeza que deseja ativar ${member.full_name}?`,
-                            variant: 'success',
+                            variant: 'default',
                             confirmText: 'Ativar',
                             onConfirm: () => handleUpdateStatus(member.id, 'ativo')
                           })}
@@ -447,7 +512,7 @@ export default function Team() {
                         onClick={() => openConfirmModal({
                           title: 'Remover Membro',
                           description: `Tem certeza que deseja remover ${member.full_name} da equipe? Esta ação não pode ser desfeita.`,
-                          variant: 'danger',
+                          variant: 'destructive',
                           confirmText: 'Remover',
                           onConfirm: () => handleDeleteMember(member.id)
                         })}
@@ -465,15 +530,14 @@ export default function Team() {
         </CardContent>
       </Card>
 
-      <ConfirmationModal
-        isOpen={confirmModal.isOpen}
-        onClose={() => setConfirmModal(prev => ({ ...prev, isOpen: false }))}
+      <ConfirmationDialog
+        open={confirmModal.open}
+        onOpenChange={(open) => setConfirmModal(prev => ({ ...prev, open }))}
         onConfirm={confirmModal.onConfirm}
         title={confirmModal.title}
         description={confirmModal.description}
         variant={confirmModal.variant}
         confirmText={confirmModal.confirmText}
-        loading={confirmModal.loading}
       />
     </div>
   );

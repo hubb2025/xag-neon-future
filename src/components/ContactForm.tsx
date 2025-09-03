@@ -3,18 +3,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+import { contactFormSchema, sanitizeInput, formatPhoneNumber, type ContactFormData } from "@/lib/validation";
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
     phone: "",
     message: ""
   });
   const [loading, setLoading] = useState(false);
+  const [validationErrors, setValidationErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
   const { toast } = useToast();
 
   const generateTicketNumber = () => {
@@ -24,26 +27,38 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setValidationErrors({});
 
     try {
+      // Validate form data with Zod schema
+      const validatedData = contactFormSchema.parse(formData);
+      
+      // Sanitize input data to prevent XSS
+      const sanitizedData = {
+        name: sanitizeInput(validatedData.name),
+        email: sanitizeInput(validatedData.email),
+        phone: validatedData.phone ? sanitizeInput(validatedData.phone) : null,
+        message: sanitizeInput(validatedData.message)
+      };
+
       // Use secure function to get or create customer
       const { data: customerId, error: customerError } = await supabase
         .rpc('get_or_create_customer', {
-          p_full_name: formData.name,
-          p_email: formData.email,
-          p_phone: formData.phone || null
+          p_full_name: sanitizedData.name,
+          p_email: sanitizedData.email,
+          p_phone: sanitizedData.phone
         });
 
       if (customerError) throw customerError;
 
-      // Create support ticket
+      // Create support ticket with sanitized data
       const { error: ticketError } = await supabase
         .from('support_tickets')
         .insert([{
           ticket_number: generateTicketNumber(),
           customer_id: customerId,
           subject: 'Novo contato via website',
-          description: `Nome: ${formData.name}\nEmail: ${formData.email}\nTelefone: ${formData.phone || 'Não informado'}\n\nMensagem:\n${formData.message}`,
+          description: `Nome: ${sanitizedData.name}\nEmail: ${sanitizedData.email}\nTelefone: ${sanitizedData.phone || 'Não informado'}\n\nMensagem:\n${sanitizedData.message}`,
           status: 'open',
           priority: 'medium'
         }]);
@@ -55,30 +70,60 @@ const ContactForm = () => {
         description: "Seu ticket foi criado e nossa equipe entrará em contato em breve. Obrigado pelo interesse!",
       });
 
-      // Reset form
+      // Reset form and validation errors
       setFormData({
         name: "",
         email: "",
         phone: "",
         message: ""
       });
+      setValidationErrors({});
 
     } catch (error) {
-      console.error('Error creating support ticket:', error);
-      toast({
-        title: "Erro ao enviar mensagem",
-        description: "Houve um problema ao processar sua solicitação. Tente novamente ou entre em contato por telefone.",
-        variant: "destructive",
-      });
+      if (error instanceof z.ZodError) {
+        // Handle validation errors
+        const errors: Partial<Record<keyof ContactFormData, string>> = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) {
+            errors[err.path[0] as keyof ContactFormData] = err.message;
+          }
+        });
+        setValidationErrors(errors);
+        toast({
+          title: "Dados inválidos",
+          description: "Por favor, corrija os erros no formulário",
+          variant: "destructive",
+        });
+      } else {
+        console.error('Error creating support ticket:', error);
+        toast({
+          title: "Erro ao enviar mensagem",
+          description: "Houve um problema ao processar sua solicitação. Tente novamente ou entre em contato por telefone.",
+          variant: "destructive",
+        });
+      }
     } finally {
       setLoading(false);
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    
+    // Clear validation error for this field when user starts typing
+    if (validationErrors[name as keyof ContactFormData]) {
+      setValidationErrors(prev => ({
+        ...prev,
+        [name]: undefined
+      }));
+    }
+    
+    // Format phone number on change
+    const formattedValue = name === 'phone' ? formatPhoneNumber(value) : value;
+    
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: formattedValue
     }));
   };
 
@@ -194,9 +239,15 @@ const ContactForm = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className=""
+                      className={validationErrors.name ? "border-destructive" : ""}
                       placeholder="Seu nome completo"
                     />
+                    {validationErrors.name && (
+                      <div className="flex items-center mt-1 text-sm text-destructive">
+                        <AlertCircle className="h-4 w-4 mr-1" />
+                        {validationErrors.name}
+                      </div>
+                    )}
                   </div>
                   <div>
                     <label className="block text-sm font-tech font-semibold text-white mb-2">
@@ -206,9 +257,15 @@ const ContactForm = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className=""
+                      className={validationErrors.phone ? "border-destructive" : ""}
                       placeholder="(11) 99999-9999"
                     />
+                    {validationErrors.phone && (
+                      <div className="flex items-center mt-1 text-sm text-destructive">
+                        <AlertCircle className="h-4 w-4 mr-1" />
+                        {validationErrors.phone}
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -222,9 +279,15 @@ const ContactForm = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className=""
+                    className={validationErrors.email ? "border-destructive" : ""}
                     placeholder="seu@email.com"
                   />
+                  {validationErrors.email && (
+                    <div className="flex items-center mt-1 text-sm text-destructive">
+                      <AlertCircle className="h-4 w-4 mr-1" />
+                      {validationErrors.email}
+                    </div>
+                  )}
                 </div>
 
                 <div>
@@ -237,9 +300,15 @@ const ContactForm = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="resize-none"
+                    className={`resize-none ${validationErrors.message ? "border-destructive" : ""}`}
                     placeholder="Conte-nos sobre seu interesse em drones..."
                   />
+                  {validationErrors.message && (
+                    <div className="flex items-center mt-1 text-sm text-destructive">
+                      <AlertCircle className="h-4 w-4 mr-1" />
+                      {validationErrors.message}
+                    </div>
+                  )}
                 </div>
 
                 <Button type="submit" disabled={loading} className="btn-cyber w-full text-lg py-3">
