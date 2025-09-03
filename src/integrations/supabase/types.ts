@@ -321,6 +321,7 @@ export type Database = {
           full_name: string
           id: string
           role: Database["public"]["Enums"]["user_role"]
+          status: Database["public"]["Enums"]["member_status"] | null
           updated_at: string
           user_id: string | null
         }
@@ -331,6 +332,7 @@ export type Database = {
           full_name: string
           id?: string
           role?: Database["public"]["Enums"]["user_role"]
+          status?: Database["public"]["Enums"]["member_status"] | null
           updated_at?: string
           user_id?: string | null
         }
@@ -341,6 +343,7 @@ export type Database = {
           full_name?: string
           id?: string
           role?: Database["public"]["Enums"]["user_role"]
+          status?: Database["public"]["Enums"]["member_status"] | null
           updated_at?: string
           user_id?: string | null
         }
@@ -466,6 +469,7 @@ export type Database = {
     }
     Enums: {
       drone_status: "available" | "maintenance" | "sold" | "reserved"
+      member_status: "pendente" | "ativo" | "suspenso"
       order_status:
         | "pending"
         | "processing"
@@ -603,6 +607,7 @@ export const Constants = {
   public: {
     Enums: {
       drone_status: ["available", "maintenance", "sold", "reserved"],
+      member_status: ["pendente", "ativo", "suspenso"],
       order_status: [
         "pending",
         "processing",

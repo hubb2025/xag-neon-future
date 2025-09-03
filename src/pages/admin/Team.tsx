@@ -6,15 +6,20 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { ConfirmationModal } from '@/components/ui/confirmation-modal';
 import { supabase } from '@/integrations/supabase/client';
-import { UserPlus, Users, Mail, Shield, Trash2, Edit } from 'lucide-react';
+import { UserPlus, Users, Mail, Shield, Trash2, Edit, UserX, UserCheck, MoreVertical } from 'lucide-react';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { toast } from 'sonner';
+
+type MemberStatus = 'pendente' | 'ativo' | 'suspenso';
 
 interface TeamMember {
   id: string;
   email: string;
   full_name: string;
   role: 'admin' | 'support' | 'it';
+  status: MemberStatus;
   created_at: string;
 }
 
@@ -30,10 +35,39 @@ const roleColors = {
   it: 'bg-purple-100 text-purple-800 border-purple-200'
 };
 
+const statusLabels = {
+  pendente: 'Pendente',
+  ativo: 'Ativo',
+  suspenso: 'Suspenso'
+};
+
+const statusColors = {
+  pendente: 'bg-yellow-100 text-yellow-800 border-yellow-200',
+  ativo: 'bg-green-100 text-green-800 border-green-200',
+  suspenso: 'bg-red-100 text-red-800 border-red-200'
+};
+
 export default function Team() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [confirmModal, setConfirmModal] = useState<{
+    isOpen: boolean;
+    title: string;
+    description: string;
+    variant: 'danger' | 'warning' | 'success';
+    confirmText: string;
+    onConfirm: () => void;
+    loading: boolean;
+  }>({
+    isOpen: false,
+    title: '',
+    description: '',
+    variant: 'warning',
+    confirmText: 'Confirmar',
+    onConfirm: () => {},
+    loading: false
+  });
   const [newMember, setNewMember] = useState({
     email: '',
     full_name: '',
@@ -48,7 +82,7 @@ export default function Team() {
     try {
       const { data, error } = await supabase
         .from('profiles')
-        .select('id, email, full_name, role, created_at')
+        .select('id, email, full_name, role, status, created_at')
         .order('created_at', { ascending: false });
 
       if (error) throw error;
@@ -120,6 +154,58 @@ export default function Team() {
       console.error('Erro ao atualizar função:', error);
       toast.error('Erro ao atualizar função do membro');
     }
+  };
+
+  const handleUpdateStatus = async (memberId: string, newStatus: MemberStatus) => {
+    setConfirmModal(prev => ({ ...prev, loading: true }));
+    
+    try {
+      const { error } = await supabase
+        .from('profiles')
+        .update({ status: newStatus })
+        .eq('id', memberId);
+
+      if (error) throw error;
+      
+      toast.success(`Status atualizado para ${statusLabels[newStatus]}!`);
+      fetchTeamMembers();
+      setConfirmModal(prev => ({ ...prev, isOpen: false }));
+    } catch (error) {
+      console.error('Erro ao atualizar status:', error);
+      toast.error('Erro ao atualizar status do membro');
+    } finally {
+      setConfirmModal(prev => ({ ...prev, loading: false }));
+    }
+  };
+
+  const handleDeleteMember = async (memberId: string) => {
+    setConfirmModal(prev => ({ ...prev, loading: true }));
+    
+    try {
+      const { error } = await supabase
+        .from('profiles')
+        .delete()
+        .eq('id', memberId);
+
+      if (error) throw error;
+      
+      toast.success('Membro removido da equipe!');
+      fetchTeamMembers();
+      setConfirmModal(prev => ({ ...prev, isOpen: false }));
+    } catch (error) {
+      console.error('Erro ao remover membro:', error);
+      toast.error('Erro ao remover membro da equipe');
+    } finally {
+      setConfirmModal(prev => ({ ...prev, loading: false }));
+    }
+  };
+
+  const openConfirmModal = (config: Omit<typeof confirmModal, 'isOpen' | 'loading'>) => {
+    setConfirmModal({
+      ...config,
+      isOpen: true,
+      loading: false
+    });
   };
 
   if (loading) {
@@ -287,28 +373,108 @@ export default function Team() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
+                  <Badge className={statusColors[member.status]}>
+                    {statusLabels[member.status]}
+                  </Badge>
                   <Badge className={roleColors[member.role]}>
                     {roleLabels[member.role]}
                   </Badge>
-                   <Select
-                     value={member.role}
-                     onValueChange={(newRole: 'admin' | 'support' | 'it') => handleUpdateRole(member.id, newRole)}
-                   >
+                  <Select
+                    value={member.role}
+                    onValueChange={(newRole: 'admin' | 'support' | 'it') => handleUpdateRole(member.id, newRole)}
+                  >
                     <SelectTrigger className="w-32">
                       <SelectValue />
                     </SelectTrigger>
-                     <SelectContent>
-                       <SelectItem value="support">Suporte</SelectItem>
-                       <SelectItem value="it">TI</SelectItem>
-                       <SelectItem value="admin">Administrador</SelectItem>
-                     </SelectContent>
+                    <SelectContent>
+                      <SelectItem value="support">Suporte</SelectItem>
+                      <SelectItem value="it">TI</SelectItem>
+                      <SelectItem value="admin">Administrador</SelectItem>
+                    </SelectContent>
                   </Select>
+                  
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" size="sm">
+                        <MoreVertical className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      {member.status === 'ativo' ? (
+                        <DropdownMenuItem
+                          onClick={() => openConfirmModal({
+                            title: 'Suspender Membro',
+                            description: `Tem certeza que deseja suspender ${member.full_name}? Eles não poderão mais acessar o sistema.`,
+                            variant: 'warning',
+                            confirmText: 'Suspender',
+                            onConfirm: () => handleUpdateStatus(member.id, 'suspenso')
+                          })}
+                        >
+                          <UserX className="h-4 w-4 mr-2" />
+                          Suspender
+                        </DropdownMenuItem>
+                      ) : member.status === 'suspenso' ? (
+                        <DropdownMenuItem
+                          onClick={() => openConfirmModal({
+                            title: 'Ativar Membro',
+                            description: `Tem certeza que deseja ativar ${member.full_name}? Eles poderão acessar o sistema novamente.`,
+                            variant: 'success',
+                            confirmText: 'Ativar',
+                            onConfirm: () => handleUpdateStatus(member.id, 'ativo')
+                          })}
+                        >
+                          <UserCheck className="h-4 w-4 mr-2" />
+                          Ativar
+                        </DropdownMenuItem>
+                      ) : (
+                        <DropdownMenuItem
+                          onClick={() => openConfirmModal({
+                            title: 'Ativar Membro',
+                            description: `Tem certeza que deseja ativar ${member.full_name}?`,
+                            variant: 'success',
+                            confirmText: 'Ativar',
+                            onConfirm: () => handleUpdateStatus(member.id, 'ativo')
+                          })}
+                        >
+                          <UserCheck className="h-4 w-4 mr-2" />
+                          Ativar
+                        </DropdownMenuItem>
+                      )}
+                      
+                      <DropdownMenuSeparator />
+                      
+                      <DropdownMenuItem
+                        onClick={() => openConfirmModal({
+                          title: 'Remover Membro',
+                          description: `Tem certeza que deseja remover ${member.full_name} da equipe? Esta ação não pode ser desfeita.`,
+                          variant: 'danger',
+                          confirmText: 'Remover',
+                          onConfirm: () => handleDeleteMember(member.id)
+                        })}
+                        className="text-red-600"
+                      >
+                        <Trash2 className="h-4 w-4 mr-2" />
+                        Remover
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
               </div>
             ))}
           </div>
         </CardContent>
       </Card>
+
+      <ConfirmationModal
+        isOpen={confirmModal.isOpen}
+        onClose={() => setConfirmModal(prev => ({ ...prev, isOpen: false }))}
+        onConfirm={confirmModal.onConfirm}
+        title={confirmModal.title}
+        description={confirmModal.description}
+        variant={confirmModal.variant}
+        confirmText={confirmModal.confirmText}
+        loading={confirmModal.loading}
+      />
     </div>
   );
 }
