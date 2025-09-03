@@ -49,7 +49,7 @@ export default function Support() {
   const [editingTicket, setEditingTicket] = useState<SupportTicket | null>(null);
   const [formData, setFormData] = useState({
     customer_id: '',
-    assigned_to: '',
+    assigned_to: 'unassigned',
     subject: '',
     description: '',
     status: 'open' as 'open' | 'in_progress' | 'resolved' | 'closed',
@@ -132,7 +132,7 @@ export default function Support() {
     try {
       const ticketData = {
         ...formData,
-        assigned_to: formData.assigned_to || null,
+        assigned_to: formData.assigned_to === 'unassigned' ? null : formData.assigned_to || null,
         ticket_number: editingTicket ? editingTicket.ticket_number : generateTicketNumber(),
       };
 
@@ -177,7 +177,7 @@ export default function Support() {
   const resetForm = () => {
     setFormData({
       customer_id: '',
-      assigned_to: '',
+      assigned_to: 'unassigned',
       subject: '',
       description: '',
       status: 'open',
@@ -189,7 +189,7 @@ export default function Support() {
     setEditingTicket(ticket);
     setFormData({
       customer_id: ticket.customer_id,
-      assigned_to: ticket.assigned_to || '',
+      assigned_to: ticket.assigned_to || 'unassigned',
       subject: ticket.subject,
       description: ticket.description,
       status: ticket.status,
@@ -290,7 +290,7 @@ export default function Support() {
                       <SelectValue placeholder="Selecione um responsável" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">Não atribuído</SelectItem>
+                      <SelectItem value="unassigned">Não atribuído</SelectItem>
                       {profiles.map((profile) => (
                         <SelectItem key={profile.id} value={profile.id}>
                           {profile.full_name}
