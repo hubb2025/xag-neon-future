@@ -265,7 +265,7 @@ export default function Orders() {
                   <TableCell className="text-right">
                     <Select 
                       value={order.status} 
-                      onValueChange={(value) => updateOrderStatus(order.id, value)}
+                      onValueChange={(value) => updateOrderStatus(order.id, value as 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled')}
                     >
                       <SelectTrigger className="w-[120px]">
                         <SelectValue />
