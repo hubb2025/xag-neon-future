@@ -53,29 +53,25 @@ export function AdminSidebar() {
 
   const getNavCls = (path: string) =>
     isActive(path) 
-      ? "bg-white/20 text-white font-medium border-r-4 border-white shadow-lg" 
-      : "hover:bg-white/10 text-white/90 hover:text-white transition-all duration-200";
+      ? "admin-nav-active" 
+      : "admin-nav-item";
 
   return (
     <Sidebar 
-      className={`${collapsed ? "w-16" : "w-64"} !bg-gradient-to-b !from-green-600 !to-green-700 border-r-0 shadow-xl animate-slide-in-right`} 
+      className={`admin-sidebar ${collapsed ? "admin-sidebar-collapsed" : "admin-sidebar-expanded"}`} 
       collapsible="icon"
-      style={{ background: 'linear-gradient(180deg, rgb(34, 197, 94), rgb(21, 128, 61))' }}
     >
-      <SidebarContent 
-        className="!bg-transparent" 
-        style={{ background: 'transparent' }}
-      >
+      <SidebarContent className="admin-sidebar-content">
         {/* Header */}
-        <div className="p-4 border-b border-white/20">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-white/20 rounded-lg">
-              <Plane className="h-6 w-6 text-white" />
+        <div className="admin-header">
+          <div className="admin-header-content">
+            <div className="admin-logo">
+              <Plane className="admin-logo-icon" />
             </div>
             {!collapsed && (
-              <div className="animate-fade-in">
-                <h2 className="font-bold text-xl text-white">DroneXag</h2>
-                <p className="text-xs text-white/80">Painel Administrativo</p>
+              <div className="admin-brand">
+                <h2 className="admin-brand-title">DroneXag</h2>
+                <p className="admin-brand-subtitle">Painel Administrativo</p>
               </div>
             )}
           </div>
@@ -83,40 +79,38 @@ export function AdminSidebar() {
 
         {/* User Info */}
         {!collapsed && profile && (
-          <div className="p-4 border-b border-white/20 animate-fade-in">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center ring-2 ring-white/30">
-                <span className="text-lg font-semibold text-white">
+          <div className="admin-user-section">
+            <div className="admin-user-info">
+              <div className="admin-avatar">
+                <span className="admin-avatar-text">
                   {profile.full_name.charAt(0).toUpperCase()}
                 </span>
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-white truncate">{profile.full_name}</p>
-                <p className="text-xs text-white/80 capitalize bg-white/10 px-2 py-1 rounded-full inline-block">
-                  {profile.role}
-                </p>
+              <div className="admin-user-details">
+                <p className="admin-user-name">{profile.full_name}</p>
+                <span className="admin-user-role">{profile.role}</span>
               </div>
             </div>
           </div>
         )}
 
-        <SidebarGroup className="px-0">
+        <SidebarGroup className="admin-menu-group">
           {!collapsed && (
-            <SidebarGroupLabel className="text-white/80 font-semibold px-4 text-xs uppercase tracking-wider">
+            <SidebarGroupLabel className="admin-menu-label">
               Menu Principal
             </SidebarGroupLabel>
           )}
           <SidebarGroupContent>
-            <SidebarMenu className="gap-1 px-2">
+            <SidebarMenu className="admin-menu">
               {menuItems.map((item, index) => (
-                <SidebarMenuItem key={item.title} className={`animate-fade-in`} style={{ animationDelay: `${index * 0.1}s` }}>
+                <SidebarMenuItem key={item.title} className="admin-menu-item-wrapper" style={{ animationDelay: `${index * 0.05}s` }}>
                   <SidebarMenuButton asChild>
                     <NavLink 
                       to={item.url} 
-                      className={`flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-300 hover-scale ${getNavCls(item.url)}`}
+                      className={`admin-menu-link ${getNavCls(item.url)}`}
                     >
-                      <item.icon className="h-5 w-5 flex-shrink-0" />
-                      {!collapsed && <span className="font-medium">{item.title}</span>}
+                      <item.icon className="admin-menu-icon" />
+                      {!collapsed && <span className="admin-menu-text">{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -126,16 +120,14 @@ export function AdminSidebar() {
         </SidebarGroup>
 
         {/* Logout Button */}
-        <div className="mt-auto p-4 border-t border-white/20">
+        <div className="admin-logout-section">
           <Button
             variant="ghost"
             onClick={signOut}
-            className={`w-full justify-start gap-3 text-white hover:text-white hover:bg-red-500/20 hover:border-red-400/50 border border-transparent transition-all duration-300 rounded-xl py-3 ${
-              collapsed ? "px-3" : ""
-            } hover-scale`}
+            className={`admin-logout-btn ${collapsed ? "admin-logout-collapsed" : ""}`}
           >
-            <LogOut className="h-5 w-5 flex-shrink-0" />
-            {!collapsed && <span className="font-medium">Sair</span>}
+            <LogOut className="admin-logout-icon" />
+            {!collapsed && <span className="admin-logout-text">Sair</span>}
           </Button>
         </div>
       </SidebarContent>
