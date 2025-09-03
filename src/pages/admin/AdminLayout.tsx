@@ -1,35 +1,12 @@
-import { useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import { AdminSidebar } from '@/components/admin/AdminSidebar';
 import { NotificationBell } from '@/components/NotificationBell';
 import { useAuth } from '@/hooks/useAuth';
-import { Loader2, Menu } from 'lucide-react';
+import { Menu } from 'lucide-react';
 
 export default function AdminLayout() {
-  const { user, loading, profile } = useAuth();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!loading && !user) {
-      navigate('/auth');
-    }
-  }, [user, loading, navigate]);
-
-  if (loading) {
-    return (
-      <div className="admin-loading-screen">
-        <div className="admin-loading-content">
-          <Loader2 className="admin-loading-spinner" />
-          <p className="admin-loading-text">Carregando painel administrativo...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!user) {
-    return null;
-  }
+  const { profile } = useAuth();
 
   return (
     <SidebarProvider defaultOpen={true}>

@@ -225,13 +225,6 @@ export type Database = {
             referencedRelation: "drone_categories"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "drones_category_id_fkey"
-            columns: ["category_id"]
-            isOneToOne: false
-            referencedRelation: "drone_categories_public"
-            referencedColumns: ["id"]
-          },
         ]
       }
       order_items: {
@@ -268,13 +261,6 @@ export type Database = {
             columns: ["drone_id"]
             isOneToOne: false
             referencedRelation: "drones"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "order_items_drone_id_fkey"
-            columns: ["drone_id"]
-            isOneToOne: false
-            referencedRelation: "drones_public"
             referencedColumns: ["id"]
           },
           {
@@ -500,69 +486,7 @@ export type Database = {
       }
     }
     Views: {
-      drone_categories_public: {
-        Row: {
-          id: string | null
-          name: string | null
-        }
-        Insert: {
-          id?: string | null
-          name?: string | null
-        }
-        Update: {
-          id?: string | null
-          name?: string | null
-        }
-        Relationships: []
-      }
-      drones_public: {
-        Row: {
-          category_id: string | null
-          created_at: string | null
-          description: string | null
-          id: string | null
-          image_url: string | null
-          model: string | null
-          name: string | null
-          status: Database["public"]["Enums"]["drone_status"] | null
-        }
-        Insert: {
-          category_id?: string | null
-          created_at?: string | null
-          description?: string | null
-          id?: string | null
-          image_url?: string | null
-          model?: string | null
-          name?: string | null
-          status?: never
-        }
-        Update: {
-          category_id?: string | null
-          created_at?: string | null
-          description?: string | null
-          id?: string | null
-          image_url?: string | null
-          model?: string | null
-          name?: string | null
-          status?: never
-        }
-        Relationships: [
-          {
-            foreignKeyName: "drones_category_id_fkey"
-            columns: ["category_id"]
-            isOneToOne: false
-            referencedRelation: "drone_categories"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "drones_category_id_fkey"
-            columns: ["category_id"]
-            isOneToOne: false
-            referencedRelation: "drone_categories_public"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
+      [_ in never]: never
     }
     Functions: {
       create_first_admin: {
