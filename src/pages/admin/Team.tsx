@@ -80,14 +80,11 @@ export default function Team() {
         return;
       }
 
-      // Gerar ID único para o novo membro
-      const newUserId = crypto.randomUUID();
-
-      // Criar perfil do membro da equipe
+      // Criar perfil do membro da equipe (user_id será null até eles criarem uma conta)
       const { error: profileError } = await supabase
         .from('profiles')
         .insert({
-          user_id: newUserId,
+          user_id: null, // Será preenchido quando o usuário criar uma conta
           email: newMember.email,
           full_name: newMember.full_name,
           role: newMember.role
