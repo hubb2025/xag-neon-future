@@ -8,46 +8,89 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Cyberpunk Dark Theme */
-    --background: 220 13% 8%;
-    --foreground: 120 100% 85%;
+    /* Enhanced Green Admin Theme */
+    --background: 0 0% 98%;
+    --foreground: 240 10% 3.9%;
 
-    --card: 220 13% 10%;
-    --card-foreground: 120 100% 85%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
 
-    --popover: 220 13% 10%;
-    --popover-foreground: 120 100% 85%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
 
-    /* Neon Green Primary */
-    --primary: 120 100% 50%;
-    --primary-foreground: 220 13% 8%;
+    /* Primary Green Theme */
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Red Accent */
-    --secondary: 0 100% 55%;
-    --secondary-foreground: 0 0% 100%;
+    /* Secondary Green */
+    --secondary: 210 40% 98%;
+    --secondary-foreground: 222.2 84% 4.9%;
 
-    /* Metallic Dark */
-    --muted: 220 13% 15%;
-    --muted-foreground: 120 15% 65%;
+    /* Muted Grays */
+    --muted: 210 40% 98%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    /* Neon Accent */
-    --accent: 120 100% 50%;
-    --accent-foreground: 220 13% 8%;
+    /* Green Accent */
+    --accent: 142 76% 36%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 100% 55%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 120 100% 20%;
-    --input: 220 13% 15%;
-    --ring: 120 100% 50%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 142 76% 36%;
 
-    /* Custom Cyberpunk Colors */
-    --neon-green: 120 100% 50%;
-    --neon-red: 0 100% 55%;
-    --cyber-dark: 220 13% 8%;
-    --metallic: 220 10% 12%;
-    --glow-green: 120 100% 60%;
-    --glow-red: 0 100% 65%;
+    /* Custom Green Admin Colors */
+    --admin-green: 142 76% 36%;
+    --admin-green-dark: 142 76% 30%;
+    --admin-green-light: 142 76% 45%;
+    --success: 120 100% 25%;
+    --warning: 45 100% 60%;
+    --info: 210 100% 50%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 142 76% 36%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 142 76% 36%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
 
     /* Gradients */
     --gradient-cyber: linear-gradient(135deg, hsl(var(--cyber-dark)), hsl(var(--metallic)));
@@ -467,5 +510,70 @@ All colors MUST be HSL.
 
   .animation-delay-600 {
     animation-delay: 600ms;
+  }
+
+  /* Admin Dashboard Animations */
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.3s ease-out forwards;
+  }
+
+  .hover-scale {
+    transition: transform 0.2s ease-out;
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-right {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* Admin Theme Styles */
+  .admin-sidebar {
+    background: linear-gradient(180deg, hsl(142 76% 36%), hsl(142 76% 30%));
+  }
+
+  .admin-card {
+    @apply bg-white shadow-lg border border-gray-200 rounded-xl;
+    transition: all 0.3s ease;
+  }
+
+  .admin-card:hover {
+    @apply shadow-xl border-green-200;
+    transform: translateY(-2px);
+  }
+
+  /* Responsive breakpoints */
+  @media (max-width: 768px) {
+    .sidebar-collapsed {
+      transform: translateX(-100%);
+    }
+    
+    .sidebar-expanded {
+      transform: translateX(0);
+    }
   }
 }
