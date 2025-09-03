@@ -542,10 +542,12 @@ All colors MUST be HSL.
   .admin-sidebar-expanded {
     width: 280px;
     transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 280px;
   }
 
   .admin-sidebar-collapsed {
     width: 70px;
+    min-width: 70px;
     transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -579,6 +581,11 @@ All colors MUST be HSL.
     @apply h-8 w-8;
     color: hsl(var(--primary));
     filter: drop-shadow(0 0 5px hsl(var(--primary) / 0.5));
+    transition: all 0.3s ease;
+  }
+
+  .admin-sidebar-collapsed .admin-logo-icon {
+    @apply h-6 w-6;
   }
 
   .admin-brand {
@@ -668,6 +675,11 @@ All colors MUST be HSL.
   .admin-menu-link {
     @apply flex items-center gap-4 px-4 py-4 rounded-2xl transition-all duration-300 relative overflow-hidden;
     position: relative;
+    min-height: 56px;
+  }
+
+  .admin-sidebar-collapsed .admin-menu-link {
+    @apply justify-center px-2 gap-0;
   }
 
   .admin-nav-item {
@@ -717,9 +729,22 @@ All colors MUST be HSL.
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
   }
 
+  .admin-sidebar-collapsed .admin-menu-icon {
+    @apply h-5 w-5;
+  }
+
   .admin-menu-text {
     @apply font-semibold;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  .admin-sidebar-collapsed .admin-menu-text {
+    opacity: 0;
+    width: 0;
   }
 
   /* Admin Logout Section */
@@ -736,6 +761,11 @@ All colors MUST be HSL.
     background: hsl(var(--secondary) / 0.1);
     border: 1px solid hsl(var(--secondary) / 0.3);
     backdrop-filter: blur(10px);
+    min-height: 56px;
+  }
+
+  .admin-sidebar-collapsed .admin-logout-btn {
+    @apply justify-center px-2 gap-0;
   }
 
   .admin-logout-btn:hover {
@@ -757,9 +787,22 @@ All colors MUST be HSL.
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
   }
 
+  .admin-sidebar-collapsed .admin-logout-icon {
+    @apply h-5 w-5;
+  }
+
   .admin-logout-text {
     @apply font-semibold;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  .admin-sidebar-collapsed .admin-logout-text {
+    opacity: 0;
+    width: 0;
   }
 
   /* Admin Main Container */

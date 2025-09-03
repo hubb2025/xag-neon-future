@@ -11,7 +11,7 @@ import Customers from "./pages/admin/Customers";
 import Drones from "./pages/admin/Drones";
 import Support from "./pages/admin/Support";
 import Orders from "./pages/admin/Orders";
-import ApiTokens from "./pages/admin/ApiTokens";
+import Team from "./pages/admin/Team";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -40,7 +40,7 @@ const App = () => (
               <Route path="drones" element={<Drones />} />
               <Route path="support" element={<Support />} />
               <Route path="orders" element={<Orders />} />
-              <Route path="tokens" element={<ApiTokens />} />
+              <Route path="team" element={<Team />} />
             </Route>
             <Route path="/drones/xag-phantom-pro" element={<XagPhantomPro />} />
             <Route path="/drones/xag-stealth-elite" element={<XagStealthElite />} />

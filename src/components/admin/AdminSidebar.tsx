@@ -6,9 +6,8 @@ import {
   Package,
   ShoppingCart,
   MessageSquare,
-  MapPin,
+  UserPlus,
   Settings,
-  Key,
   Plane,
   LogOut,
   Menu,
@@ -34,7 +33,7 @@ const menuItems = [
   { title: "Drones", url: "/admin/drones", icon: Plane },
   { title: "Vendas", url: "/admin/orders", icon: ShoppingCart },
   { title: "Suporte", url: "/admin/support", icon: MessageSquare },
-  { title: "Tokens API", url: "/admin/tokens", icon: Key },
+  { title: "Equipe", url: "/admin/team", icon: UserPlus },
 ];
 
 export function AdminSidebar() {
