@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { supabase } from '@/integrations/supabase/client';
 import { Users, Package, ShoppingCart, MessageSquare, TrendingUp, AlertCircle, Activity, Zap, Bell } from 'lucide-react';
@@ -15,6 +16,7 @@ interface DashboardStats {
 }
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const [stats, setStats] = useState<DashboardStats>({
     totalCustomers: 0,
     totalDrones: 0,
@@ -309,34 +311,69 @@ export default function Dashboard() {
       )}
 
       {/* Quick Actions */}
-      <Card className="bg-gradient-to-r from-green-50 to-blue-50 border-0 shadow-lg animate-fade-in">
-        <CardHeader>
-          <CardTitle className="text-gray-800 flex items-center gap-2">
-            <Activity className="h-5 w-5 text-green-600" />
-            Ações Rápidas
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <button className="p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow duration-200 text-center hover-scale">
-              <Users className="h-6 w-6 text-blue-600 mx-auto mb-2" />
-              <span className="text-sm font-medium text-gray-700">Clientes</span>
-            </button>
-            <button className="p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow duration-200 text-center hover-scale">
-              <Package className="h-6 w-6 text-green-600 mx-auto mb-2" />
-              <span className="text-sm font-medium text-gray-700">Produtos</span>
-            </button>
-            <button className="p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow duration-200 text-center hover-scale">
-              <ShoppingCart className="h-6 w-6 text-purple-600 mx-auto mb-2" />
-              <span className="text-sm font-medium text-gray-700">Vendas</span>
-            </button>
-            <button className="p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow duration-200 text-center hover-scale">
-              <MessageSquare className="h-6 w-6 text-orange-600 mx-auto mb-2" />
-              <span className="text-sm font-medium text-gray-700">Suporte</span>
-            </button>
-          </div>
-        </CardContent>
-      </Card>
+      <div className="space-y-4 animate-fade-in">
+        <div className="flex items-center gap-2 mb-4">
+          <Activity className="h-5 w-5 text-green-400" />
+          <h2 className="text-xl font-semibold text-white">Ações Rápidas</h2>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <Card 
+            className="border border-green-500 rounded-xl bg-gray-900 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer hover:border-green-400"
+            onClick={() => navigate('/admin/customers')}
+          >
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
+              <CardTitle className="text-sm font-semibold text-white">
+                Clientes
+              </CardTitle>
+              <div className="p-2 rounded-lg border border-green-500 bg-gray-800">
+                <Users className="h-4 w-4 text-green-400" />
+              </div>
+            </CardHeader>
+          </Card>
+          
+          <Card 
+            className="border border-green-500 rounded-xl bg-gray-900 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer hover:border-green-400"
+            onClick={() => navigate('/admin/drones')}
+          >
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
+              <CardTitle className="text-sm font-semibold text-white">
+                Produtos
+              </CardTitle>
+              <div className="p-2 rounded-lg border border-green-500 bg-gray-800">
+                <Package className="h-4 w-4 text-green-400" />
+              </div>
+            </CardHeader>
+          </Card>
+          
+          <Card 
+            className="border border-green-500 rounded-xl bg-gray-900 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer hover:border-green-400"
+            onClick={() => navigate('/admin/orders')}
+          >
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
+              <CardTitle className="text-sm font-semibold text-white">
+                Vendas
+              </CardTitle>
+              <div className="p-2 rounded-lg border border-green-500 bg-gray-800">
+                <ShoppingCart className="h-4 w-4 text-green-400" />
+              </div>
+            </CardHeader>
+          </Card>
+          
+          <Card 
+            className="border border-green-500 rounded-xl bg-gray-900 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer hover:border-green-400"
+            onClick={() => navigate('/admin/support')}
+          >
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
+              <CardTitle className="text-sm font-semibold text-white">
+                Suporte
+              </CardTitle>
+              <div className="p-2 rounded-lg border border-green-500 bg-gray-800">
+                <MessageSquare className="h-4 w-4 text-green-400" />
+              </div>
+            </CardHeader>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }
