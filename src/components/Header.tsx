@@ -14,9 +14,9 @@ const Header = () => {
       href: "#", 
       hasDropdown: true,
       subItems: [
-        { name: "XAG Phantom Pro", href: "/drones/xag-phantom-pro" },
-        { name: "XAG Stealth Elite", href: "/drones/xag-stealth-elite" },
-        { name: "XAG Cargo Master", href: "/drones/xag-cargo-master" }
+        { name: "XAG P60", href: "/drones/xag-phantom-pro" },
+        { name: "XAG P100 PRO", href: "/drones/xag-stealth-elite" },
+        { name: "XAG P150", href: "/drones/xag-cargo-master" }
       ]
     },
     { name: "Treinamento", href: "#treinamento" },

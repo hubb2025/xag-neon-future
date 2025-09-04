@@ -68,7 +68,7 @@ const XagStealthElite = () => {
                   LANÇAMENTO
                 </Badge>
                 <h1 className="text-5xl md:text-7xl font-cyber font-black leading-tight">
-                  <span className="text-neon-green">XAG STEALTH</span>
+                  <span className="text-neon-green">XAG P100 PRO</span>
                   <br />
                   <span className="text-foreground">ELITE EDITION</span>
                 </h1>

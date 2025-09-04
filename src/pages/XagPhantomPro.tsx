@@ -68,7 +68,7 @@ const XagPhantomPro = () => {
                   MAIS VENDIDO
                 </Badge>
                 <h1 className="text-5xl md:text-7xl font-cyber font-black leading-tight">
-                  <span className="text-neon-green">XAG PHANTOM</span>
+                  <span className="text-neon-green">XAG P60</span>
                   <br />
                   <span className="text-white">PRO SERIES</span>
                 </h1>

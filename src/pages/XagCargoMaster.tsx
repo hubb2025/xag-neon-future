@@ -68,7 +68,7 @@ const XagCargoMaster = () => {
                   PROFISSIONAL
                 </Badge>
                 <h1 className="text-5xl md:text-7xl font-cyber font-black leading-tight">
-                  <span className="text-neon-green">XAG CARGO</span>
+                  <span className="text-neon-green">XAG P150</span>
                   <br />
                   <span className="text-foreground">MASTER CLASS</span>
                 </h1>
