@@ -155,7 +155,24 @@ export default function Team() {
         throw invitationError;
       }
 
-      toast.success(`Convite enviado para ${validatedData.full_name}! Eles receberão instruções por email para criar sua conta.`);
+      // Send invitation email using Supabase edge function
+      const { error: emailError } = await supabase.functions.invoke('send-team-invitation', {
+        body: {
+          email: validatedData.email,
+          full_name: validatedData.full_name,
+          role: validatedData.role,
+          invitation_token: invitationToken,
+          invited_by: user.id
+        }
+      });
+
+      if (emailError) {
+        console.error('Erro ao enviar email de convite:', emailError);
+        // Don't throw error, invitation was created but email failed
+        toast.warning(`Convite criado para ${validatedData.full_name}, mas houve problema no envio do email. Você pode reenviar o convite.`);
+      } else {
+        toast.success(`Convite enviado por email para ${validatedData.full_name}! Eles receberão instruções para criar sua conta.`);
+      }
       setIsDialogOpen(false);
       setNewMember({ email: '', full_name: '', role: 'support' });
       setValidationErrors({});

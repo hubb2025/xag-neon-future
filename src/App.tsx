@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./hooks/useAuth";
 import { AdminRoute } from "./components/auth/AdminRoute";
 import Auth from "./pages/Auth";
+import AcceptInvitation from "./pages/AcceptInvitation";
 import AdminLayout from "./pages/admin/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
 import Customers from "./pages/admin/Customers";
@@ -35,6 +36,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/auth/accept-invitation" element={<AcceptInvitation />} />
             <Route path="/admin" element={
               <AdminRoute>
                 <AdminLayout />
