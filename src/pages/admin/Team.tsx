@@ -54,7 +54,7 @@ export default function Team() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [validationErrors, setValidationErrors] = useState<Partial<Record<keyof TeamInvitationData, string>>>({});
+  const [validationErrors, setValidationErrors] = useState<Partial<Record<string, string>>>({});
   const [confirmModal, setConfirmModal] = useState<{
     open: boolean;
     title: string;
@@ -70,10 +70,12 @@ export default function Team() {
     confirmText: 'Confirmar',
     onConfirm: () => {}
   });
-  const [newMember, setNewMember] = useState<TeamInvitationData>({
+  const [newMember, setNewMember] = useState({
     email: '',
     full_name: '',
-    role: 'support'
+    role: 'support' as 'admin' | 'support' | 'it',
+    password: '',
+    confirmPassword: ''
   });
 
   useEffect(() => {
@@ -101,97 +103,65 @@ export default function Team() {
     setValidationErrors({});
 
     try {
-      // Validate form data with Zod schema
-      const validatedData = teamInvitationSchema.parse(newMember);
+      // Validate required fields
+      if (!newMember.email || !newMember.full_name || !newMember.role || !newMember.password) {
+        toast.error('Todos os campos são obrigatórios');
+        return;
+      }
 
-      // Check if email already exists in profiles or pending invitations
-      const [existingProfile, existingInvitation] = await Promise.all([
-        supabase
-          .from('profiles')
-          .select('email')
-          .eq('email', validatedData.email)
-          .maybeSingle(),
-        supabase
-          .from('team_invitations')
-          .select('email')
-          .eq('email', validatedData.email)
-          .eq('status', 'pending')
-          .maybeSingle()
-      ]);
+      if (newMember.password.length < 6) {
+        toast.error('A senha deve ter pelo menos 6 caracteres');
+        return;
+      }
 
-      if (existingProfile.data) {
+      if (newMember.password !== newMember.confirmPassword) {
+        toast.error('As senhas não coincidem');
+        return;
+      }
+
+      // Check if email already exists in profiles
+      const { data: existingProfile } = await supabase
+        .from('profiles')
+        .select('email')
+        .eq('email', newMember.email)
+        .maybeSingle();
+
+      if (existingProfile) {
         toast.error('Este email já está cadastrado na equipe');
         return;
       }
 
-      if (existingInvitation.data) {
-        toast.error('Já existe um convite pendente para este email');
-        return;
-      }
-
-      // Get current admin user ID
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        toast.error('Erro de autenticação');
-        return;
-      }
-
-      // Generate secure invitation token
-      const invitationToken = generateInvitationToken();
-
-      // Create secure invitation record
-      const { error: invitationError } = await supabase
-        .from('team_invitations')
-        .insert({
-          email: validatedData.email,
-          full_name: validatedData.full_name,
-          role: validatedData.role,
-          invitation_token: invitationToken,
-          invited_by: user.id
-        });
-
-      if (invitationError) {
-        console.error('Erro ao criar convite:', invitationError);
-        throw invitationError;
-      }
-
-      // Send invitation email using Supabase edge function
-      const { error: emailError } = await supabase.functions.invoke('send-team-invitation', {
-        body: {
-          email: validatedData.email,
-          full_name: validatedData.full_name,
-          role: validatedData.role,
-          invitation_token: invitationToken,
-          invited_by: user.id
+      // Create user account directly using Supabase Auth
+      const { data, error: signUpError } = await supabase.auth.signUp({
+        email: newMember.email,
+        password: newMember.password,
+        options: {
+          data: {
+            full_name: newMember.full_name,
+            role: newMember.role
+          }
         }
       });
 
-      if (emailError) {
-        console.error('Erro ao enviar email de convite:', emailError);
-        // Don't throw error, invitation was created but email failed
-        toast.warning(`Convite criado para ${validatedData.full_name}, mas houve problema no envio do email. Você pode reenviar o convite.`);
-      } else {
-        toast.success(`Convite enviado por email para ${validatedData.full_name}! Eles receberão instruções para criar sua conta.`);
+      if (signUpError) {
+        throw signUpError;
       }
+
+      toast.success(`Usuário ${newMember.full_name} cadastrado com sucesso! Um email de confirmação foi enviado.`);
+      
       setIsDialogOpen(false);
-      setNewMember({ email: '', full_name: '', role: 'support' });
+      setNewMember({ 
+        email: '', 
+        full_name: '', 
+        role: 'support', 
+        password: '', 
+        confirmPassword: '' 
+      });
       setValidationErrors({});
       fetchTeamMembers();
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        // Handle validation errors
-        const errors: Partial<Record<keyof TeamInvitationData, string>> = {};
-        error.errors.forEach((err) => {
-          if (err.path[0]) {
-            errors[err.path[0] as keyof TeamInvitationData] = err.message;
-          }
-        });
-        setValidationErrors(errors);
-        toast.error('Por favor, corrija os erros no formulário');
-      } else {
-        console.error('Erro ao enviar convite:', error);
-        toast.error('Erro ao enviar convite. Verifique se você tem permissão de administrador.');
-      }
+    } catch (error: any) {
+      console.error('Erro ao cadastrar usuário:', error);
+      toast.error(error.message || 'Erro ao cadastrar usuário');
     }
   };
 
@@ -255,7 +225,7 @@ export default function Team() {
     });
   };
 
-  const handleMemberChange = (field: keyof TeamInvitationData, value: string) => {
+  const handleMemberChange = (field: string, value: string) => {
     // Clear validation error for this field when user starts typing
     if (validationErrors[field]) {
       setValidationErrors(prev => ({
@@ -305,14 +275,14 @@ export default function Team() {
           <DialogTrigger asChild>
             <Button className="bg-green-600 hover:bg-green-700">
               <UserPlus className="h-4 w-4 mr-2" />
-              Convidar Membro
+              Cadastrar Membro
             </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Convidar Novo Membro</DialogTitle>
+              <DialogTitle>Cadastrar Novo Membro</DialogTitle>
               <DialogDescription>
-                Adicione um novo membro à equipe DroneXag. Eles receberão um email com instruções de acesso.
+                Adicione um novo membro à equipe DroneXag. Um email de confirmação será enviado automaticamente.
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4">
@@ -333,6 +303,7 @@ export default function Team() {
                   </div>
                 )}
               </div>
+              
               <div>
                 <Label htmlFor="name">Nome Completo</Label>
                 <Input
@@ -349,6 +320,43 @@ export default function Team() {
                   </div>
                 )}
               </div>
+
+              <div>
+                <Label htmlFor="password">Senha</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="Mínimo 6 caracteres"
+                  value={newMember.password}
+                  onChange={(e) => handleMemberChange('password', e.target.value)}
+                  className={validationErrors.password ? "border-destructive" : ""}
+                />
+                {validationErrors.password && (
+                  <div className="flex items-center mt-1 text-sm text-destructive">
+                    <AlertCircle className="h-4 w-4 mr-1" />
+                    {validationErrors.password}
+                  </div>
+                )}
+              </div>
+
+              <div>
+                <Label htmlFor="confirmPassword">Confirmar Senha</Label>
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  placeholder="Confirme a senha"
+                  value={newMember.confirmPassword}
+                  onChange={(e) => handleMemberChange('confirmPassword', e.target.value)}
+                  className={validationErrors.confirmPassword ? "border-destructive" : ""}
+                />
+                {validationErrors.confirmPassword && (
+                  <div className="flex items-center mt-1 text-sm text-destructive">
+                    <AlertCircle className="h-4 w-4 mr-1" />
+                    {validationErrors.confirmPassword}
+                  </div>
+                )}
+              </div>
+              
               <div>
                 <Label htmlFor="role">Função</Label>
                 <Select 
@@ -371,13 +379,14 @@ export default function Team() {
                   </div>
                 )}
               </div>
+              
               <div className="flex justify-end gap-2">
                 <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
                   Cancelar
                 </Button>
                 <Button onClick={handleInviteMember}>
-                  <Mail className="h-4 w-4 mr-2" />
-                  Enviar Convite Seguro
+                  <UserPlus className="h-4 w-4 mr-2" />
+                  Cadastrar Usuário
                 </Button>
               </div>
             </div>
