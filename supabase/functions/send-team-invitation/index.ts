@@ -38,8 +38,41 @@ serve(async (req) => {
       throw new Error('Unauthorized: Only admins can send invitations');
     }
 
-    // Create redirect URL for invitation acceptance
-    const redirectTo = `${Deno.env.get('SUPABASE_URL')?.replace('supabase.co', 'supabase.co')}/auth/v1/verify?token=${invitation_token}&type=invite&redirect_to=${encodeURIComponent(`${req.headers.get('origin') || 'http://localhost:5173'}/auth/accept-invitation?token=${invitation_token}`)}`;
+    // Check if user already exists
+    const { data: existingUser, error: userError } = await supabaseAdmin.auth.admin.getUserByEmail(email);
+    
+    if (existingUser.user && !userError) {
+      // User already exists, just update their role in profiles table
+      const { error: updateError } = await supabaseAdmin
+        .from('profiles')
+        .update({ role })
+        .eq('email', email);
+        
+      if (updateError) {
+        console.error('Error updating user role:', updateError);
+        throw new Error('Erro ao atualizar papel do usuário: ' + updateError.message);
+      }
+      
+      console.log('User role updated successfully:', { email, role });
+      
+      return new Response(
+        JSON.stringify({ 
+          success: true, 
+          message: 'Usuário já cadastrado. Papel atualizado com sucesso.',
+          data: { user: existingUser.user }
+        }),
+        {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/json',
+            ...corsHeaders,
+          },
+        }
+      );
+    }
+    
+    // User doesn't exist, send invitation
+    const redirectTo = `${req.headers.get('origin') || 'http://localhost:5173'}/auth/accept-invitation?token=${invitation_token}`;
 
     // Send invitation using Supabase Auth
     const { data, error } = await supabaseAdmin.auth.admin.inviteUserByEmail(email, {

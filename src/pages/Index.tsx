@@ -9,6 +9,7 @@ import FAQ from "@/components/FAQ";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 import { motion } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
@@ -159,6 +160,7 @@ const Index = () => {
       </main>
       <Footer />
       <BackToTop />
+      <WhatsAppButton />
     </div>
   );
 };
