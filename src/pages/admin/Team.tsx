@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ConfirmationDialog } from '@/components/ui/confirmation-dialog';
 import { supabase } from '@/integrations/supabase/client';
-import { UserPlus, Users, Mail, Shield, Trash2, Edit, UserX, UserCheck, MoreVertical, AlertCircle } from 'lucide-react';
+import { UserPlus, Users, Mail, Shield, Trash2, Edit, UserX, UserCheck, MoreVertical, AlertCircle, Eye, EyeOff } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { toast } from 'sonner';
 import { teamInvitationSchema, generateInvitationToken, type TeamInvitationData } from '@/lib/validation';
@@ -54,6 +54,8 @@ export default function Team() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [validationErrors, setValidationErrors] = useState<Partial<Record<string, string>>>({});
   const [confirmModal, setConfirmModal] = useState<{
     open: boolean;
@@ -131,11 +133,12 @@ export default function Team() {
         return;
       }
 
-      // Create user account directly using Supabase Auth
+      // Create user account directly using Supabase Auth with emailRedirectTo
       const { data, error: signUpError } = await supabase.auth.signUp({
         email: newMember.email,
         password: newMember.password,
         options: {
+          emailRedirectTo: `${window.location.origin}/auth`,
           data: {
             full_name: newMember.full_name,
             role: newMember.role
@@ -147,7 +150,7 @@ export default function Team() {
         throw signUpError;
       }
 
-      toast.success(`Usuário ${newMember.full_name} cadastrado com sucesso! Um email de confirmação foi enviado.`);
+      toast.success(`Usuário ${newMember.full_name} cadastrado com sucesso! Um email de confirmação foi enviado para ${newMember.email}. O usuário deve confirmar o email antes de fazer login.`);
       
       setIsDialogOpen(false);
       setNewMember({ 
@@ -323,14 +326,29 @@ export default function Team() {
 
               <div>
                 <Label htmlFor="password">Senha</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="Mínimo 6 caracteres"
-                  value={newMember.password}
-                  onChange={(e) => handleMemberChange('password', e.target.value)}
-                  className={validationErrors.password ? "border-destructive" : ""}
-                />
+                <div className="relative">
+                  <Input
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Mínimo 6 caracteres"
+                    value={newMember.password}
+                    onChange={(e) => handleMemberChange('password', e.target.value)}
+                    className={validationErrors.password ? "border-destructive" : ""}
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? (
+                      <EyeOff className="h-4 w-4" />
+                    ) : (
+                      <Eye className="h-4 w-4" />
+                    )}
+                  </Button>
+                </div>
                 {validationErrors.password && (
                   <div className="flex items-center mt-1 text-sm text-destructive">
                     <AlertCircle className="h-4 w-4 mr-1" />
@@ -341,14 +359,29 @@ export default function Team() {
 
               <div>
                 <Label htmlFor="confirmPassword">Confirmar Senha</Label>
-                <Input
-                  id="confirmPassword"
-                  type="password"
-                  placeholder="Confirme a senha"
-                  value={newMember.confirmPassword}
-                  onChange={(e) => handleMemberChange('confirmPassword', e.target.value)}
-                  className={validationErrors.confirmPassword ? "border-destructive" : ""}
-                />
+                <div className="relative">
+                  <Input
+                    id="confirmPassword"
+                    type={showConfirmPassword ? "text" : "password"}
+                    placeholder="Confirme a senha"
+                    value={newMember.confirmPassword}
+                    onChange={(e) => handleMemberChange('confirmPassword', e.target.value)}
+                    className={validationErrors.confirmPassword ? "border-destructive" : ""}
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  >
+                    {showConfirmPassword ? (
+                      <EyeOff className="h-4 w-4" />
+                    ) : (
+                      <Eye className="h-4 w-4" />
+                    )}
+                  </Button>
+                </div>
                 {validationErrors.confirmPassword && (
                   <div className="flex items-center mt-1 text-sm text-destructive">
                     <AlertCircle className="h-4 w-4 mr-1" />
