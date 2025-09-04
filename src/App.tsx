@@ -7,6 +7,7 @@ import { AuthProvider } from "./hooks/useAuth";
 import { AdminRoute } from "./components/auth/AdminRoute";
 import Auth from "./pages/Auth";
 import AcceptInvitation from "./pages/AcceptInvitation";
+import Demonstracao from "./pages/Demonstracao";
 import AdminLayout from "./pages/admin/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
 import Customers from "./pages/admin/Customers";
@@ -37,6 +38,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/auth/accept-invitation" element={<AcceptInvitation />} />
+            <Route path="/demonstracao" element={<Demonstracao />} />
             <Route path="/admin" element={
               <AdminRoute>
                 <AdminLayout />

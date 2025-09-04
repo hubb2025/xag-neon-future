@@ -19,6 +19,7 @@ const Header = () => {
         { name: "XAG P150", href: "/drones/xag-cargo-master" }
       ]
     },
+    { name: "Demonstração", href: "/demonstracao" },
     { name: "Treinamento", href: "#treinamento" },
     { name: "Sobre", href: "#sobre" },
     { name: "FAQ", href: "#faq" },

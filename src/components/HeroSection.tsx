@@ -159,14 +159,18 @@ const HeroSection = () => {
               <div className="absolute -top-2 -left-2 w-4 h-4 border border-primary/50 hidden sm:block"></div>
               <Button className="btn-cyber group text-base lg:text-lg px-6 lg:px-8 py-3 lg:py-4 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                <span className="relative">Explorar Catálogo</span>
-                <ChevronRight className="ml-2 h-4 lg:h-5 w-4 lg:w-5 group-hover:translate-x-1 transition-transform relative" />
+                <a href="#drones" className="relative flex items-center">
+                  <span className="relative">Explorar Catálogo</span>
+                  <ChevronRight className="ml-2 h-4 lg:h-5 w-4 lg:w-5 group-hover:translate-x-1 transition-transform relative" />
+                </a>
               </Button>
 
               <Button variant="outline" className="btn-cyber-red text-base lg:text-lg px-6 lg:px-8 py-3 lg:py-4 group relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-destructive/20 to-primary/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                <Play className="mr-2 h-4 lg:h-5 w-4 lg:w-5 group-hover:scale-110 transition-transform relative" />
-                <span className="relative">Ver Demo</span>
+                <a href="/demonstracao" className="relative flex items-center">
+                  <Play className="mr-2 h-4 lg:h-5 w-4 lg:w-5 group-hover:scale-110 transition-transform relative" />
+                  <span className="relative">Ver Demo</span>
+                </a>
               </Button>
             </motion.div>
 
