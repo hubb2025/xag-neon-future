@@ -46,18 +46,6 @@ const Demonstracao = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
-              
-              {/* Overlay com informações */}
-              <div className="absolute bottom-3 sm:bottom-6 left-3 sm:left-6 right-3 sm:right-6">
-                <div className="bg-black/50 backdrop-blur-sm rounded-lg p-3 sm:p-4">
-                  <h3 className="text-white font-bold text-base sm:text-lg mb-2">
-                    Demonstração XAG P Series
-                  </h3>
-                  <p className="text-white/80 text-xs sm:text-sm">
-                    Veja a precisão e eficiência dos nossos drones em operações reais de pulverização agrícola
-                  </p>
-                </div>
-              </div>
             </motion.div>
           </div>
         </section>
