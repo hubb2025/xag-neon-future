@@ -82,7 +82,7 @@ const Demonstracao = () => {
                 {
                   name: "XAG P150",
                   image: "/lovable-uploads/e004268f-665d-4e77-a00e-241c47a47044.png",
-                  specs: ["30 hectares/hora", "65kg capacidade", "Autonomia 55min"]
+                  specs: ["30 hectares/hora", "65kg capacidade", "100L de capacidade"]
                 }
               ].map((drone, index) => (
                 <motion.div

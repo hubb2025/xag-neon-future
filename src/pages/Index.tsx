@@ -62,7 +62,7 @@ const Index = () => {
         "Radar 4D + RTK + precisão 2,5 cm",
         "IA para detecção de obstáculos",
         "Mapeamento em tempo real"
-      ]
+      ],
       specs: {
         flightTime: "75min",
         range: "25km",
