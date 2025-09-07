@@ -15,7 +15,7 @@ import { motion } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Index = () => {
-  
+
   const advantagesRef = useScrollAnimation();
   const aboutRef = useScrollAnimation();
   const trainingRef = useScrollAnimation();
@@ -56,19 +56,20 @@ const Index = () => {
       image: "/lovable-uploads/a716d702-40cb-40bb-a842-a73475fd5abe.png",
       badge: "LANÇAMENTO",
       features: [
-        "Tecnologia stealth com redução de assinatura radar e térmica",
-        "Visão noturna infravermelha de alta resolução para operações 24h",
-        "Sistema de comunicação criptografada para máxima segurança",
-        "Modo silencioso com hélices especiais para operações discretas",
-        "Bateria de longa duração com recarga rápida em 45 minutos"
-      ],
+        "Capacidade 50 L (60 L oficial)",
+        "Taxa de aplicação de 22 L/min",
+        "Carga útil de pulverização de 50 kg",
+        "Radar 4D + RTK + precisão 2,5 cm",
+        "IA para detecção de obstáculos",
+        "Mapeamento em tempo real"
+      ]
       specs: {
         flightTime: "75min",
         range: "25km",
         payload: "3kg",
         camera: "8K+IR",
         capacity: "12L",
-        coverage: "15ha/h", 
+        coverage: "15ha/h",
         weight: "22kg"
       }
     },
@@ -80,11 +81,12 @@ const Index = () => {
       image: "/lovable-uploads/e004268f-665d-4e77-a00e-241c47a47044.png",
       badge: "PROFISSIONAL",
       features: [
-        "Capacidade de carga útil de até 10kg para transporte pesado",
-        "Sistema de liberação automática programável por GPS",
-        "Compartimento de carga climatizado para produtos sensíveis",
-        "Redundância dupla nos sistemas críticos para máxima confiabilidade",
-        "Interface profissional com relatórios detalhados de missão"
+        "Capacidade 100 L (115 L oficial)",
+        "Taxa de aplicação de 30 L/min",
+        "Carga útil de pulverização de 65 kg",
+        "Radar 4D + RTK + precisão 2,5 cm",
+        "IA para detecção de obstáculos",
+        "Mapeamento em tempo real"
       ],
       specs: {
         flightTime: "55min",
@@ -112,7 +114,7 @@ const Index = () => {
             />
           ))}
         </section>
-        
+
         <motion.div
           ref={advantagesRef.ref}
           initial={{ opacity: 0, y: 50 }}
@@ -121,7 +123,7 @@ const Index = () => {
         >
           <AdvantagesSection />
         </motion.div>
-        
+
         <motion.div
           ref={aboutRef.ref}
           initial={{ opacity: 0, y: 50 }}
@@ -130,7 +132,7 @@ const Index = () => {
         >
           <AboutSection />
         </motion.div>
-        
+
         <motion.div
           ref={trainingRef.ref}
           initial={{ opacity: 0, y: 50 }}
@@ -139,7 +141,7 @@ const Index = () => {
         >
           <TrainingSection />
         </motion.div>
-        
+
         <motion.div
           ref={faqRef.ref}
           initial={{ opacity: 0, y: 50 }}
@@ -148,7 +150,7 @@ const Index = () => {
         >
           <FAQ />
         </motion.div>
-        
+
         <motion.div
           ref={contactRef.ref}
           initial={{ opacity: 0, y: 50 }}
