@@ -18,22 +18,21 @@ const XagStealthElite = () => {
 
   const specs = {
     flightTime: "75min",
-    range: "25km", 
+    range: "25km",
     payload: "3kg",
+    camera: "8K+IR",
     capacity: "12L",
     coverage: "15ha/h",
     weight: "22kg"
   };
 
   const features = [
-    "Tecnologia stealth com redução de assinatura radar e térmica",
-    "Visão noturna infravermelha de alta resolução para operações 24h", 
-    "Sistema de comunicação criptografada para máxima segurança",
-    "Modo silencioso com hélices especiais para operações discretas",
-    "Bateria de longa duração com recarga rápida em 45 minutos",
-    "Revestimento especial anti-detecção para operações sigilosas",
-    "Sistema de navegação inercial para voo sem GPS",
-    "Câmera termal FLIR integrada com zoom óptico 30x"
+    "Capacidade 50 L (60 L oficial)",
+    "Taxa de aplicação de 22 L/min",
+    "Carga útil de pulverização de 50 kg",
+    "Radar 4D + RTK + precisão 2,5 cm",
+    "IA para detecção de obstáculos",
+    "Mapeamento em tempo real"
   ];
 
   const testimonials = [

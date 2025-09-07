@@ -18,22 +18,21 @@ const XagCargoMaster = () => {
 
   const specs = {
     flightTime: "55min",
-    range: "20km", 
+    range: "20km",
     payload: "10kg",
+    camera: "4K/30fps",
     capacity: "20L",
     coverage: "10ha/h",
     weight: "35kg"
   };
 
   const features = [
-    "Capacidade de carga útil de até 10kg para transporte pesado",
-    "Sistema de liberação automática programável por GPS", 
-    "Compartimento de carga climatizado para produtos sensíveis",
-    "Redundância dupla nos sistemas críticos para máxima confiabilidade",
-    "Interface profissional com relatórios detalhados de missão",
-    "Sistema de ancoragem segura para diferentes tipos de carga",
-    "Monitoramento em tempo real da temperatura e umidade",
-    "Certificação para transporte de materiais especiais"
+    "Capacidade 100 L (115 L oficial)",
+    "Taxa de aplicação de 30 L/min",
+    "Carga útil de pulverização de 65 kg",
+    "Radar 4D + RTK + precisão 2,5 cm",
+    "IA para detecção de obstáculos",
+    "Mapeamento em tempo real"
   ];
 
   const testimonials = [

@@ -18,22 +18,21 @@ const XagPhantomPro = () => {
 
   const specs = {
     flightTime: "65min",
-    range: "15km", 
+    range: "15km",
     payload: "5kg",
+    camera: "8K/60fps",
     capacity: "16L",
     coverage: "12ha/h",
     weight: "25kg"
   };
 
   const features = [
-    "Sistema de navegação GPS avançado com precisão centimétrica",
-    "Câmera 8K com estabilização em 3 eixos para imagens profissionais", 
-    "Resistência IP67 contra água e poeira para operação em qualquer clima",
+    "Cobertura: 12 hectares/hora",
+    "Câmera 8K com estabilização em 3 eixos para imagens profissionais",
+    "Taxa de fluxo: 16 L/min",
     "Sistema anti-colisão com sensores 360° para máxima segurança",
-    "Modo autônomo inteligente com planejamento de rota automatizado",
-    "Bateria de lítio de alta capacidade com sistema de carregamento rápido",
-    "Interface intuitiva com controle via aplicativo móvel",
-    "Suporte técnico 24/7 e garantia estendida de 2 anos"
+    "Capacidade do tanque: 30L",
+    "Autonomia: 12 minutos"
   ];
 
   const testimonials = [
