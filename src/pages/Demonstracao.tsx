@@ -39,20 +39,13 @@ const Demonstracao = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black"
             >
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-full object-cover"
-                poster="/lovable-uploads/hero-drone.jpg"
-              >
-                <source 
-                  src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" 
-                  type="video/mp4" 
-                />
-                Seu navegador não suporta a reprodução de vídeo.
-              </video>
+              <iframe
+                src="https://www.youtube.com/embed/Lk5coJRNWJQ?autoplay=1&mute=1&loop=1&playlist=Lk5coJRNWJQ"
+                title="Demonstração XAG P Series"
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
               
               {/* Overlay com informações */}
               <div className="absolute bottom-3 sm:bottom-6 left-3 sm:left-6 right-3 sm:right-6">
