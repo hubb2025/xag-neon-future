@@ -209,7 +209,7 @@ const XagStealthElite = () => {
             </Button>
             <Button variant="outline" className="btn-cyber-red text-lg px-8 py-4">
               <Mail className="mr-2 h-5 w-5" />
-              contato@agricampdrones.com
+              contato@dronesxag.com.br
             </Button>
           </div>
         </div>
