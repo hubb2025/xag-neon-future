@@ -72,17 +72,17 @@ const Demonstracao = () => {
                 {
                   name: "XAG P60",
                   image: "/lovable-uploads/80bab24b-15fb-47fe-ade1-dda75319c061.png",
-                  specs: ["12 hectares/hora", "Câmera 8K", "Autonomia 65min"]
+                  specs: ["12 hectares/hora", "25kg capacidade", "30L de capacidade"]
                 },
                 {
                   name: "XAG P100 PRO",
                   image: "/lovable-uploads/a716d702-40cb-40bb-a842-a73475fd5abe.png",
-                  specs: ["15 hectares/hora", "Visão noturna", "Autonomia 75min"]
+                  specs: ["18 hectares/hora", "50kg capacidade", "50L de capacidade"]
                 },
                 {
                   name: "XAG P150",
                   image: "/lovable-uploads/e004268f-665d-4e77-a00e-241c47a47044.png",
-                  specs: ["10 hectares/hora", "Carga 10kg", "Autonomia 55min"]
+                  specs: ["30 hectares/hora", "65kg capacidade", "Autonomia 55min"]
                 }
               ].map((drone, index) => (
                 <motion.div
