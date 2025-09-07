@@ -42,7 +42,7 @@ const LanguageSelector = () => {
           <ChevronDown className="h-4 w-4 ml-2" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-background/95 backdrop-blur-sm border-border/30">
+      <DropdownMenuContent className="bg-background/95 backdrop-blur-sm border-border/30 z-50">
         {languages.map((language) => (
           <DropdownMenuItem
             key={language.code}

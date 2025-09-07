@@ -94,7 +94,17 @@ const Header = () => {
           {/* Language Selector & CTA Button Desktop */}
           <div className="hidden md:flex items-center space-x-4">
             <LanguageSelector />
-            <Button className="bg-red-600 hover:bg-red-700 text-white">
+            <Button 
+              className="bg-red-600 hover:bg-red-700 text-white"
+              onClick={() => {
+                const element = document.querySelector('#drones');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                  window.location.href = '/#drones';
+                }
+              }}
+            >
               Explorar Drones
             </Button>
           </div>
@@ -154,7 +164,18 @@ const Header = () => {
               ))}
               <div className="mt-4 space-y-4">
                 <LanguageSelector />
-                <Button className="w-full bg-red-600 hover:bg-red-700 text-white">
+                <Button 
+                  className="w-full bg-red-600 hover:bg-red-700 text-white"
+                  onClick={() => {
+                    const element = document.querySelector('#drones');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                      window.location.href = '/#drones';
+                    }
+                    setIsMenuOpen(false);
+                  }}
+                >
                   Explorar Drones
                 </Button>
               </div>
