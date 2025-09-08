@@ -19,7 +19,7 @@ const XagStealthElite = () => {
   const specs = {
     flightTime: "75min",
     range: "25km",
-    payload: "3kg",
+    payload: "50kg",
     camera: "8K+IR",
     capacity: "50L",
     coverage: "15ha/h",
