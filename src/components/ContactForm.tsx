@@ -156,7 +156,7 @@ const ContactForm = () => {
                   </div>
                   <div>
                     <p className="font-tech font-semibold text-white">Email</p>
-                    <p className="text-white/80">contato@dronesxag.com.br</p>
+                    <p className="text-white/80">comercial@dronesxag.com.br</p>
                   </div>
                 </div>
 

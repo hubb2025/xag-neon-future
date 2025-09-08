@@ -6,8 +6,8 @@ import { Zap, Shield, Settings, Wrench } from "lucide-react";
 
 const PartsAccessoriesSection = () => {
   const handleWhatsAppClick = () => {
-    const phoneNumber = "559684156605";
-    const message = "Olá! Gostaria de saber mais sobre peças, acessórios e geradores Toyama.";
+    const phoneNumber = "554884742150";
+    const message = "Olá! Gostaria de saber mais sobre o Drone"; 
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
   };
@@ -15,43 +15,43 @@ const PartsAccessoriesSection = () => {
   const accessories = [
     {
       id: 1,
-      name: "Gerador Toyama 6500W",
-      category: "DESTAQUE",
-      description: "Gerador a gasolina, ideal para alimentar drones e equipamentos em campo",
-      image: "/lovable-uploads/c47e410b-0ff2-494f-8f54-149ca96a34fc.png",
+      name: "XAG P60",
+      category: "Drone",
+      description: "Pequenas Propriedades",
+      image: "/lovable-uploads/80bab24b-15fb-47fe-ade1-dda75319c061.png",
       features: [
-        "Potência 6500W",
-        "Autonomia 8 horas",
-        "Motor 4 tempos",
-        "Sistema AVR"
+        "Cobertura: 12 hectares/hora",
+        "Taxa de fluxo: 16 L/min",
+        "Autonomia: 12 minutos",
+        "30 Litros"
       ],
       price: "R$ 2.899,00"
     },
     {
       id: 2,
-      name: "Kit Baterias Extras",
-      category: "ACESSÓRIO",
-      description: "Conjunto de baterias sobressalentes para maior autonomia de voo",
-      image: "/lovable-uploads/80bab24b-15fb-47fe-ade1-dda75319c061.png",
+      name: "XAG P100 PRO",
+      category: "Drone",
+      description: "Precisão Extrema",
+      image: "/lovable-uploads/e004268f-665d-4e77-a00e-241c47a47044.png",
       features: [
-        "4 baterias LiPo",
-        "Carregador rápido",
-        "Case protetor",
-        "Indicador LED"
+        "Capacidade 50 L (60 L oficial)",
+        "Taxa de aplicação de 22 L/min",
+        "IA para detecção de obstáculos",
+        "50 Litros"
       ],
       price: "R$ 1.599,00"
     },
     {
       id: 3,
-      name: "Sensores de Precisão",
-      category: "PEÇA",
-      description: "Sensores RTK para máxima precisão em aplicações agrícolas",
+      name: "XAG P150",
+      category: "Drone",
+      description: "Modelo Premium",
       image: "/lovable-uploads/a716d702-40cb-40bb-a842-a73475fd5abe.png",
       features: [
-        "Precisão ±2.5cm",
-        "Conexão 4G/5G",
-        "À prova d'água",
-        "Calibração automática"
+        "Capacidade 100 L (115 L oficial)",
+        "Taxa de aplicação de 30 L/min",
+        "IA para detecção de obstáculos",
+        "100 Litros"
       ],
       price: "R$ 3.299,00"
     }

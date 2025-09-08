@@ -110,6 +110,14 @@ const Index = () => {
       <Header />
       <main className="w-full">
         <HeroSection />
+        <motion.div
+          ref={partsRef.ref}
+          initial={{ opacity: 0, y: 50 }}
+          animate={partsRef.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <PartsAccessoriesSection />
+        </motion.div>
         <section id="drones" className="w-full">
           {droneModels.map((drone, index) => (
             <DroneProductSection
@@ -127,15 +135,6 @@ const Index = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <AdvantagesSection />
-        </motion.div>
-
-        <motion.div
-          ref={partsRef.ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={partsRef.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <PartsAccessoriesSection />
         </motion.div>
 
         <motion.div
