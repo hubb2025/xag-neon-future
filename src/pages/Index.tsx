@@ -42,7 +42,7 @@ const Index = () => {
         "Autonomia: 12 minutos",
       ],
       specs: {
-        flightTime: "65min",
+        flightTime: "12min",
         range: "15km",
         payload: "25kg",
         camera: "8K/60fps",
