@@ -9,7 +9,7 @@ import { CheckCircle, Star, ArrowRight, Phone, Mail, MessageCircle } from "lucid
 
 const XagStealthElite = () => {
   const whatsappMessage = encodeURIComponent(
-    `Olá! Tenho interesse no drone XAG STEALTH ELITE EDITION. Gostaria de mais informações sobre disponibilidade e condições.`
+    `Olá! Tenho interesse no drone XAG P100 PRO Precisão Extrema. Gostaria de mais informações sobre disponibilidade e condições.`
   );
 
   const handleWhatsAppClick = () => {
@@ -21,7 +21,7 @@ const XagStealthElite = () => {
     range: "25km",
     payload: "3kg",
     camera: "8K+IR",
-    capacity: "12L",
+    capacity: "50L",
     coverage: "15ha/h",
     weight: "22kg"
   };
@@ -69,10 +69,10 @@ const XagStealthElite = () => {
                 <h1 className="text-5xl md:text-7xl font-cyber font-black leading-tight">
                   <span className="text-neon-green">XAG P100 PRO</span>
                   <br />
-                  <span className="text-foreground">ELITE EDITION</span>
+                  <span className="text-foreground">Precisão Extrema</span>
                 </h1>
                 <p className="text-xl font-tech leading-relaxed text-muted-foreground mt-6">
-                  Versão otimizada para missões táticas e operações noturnas. Design furtivo com tecnologia de camuflagem avançada.
+                  O XAG P100 Pro oferece capacidade de 50 L (60 L opcional), cobertura de até 20 hectares por hora e autonomia de 19 minutos. Equipado com sensor Radar 4D e RTK com precisão de ±2,5 cm, garante máxima exatidão nas operações.
                 </p>
               </div>
               
