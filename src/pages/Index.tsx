@@ -26,8 +26,9 @@ const Index = () => {
     {
       id: "XAG P60",
       title: "XAG P60",
-      subtitle: "Modelo Compacto",
-      description: "O drone mais avançado para operações comerciais e de vigilância. Equipado com tecnologia de ponta e sistema de navegação autônoma.",
+      subtitle: "Pequenas Propriedades",
+      description:
+        "O XAG P60 é o drone ideal para quem inicia no agronegócio. Com capacidade de 30 L, cobre até 12 hectares por hora e oferece autonomia de 12 minutos. Equipado com sensor Radar 4D e design compacto de apenas 25 kg, reduz custos operacionais e o amassamento da lavoura. Versátil, permite pulverização líquida e distribuição de sólidos em um único equipamento, garantindo retorno financeiro rápido e preciso.",
       image: "/lovable-uploads/80bab24b-15fb-47fe-ade1-dda75319c061.png",
       badge: "MAIS VENDIDO",
       features: [
@@ -36,23 +37,24 @@ const Index = () => {
         "Taxa de fluxo: 16 L/min",
         "Sistema anti-colisão com sensores 360° para máxima segurança",
         "Capacidade do tanque: 30L",
-        "Autonomia: 12 minutos"
+        "Autonomia: 12 minutos",
       ],
       specs: {
         flightTime: "65min",
         range: "15km",
-        payload: "5kg",
+        payload: "25kg",
         camera: "8K/60fps",
         capacity: "16L",
         coverage: "12ha/h",
-        weight: "25kg"
-      }
+        weight: "25kg",
+      },
     },
     {
       id: "XAG P100 PRO",
       title: "XAG P100 PRO",
-      subtitle: "Modelo Intermediário",
-      description: "Versão otimizada para missões táticas e operações noturnas. Design furtivo com tecnologia de camuflagem avançada.",
+      subtitle: "Precisão Extrema",
+      description:
+        "O XAG P100 Pro oferece capacidade de 50 L (60 L opcional), cobertura de até 20 hectares por hora e autonomia de 19 minutos. Equipado com sensor Radar 4D e RTK com precisão de ±2,5 cm, garante máxima exatidão nas operações. Com peso de 46 kg, é o modelo intermediário ideal para propriedades médias, reduzindo em até 7% o amassamento da lavoura e otimizando a aplicação de líquidos e sólidos em um único voo, assegurando um ROI consistente e elevado.",
       image: "/lovable-uploads/a716d702-40cb-40bb-a842-a73475fd5abe.png",
       badge: "LANÇAMENTO",
       features: [
@@ -61,23 +63,24 @@ const Index = () => {
         "Carga útil de pulverização de 50 kg",
         "Radar 4D + RTK + precisão 2,5 cm",
         "IA para detecção de obstáculos",
-        "Mapeamento em tempo real"
+        "Mapeamento em tempo real",
       ],
       specs: {
         flightTime: "75min",
         range: "25km",
         payload: "3kg",
         camera: "8K+IR",
-        capacity: "12L",
+        capacity: "50L",
         coverage: "15ha/h",
-        weight: "22kg"
-      }
+        weight: "22kg",
+      },
     },
     {
       id: "XAG P150",
       title: "XAG P150",
       subtitle: "Modelo Premium",
-      description: "Especialmente desenvolvido para transporte de cargas pesadas e entregas comerciais em larga escala.",
+      description:
+        "O XAG P150 é o drone premium ideal para grandes áreas, com tanque de 100 L, taxa de aplicação de 40 L/min e cobertura de até 22 hectares por hora em 25 minutos de autonomia. Equipado com Radar 4D e RTK com precisão de ±1,5 cm, aliado a um robusto chassi de 65 kg, garante eficiência mesmo em solos desafiadores. Versátil, realiza pulverização líquida e distribuição de sólidos em um único voo, entregando produtividade superior e um retorno de investimento incomparável.",
       image: "/lovable-uploads/e004268f-665d-4e77-a00e-241c47a47044.png",
       badge: "PROFISSIONAL",
       features: [
@@ -86,18 +89,18 @@ const Index = () => {
         "Carga útil de pulverização de 65 kg",
         "Radar 4D + RTK + precisão 2,5 cm",
         "IA para detecção de obstáculos",
-        "Mapeamento em tempo real"
+        "Mapeamento em tempo real",
       ],
       specs: {
         flightTime: "55min",
         range: "20km",
-        payload: "10kg",
+        payload: "50kg",
         camera: "4K/30fps",
-        capacity: "20L",
+        capacity: "100L",
         coverage: "10ha/h",
-        weight: "35kg"
-      }
-    }
+        weight: "50kg",
+      },
+    },
   ];
 
   return (
