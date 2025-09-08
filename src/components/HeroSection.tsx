@@ -144,7 +144,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.6, delay: 1.0 }}
               >
                 <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-tech max-w-2xl pl-0 relative">
-                  Eficiência, precisão e retorno garantido
+                  Precisão, eficiência e retorno garantido.
                   <span className="absolute -right-1 sm:-right-2 top-0 w-2 h-2 bg-primary/60 rounded-full hidden sm:block"></span>
                 </p>
               </motion.div>
