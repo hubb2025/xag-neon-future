@@ -64,10 +64,10 @@ const XagCargoMaster = () => {
           <div className="max-w-4xl mx-auto">
             <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl">
               <iframe
-                src="https://www.youtube.com/embed/UF9kfip9RSE?si=BOv8Lj5zGKgM7rAl"
+                src="https://www.youtube.com/embed/UF9kfip9RSE"
                 title="XAG P150 Demonstração"
                 frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 className="absolute inset-0 w-full h-full"
               ></iframe>

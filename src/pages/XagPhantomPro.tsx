@@ -63,10 +63,10 @@ const XagPhantomPro = () => {
           <div className="max-w-4xl mx-auto">
             <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl">
               <iframe
-                src="https://www.youtube.com/embed/Lk5coJRNWJQ?si=N6irfscESCgB6Izo"
+                src="https://www.youtube.com/embed/Lk5coJRNWJQ"
                 title="XAG P60 Demonstração"
                 frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 className="absolute inset-0 w-full h-full"
               ></iframe>

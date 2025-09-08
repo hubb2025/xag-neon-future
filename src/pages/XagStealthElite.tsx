@@ -63,10 +63,10 @@ const XagStealthElite = () => {
           <div className="max-w-4xl mx-auto">
             <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl">
               <iframe
-                src="https://www.youtube.com/embed/e0OTuW421eM?si=OeycynN1tGpW5D4E"
+                src="https://www.youtube.com/embed/e0OTuW421eM"
                 title="XAG P100 PRO Demonstração"
                 frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 className="absolute inset-0 w-full h-full"
               ></iframe>
