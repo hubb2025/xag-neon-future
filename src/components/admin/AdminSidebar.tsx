@@ -29,12 +29,15 @@ import { useAuth } from "@/hooks/useAuth";
 
 const menuItems = [
   { title: "Dashboard", url: "/admin", icon: LayoutDashboard },
+  { title: "Contratos", url: "/admin/contracts", icon: Package },          // Nova aba
+  { title: "Análise de Créditos", url: "/admin/credit-analysis", icon: Package }, // Nova aba
   { title: "Clientes", url: "/admin/customers", icon: Users },
   { title: "Drones", url: "/admin/drones", icon: Plane },
   { title: "Vendas", url: "/admin/orders", icon: ShoppingCart },
   { title: "Suporte", url: "/admin/support", icon: MessageSquare },
   { title: "Equipe", url: "/admin/team", icon: UserPlus },
 ];
+
 
 export function AdminSidebar() {
   const { state } = useSidebar();
@@ -52,8 +55,8 @@ export function AdminSidebar() {
 
   return (
     <div className="admin-sidebar-container">
-      <Sidebar 
-        className={`admin-sidebar ${collapsed ? "admin-sidebar-collapsed" : "admin-sidebar-expanded"}`} 
+      <Sidebar
+        className={`admin-sidebar ${collapsed ? "admin-sidebar-collapsed" : "admin-sidebar-expanded"}`}
         collapsible="icon"
       >
         <SidebarContent className="admin-sidebar-content">
@@ -99,8 +102,8 @@ export function AdminSidebar() {
                 {menuItems.map((item, index) => (
                   <SidebarMenuItem key={item.title} className="admin-menu-item-wrapper" style={{ animationDelay: `${index * 0.05}s` }}>
                     <SidebarMenuButton asChild>
-                      <NavLink 
-                        to={item.url} 
+                      <NavLink
+                        to={item.url}
                         className={`admin-menu-link ${isActive(item.url) ? "admin-nav-active" : "admin-nav-item"}`}
                       >
                         <item.icon className="admin-menu-icon" />
