@@ -44,7 +44,7 @@ const Index = () => {
         range: "15km",
         payload: "25kg",
         camera: "8K/60fps",
-        capacity: "16L",
+        capacity: "30L",
         coverage: "12ha/h",
         weight: "25kg",
       },
