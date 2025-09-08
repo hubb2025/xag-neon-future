@@ -44,7 +44,7 @@ const Index = () => {
       specs: {
         flightTime: "12min",
         range: "15km",
-        payload: "25kg",
+        payload: "30 Litros",
         camera: "8K/60fps",
         capacity: "30L",
         coverage: "12ha/h",
@@ -70,7 +70,7 @@ const Index = () => {
       specs: {
         flightTime: "75min",
         range: "25km",
-        payload: "50kg",
+        payload: "50 Litros",
         camera: "8K+IR",
         capacity: "50L",
         coverage: "15ha/h",
@@ -96,7 +96,7 @@ const Index = () => {
       specs: {
         flightTime: "55min",
         range: "20km",
-        payload: "65kg",
+        payload: "100 Litros",
         camera: "4K/30fps",
         capacity: "100L",
         coverage: "10ha/h",
