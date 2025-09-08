@@ -20,10 +20,6 @@ const ContactForm = () => {
   const [validationErrors, setValidationErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
   const { toast } = useToast();
 
-  const generateTicketNumber = () => {
-    return `WEB-${Date.now().toString().slice(-6)}`;
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -41,33 +37,16 @@ const ContactForm = () => {
         message: sanitizeInput(validatedData.message)
       };
 
-      // Use secure function to get or create customer
-      const { data: customerId, error: customerError } = await supabase
-        .rpc('get_or_create_customer', {
-          p_full_name: sanitizedData.name,
-          p_email: sanitizedData.email,
-          p_phone: sanitizedData.phone
-        });
+      // Call the edge function to submit the contact form
+      const { data, error } = await supabase.functions.invoke('submit-contact-form', {
+        body: sanitizedData
+      });
 
-      if (customerError) throw customerError;
-
-      // Create support ticket with sanitized data
-      const { error: ticketError } = await supabase
-        .from('support_tickets')
-        .insert([{
-          ticket_number: generateTicketNumber(),
-          customer_id: customerId,
-          subject: 'Novo contato via website',
-          description: `Nome: ${sanitizedData.name}\nEmail: ${sanitizedData.email}\nTelefone: ${sanitizedData.phone || 'Não informado'}\n\nMensagem:\n${sanitizedData.message}`,
-          status: 'open',
-          priority: 'medium'
-        }]);
-
-      if (ticketError) throw ticketError;
+      if (error) throw error;
 
       toast({
         title: "Mensagem enviada com sucesso!",
-        description: "Seu ticket foi criado e nossa equipe entrará em contato em breve. Obrigado pelo interesse!",
+        description: `Seu ticket ${data.ticket_number} foi criado e nossa equipe entrará em contato em breve. Obrigado pelo interesse!`,
       });
 
       // Reset form and validation errors

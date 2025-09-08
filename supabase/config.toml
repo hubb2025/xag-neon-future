@@ -45,3 +45,6 @@ port = 54327
 
 [functions.send-team-invitation]
 verify_jwt = false
+
+[functions.submit-contact-form]
+verify_jwt = false
