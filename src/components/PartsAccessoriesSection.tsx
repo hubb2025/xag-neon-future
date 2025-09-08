@@ -6,7 +6,7 @@ import { Zap, Shield, Settings, Wrench } from "lucide-react";
 
 const PartsAccessoriesSection = () => {
   const handleWhatsAppClick = () => {
-    const phoneNumber = "5596841566605";
+    const phoneNumber = "559684156605";
     const message = "Olá! Gostaria de saber mais sobre peças, acessórios e geradores Toyama.";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
