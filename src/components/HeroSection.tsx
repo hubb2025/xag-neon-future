@@ -37,7 +37,7 @@ const HeroSection = () => {
   useEffect(() => {
     if (!hasAnimated) {
       const timer = setTimeout(() => {
-        animateNumber(0, 50, 2000, setModelos);
+        animateNumber(0, 3, 2000, setModelos);
         animateNumber(0, 99.9, 2500, setPrecisao, true);
         animateNumber(0, 24, 1800, setSuporte);
         setHasAnimated(true);
