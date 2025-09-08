@@ -9,7 +9,7 @@ const TrainingSection = () => {
     const message = encodeURIComponent(
       "Olá! Tenho interesse nos serviços de Treinamento e Consultoria. Gostaria de mais informações sobre os cursos disponíveis."
     );
-    window.open(`https://wa.me/5511999999999?text=${message}`, '_blank');
+    window.open(`https://wa.me/559684156605?text=${message}`, '_blank');
   };
 
   const services = [

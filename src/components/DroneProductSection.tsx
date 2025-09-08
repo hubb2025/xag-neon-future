@@ -40,7 +40,7 @@ const DroneProductSection = ({
   );
 
   const handleWhatsAppClick = () => {
-    window.open(`https://wa.me/5511999999999?text=${whatsappMessage}`, '_blank');
+    window.open(`https://wa.me/559684156605?text=${whatsappMessage}`, '_blank');
   };
 
   const handleSpecsClick = () => {
