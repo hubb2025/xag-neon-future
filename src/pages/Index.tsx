@@ -69,7 +69,7 @@ const Index = () => {
         "Mapeamento em tempo real",
       ],
       specs: {
-        flightTime: "75min",
+        flightTime: "19min",
         range: "25km",
         payload: "50 Litros",
         camera: "8K+IR",
@@ -95,7 +95,7 @@ const Index = () => {
         "Mapeamento em tempo real",
       ],
       specs: {
-        flightTime: "55min",
+        flightTime: "25min",
         range: "20km",
         payload: "100 Litros",
         camera: "4K/30fps",
