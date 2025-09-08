@@ -7,6 +7,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Star, ArrowRight, Phone, Mail, MessageCircle } from "lucide-react";
 
+import demoVideo from "@/assets/xagp60.mp4"
+
 const XagPhantomPro = () => {
   const whatsappMessage = encodeURIComponent(
     `Olá! Espero que esteja bem. Gostaria de saber mais informações sobre o XAG P60 e solicitar um orçamento personalizado. Poderia me ajudar?`
@@ -53,7 +55,7 @@ const XagPhantomPro = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Video Section */}
       <section className="pt-24 pb-8 section-light">
         <div className="container mx-auto px-4">
@@ -62,14 +64,14 @@ const XagPhantomPro = () => {
           </h2>
           <div className="max-w-4xl mx-auto">
             <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl">
-              <iframe
-                src="https://www.youtube.com/embed/Lk5coJRNWJQ"
-                title="XAG P60 Demonstração"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                className="absolute inset-0 w-full h-full"
-              ></iframe>
+              <video
+                src={demoVideo}
+                autoPlay
+                muted
+                loop
+                controls
+                className="absolute inset-0 w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
@@ -79,7 +81,7 @@ const XagPhantomPro = () => {
       <section className="pt-16 pb-16 section-green relative overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-30"></div>
         <div className="cyber-corner absolute inset-0 opacity-40"></div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
@@ -96,9 +98,9 @@ const XagPhantomPro = () => {
                   O XAG P60 é o drone ideal para quem inicia no agronegócio. Com capacidade de 30 L, cobre até 12 hectares por hora e oferece autonomia de 12 minutos. Equipado com sensor Radar 4D e design compacto de apenas 25 kg, reduz custos operacionais e o amassamento da lavoura.
                 </p>
               </div>
-              
+
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
+                <Button
                   className="btn-cyber text-lg px-8 py-4 group"
                   onClick={handleWhatsAppClick}
                 >
@@ -112,9 +114,9 @@ const XagPhantomPro = () => {
                 </Button>
               </div>
             </div>
-            
+
             <div>
-              <DroneInfoCircles 
+              <DroneInfoCircles
                 droneImage="/lovable-uploads/80bab24b-15fb-47fe-ade1-dda75319c061.png"
                 droneAlt="XAG Phantom Pro"
                 specs={specs}
@@ -131,7 +133,7 @@ const XagPhantomPro = () => {
             <h2 className="text-4xl font-cyber font-bold text-center mb-12">
               <span className="text-neon-green">Características</span> Principais
             </h2>
-            
+
             <div className="grid md:grid-cols-2 gap-6">
               {features.map((feature, index) => (
                 <div key={index} className="flex items-start space-x-3 p-4">
@@ -151,7 +153,7 @@ const XagPhantomPro = () => {
           <h2 className="text-4xl font-cyber font-bold text-center mb-12">
             <span className="text-neon-green">Especificações</span> <span className="text-white">Técnicas</span>
           </h2>
-          
+
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <Card className="card-cyber-green p-6 text-center">
               <div className="text-3xl font-cyber font-bold text-primary mb-2">{specs.flightTime}</div>
@@ -187,7 +189,7 @@ const XagPhantomPro = () => {
           <h2 className="text-4xl font-cyber font-bold text-center mb-12">
             <span className="text-neon-green">Depoimentos</span> de Clientes
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {testimonials.map((testimonial, index) => (
               <Card key={index} className="card-cyber p-6">
@@ -221,9 +223,9 @@ const XagPhantomPro = () => {
           <p className="text-xl font-tech text-white/90 mb-8 max-w-2xl mx-auto">
             Entre em contato conosco e descubra como o XAG Phantom Pro pode aumentar sua produtividade e reduzir seus custos operacionais.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
+            <Button
               className="btn-cyber text-lg px-8 py-4 group"
               onClick={handleWhatsAppClick}
             >
@@ -231,8 +233,8 @@ const XagPhantomPro = () => {
               Solicitar Orçamento
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="btn-cyber-red text-lg px-8 py-4"
               onClick={() => window.open('mailto:contato@dronesxag.com.br')}
             >

@@ -53,7 +53,7 @@ const XagStealthElite = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Video Section */}
       <section className="pt-24 pb-8 section-light">
         <div className="container mx-auto px-4">
@@ -63,12 +63,12 @@ const XagStealthElite = () => {
           <div className="max-w-4xl mx-auto">
             <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl">
               <iframe
-                src="https://www.youtube.com/embed/e0OTuW421eM"
+                src="https://www.youtube.com/embed/Lk5coJRNWJQ?autoplay=1&mute=1&loop=1&playlist=Lk5coJRNWJQ"
                 title="XAG P100 PRO Demonstração"
+                className="absolute inset-0 w-full h-full"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
-                className="absolute inset-0 w-full h-full"
               ></iframe>
             </div>
           </div>
@@ -79,7 +79,7 @@ const XagStealthElite = () => {
       <section className="pt-16 pb-16 section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-20"></div>
         <div className="cyber-corner absolute inset-0 opacity-60"></div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
@@ -96,9 +96,9 @@ const XagStealthElite = () => {
                   O XAG P100 Pro oferece capacidade de 50 L (60 L opcional), cobertura de até 20 hectares por hora e autonomia de 19 minutos. Equipado com sensor Radar 4D e RTK com precisão de ±2,5 cm, garante máxima exatidão nas operações.
                 </p>
               </div>
-              
+
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
+                <Button
                   className="btn-cyber text-lg px-8 py-4 group"
                   onClick={handleWhatsAppClick}
                 >
@@ -112,9 +112,9 @@ const XagStealthElite = () => {
                 </Button>
               </div>
             </div>
-            
+
             <div>
-              <DroneInfoCircles 
+              <DroneInfoCircles
                 droneImage="/lovable-uploads/a716d702-40cb-40bb-a842-a73475fd5abe.png"
                 droneAlt="XAG Stealth Elite"
                 specs={specs}
@@ -132,7 +132,7 @@ const XagStealthElite = () => {
             <h2 className="text-4xl font-cyber font-bold text-center mb-12">
               <span className="text-neon-green">Tecnologia</span> <span className="text-white">Stealth</span>
             </h2>
-            
+
             <div className="grid md:grid-cols-2 gap-6">
               {features.map((feature, index) => (
                 <div key={index} className="flex items-start space-x-3 p-4">
@@ -151,7 +151,7 @@ const XagStealthElite = () => {
           <h2 className="text-4xl font-cyber font-bold text-center mb-12">
             <span className="text-neon-green">Especificações</span> Técnicas
           </h2>
-          
+
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <Card className="card-cyber p-6 text-center">
               <div className="text-3xl font-cyber font-bold text-primary mb-2">{specs.flightTime}</div>
@@ -188,7 +188,7 @@ const XagStealthElite = () => {
           <h2 className="text-4xl font-cyber font-bold text-center mb-12">
             <span className="text-neon-green">Depoimentos</span> <span className="text-white">Profissionais</span>
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {testimonials.map((testimonial, index) => (
               <Card key={index} className="card-cyber-green p-6">
@@ -221,9 +221,9 @@ const XagStealthElite = () => {
           <p className="text-xl font-tech text-muted-foreground mb-8 max-w-2xl mx-auto">
             Entre em contato conosco e descubra como o XAG Stealth Elite pode atender às suas necessidades mais exigentes.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
+            <Button
               className="btn-cyber text-lg px-8 py-4 group"
               onClick={handleWhatsAppClick}
             >
@@ -231,8 +231,8 @@ const XagStealthElite = () => {
               Solicitar Orçamento
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="btn-cyber-red text-lg px-8 py-4"
               onClick={() => window.open('mailto:contato@dronesxag.com.br')}
             >

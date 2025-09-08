@@ -7,6 +7,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Star, ArrowRight, Phone, Mail, MessageCircle } from "lucide-react";
 
+import demoVideo from "@/assets/XAG P150.mp4"
+
 const XagCargoMaster = () => {
   const whatsappMessage = encodeURIComponent(
     `Olá! Espero que esteja bem. Gostaria de saber mais informações sobre o XAG P150 e solicitar um orçamento personalizado. Poderia me ajudar?`
@@ -53,7 +55,7 @@ const XagCargoMaster = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Video Section */}
       <section className="pt-24 pb-8 section-green">
         <div className="absolute inset-0 grid-pattern opacity-30"></div>
@@ -63,14 +65,14 @@ const XagCargoMaster = () => {
           </h2>
           <div className="max-w-4xl mx-auto">
             <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl">
-              <iframe
-                src="https://www.youtube.com/embed/UF9kfip9RSE"
-                title="XAG P150 Demonstração"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                className="absolute inset-0 w-full h-full"
-              ></iframe>
+              <video
+                src={demoVideo}
+                autoPlay
+                muted
+                loop
+                controls
+                className="absolute inset-0 w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
@@ -80,7 +82,7 @@ const XagCargoMaster = () => {
       <section className="pt-16 pb-16 section-light relative overflow-hidden">
         <div className="absolute inset-0 grid-pattern-light opacity-30"></div>
         <div className="cyber-corner absolute inset-0 opacity-40"></div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
@@ -97,9 +99,9 @@ const XagCargoMaster = () => {
                   O XAG P150 é o drone premium ideal para grandes áreas, com tanque de 100 L, taxa de aplicação de 40 L/min e cobertura de até 22 hectares por hora em 25 minutos de autonomia. Equipado com Radar 4D e RTK com precisão de ±1,5 cm.
                 </p>
               </div>
-              
+
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
+                <Button
                   className="btn-cyber text-lg px-8 py-4 group"
                   onClick={handleWhatsAppClick}
                 >
@@ -113,9 +115,9 @@ const XagCargoMaster = () => {
                 </Button>
               </div>
             </div>
-            
+
             <div>
-              <DroneInfoCircles 
+              <DroneInfoCircles
                 droneImage="/lovable-uploads/e004268f-665d-4e77-a00e-241c47a47044.png"
                 droneAlt="XAG Cargo Master"
                 specs={specs}
@@ -133,7 +135,7 @@ const XagCargoMaster = () => {
             <h2 className="text-4xl font-cyber font-bold text-center mb-12">
               <span className="text-neon-green">Capacidades</span> <span className="text-white">de Carga</span>
             </h2>
-            
+
             <div className="grid md:grid-cols-2 gap-6">
               {features.map((feature, index) => (
                 <div key={index} className="flex items-start space-x-3 p-4">
@@ -152,7 +154,7 @@ const XagCargoMaster = () => {
           <h2 className="text-4xl font-cyber font-bold text-center mb-12">
             <span className="text-neon-green">Especificações</span> Técnicas
           </h2>
-          
+
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <Card className="card-cyber p-6 text-center">
               <div className="text-3xl font-cyber font-bold text-primary mb-2">{specs.flightTime}</div>
@@ -189,7 +191,7 @@ const XagCargoMaster = () => {
           <h2 className="text-4xl font-cyber font-bold text-center mb-12">
             <span className="text-neon-green">Depoimentos</span> <span className="text-white">de Clientes</span>
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {testimonials.map((testimonial, index) => (
               <Card key={index} className="card-cyber-green p-6">
@@ -222,9 +224,9 @@ const XagCargoMaster = () => {
           <p className="text-xl font-tech text-muted-foreground mb-8 max-w-2xl mx-auto">
             Entre em contato conosco e descubra como o XAG Cargo Master pode otimizar suas operações de transporte e entrega.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
+            <Button
               className="btn-cyber text-lg px-8 py-4 group"
               onClick={handleWhatsAppClick}
             >
@@ -232,8 +234,8 @@ const XagCargoMaster = () => {
               Solicitar Orçamento
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="btn-cyber-red text-lg px-8 py-4"
               onClick={() => window.open('mailto:contato@agricampdrones.com')}
             >
