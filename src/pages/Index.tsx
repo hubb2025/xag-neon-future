@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import DroneCarousel from "@/components/DroneCarousel";
 import DroneProductSection from "@/components/DroneProductSection";
 import PartsAccessoriesSection from "@/components/PartsAccessoriesSection";
+import Pecas from "@/components/Pecas";
 import AboutSection from "@/components/AboutSection";
 import AdvantagesSection from "@/components/AdvantagesSection";
 import TrainingSection from "@/components/TrainingSection";
@@ -57,7 +58,7 @@ const Index = () => {
       subtitle: "Precisão Extrema",
       description:
         "O XAG P100 Pro oferece capacidade de 50 L (60 L opcional), cobertura de até 20 hectares por hora e autonomia de 19 minutos. Equipado com sensor Radar 4D e RTK com precisão de ±2,5 cm, garante máxima exatidão nas operações. Com peso de 46 kg, é o modelo intermediário ideal para propriedades médias, reduzindo em até 7% o amassamento da lavoura e otimizando a aplicação de líquidos e sólidos em um único voo, assegurando um ROI consistente e elevado.",
-      image: "/lovable-uploads/a716d702-40cb-40bb-a842-a73475fd5abe.png",
+      image: "/lovable-uploads/e004268f-665d-4e77-a00e-241c47a47044.png",
       badge: "LANÇAMENTO",
       features: [
         "Capacidade 50 L (60 L oficial)",
@@ -83,7 +84,7 @@ const Index = () => {
       subtitle: "Modelo Premium",
       description:
         "O XAG P150 é o drone premium ideal para grandes áreas, com tanque de 100 L, taxa de aplicação de 40 L/min e cobertura de até 22 hectares por hora em 25 minutos de autonomia. Equipado com Radar 4D e RTK com precisão de ±1,5 cm, aliado a um robusto chassi de 65 kg, garante eficiência mesmo em solos desafiadores. Versátil, realiza pulverização líquida e distribuição de sólidos em um único voo, entregando produtividade superior e um retorno de investimento incomparável.",
-      image: "/lovable-uploads/e004268f-665d-4e77-a00e-241c47a47044.png",
+      image: "/lovable-uploads/a716d702-40cb-40bb-a842-a73475fd5abe.png",
       badge: "PROFISSIONAL",
       features: [
         "Capacidade 100 L (115 L oficial)",
@@ -110,6 +111,7 @@ const Index = () => {
       <Header />
       <main className="w-full">
         <HeroSection />
+
         <motion.div
           ref={partsRef.ref}
           initial={{ opacity: 0, y: 50 }}
@@ -118,6 +120,16 @@ const Index = () => {
         >
           <PartsAccessoriesSection />
         </motion.div>
+
+        <motion.div
+          ref={partsRef.ref}
+          initial={{ opacity: 0, y: 50 }}
+          animate={partsRef.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <Pecas />
+        </motion.div>
+
         <section id="drones" className="w-full">
           {droneModels.map((drone, index) => (
             <DroneProductSection

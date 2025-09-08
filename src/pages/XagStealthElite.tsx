@@ -13,7 +13,7 @@ const XagStealthElite = () => {
   );
 
   const handleWhatsAppClick = () => {
-    window.open(`https://wa.me/554884742150?text=${whatsappMessage}`, '_blank');
+    window.open(`https://wa.me/5548984806556?text=${whatsappMessage}`, '_blank');
   };
 
   const specs = {

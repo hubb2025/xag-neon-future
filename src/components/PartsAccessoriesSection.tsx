@@ -68,16 +68,11 @@ const PartsAccessoriesSection = () => {
           className="text-center mb-16"
         >
           <Badge variant="secondary" className="mb-4 text-sm font-semibold">
-            PEÇAS & ACESSÓRIOS
+            Modelos
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-            Equipamentos e Acessórios
+            Drones
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Complete sua operação com nossos equipamentos de alta qualidade, 
-            <span className="text-primary font-semibold"> destacando o gerador Toyama</span> para 
-            máxima autonomia em campo
-          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -147,31 +142,6 @@ const PartsAccessoriesSection = () => {
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center mt-12"
-        >
-          <div className="bg-card/30 backdrop-blur-sm rounded-2xl p-8 border">
-            <h3 className="text-2xl font-bold mb-4">
-              🔧 Precisa de uma peça específica?
-            </h3>
-            <p className="text-muted-foreground mb-6">
-              Nossa equipe técnica pode ajudar você a encontrar exatamente o que precisa
-            </p>
-            <Button 
-              onClick={handleWhatsAppClick}
-              size="lg" 
-              className="bg-primary hover:bg-primary/90"
-            >
-              <Settings className="mr-2 h-5 w-5" />
-              Falar com Especialista
-            </Button>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
