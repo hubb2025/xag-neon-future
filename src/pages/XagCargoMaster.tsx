@@ -201,12 +201,19 @@ const XagCargoMaster = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="btn-cyber text-lg px-8 py-4 group">
+            <Button 
+              className="btn-cyber text-lg px-8 py-4 group"
+              onClick={handleWhatsAppClick}
+            >
               <MessageCircle className="mr-2 h-5 w-5" />
               Solicitar Orçamento
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button variant="outline" className="btn-cyber-red text-lg px-8 py-4">
+            <Button 
+              variant="outline" 
+              className="btn-cyber-red text-lg px-8 py-4"
+              onClick={() => window.open('mailto:contato@agricampdrones.com')}
+            >
               <Mail className="mr-2 h-5 w-5" />
               contato@agricampdrones.com
             </Button>
