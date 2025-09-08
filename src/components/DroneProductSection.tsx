@@ -47,13 +47,13 @@ const DroneProductSection = ({
     let route = '';
     switch(id) {
       case 'XAG P60':
-        route = '/XagPhantomPro';
+        route = '/drones/xag-phantom-pro';
         break;
       case 'XAG P100 PRO':
-        route = '/XagStealthElite';
+        route = '/drones/xag-stealth-elite';
         break;
       case 'XAG P150':
-        route = '/XagCargoMaster';
+        route = '/drones/xag-cargo-master';
         break;
       default:
         route = '/';
