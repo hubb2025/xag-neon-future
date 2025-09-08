@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import DroneCarousel from "@/components/DroneCarousel";
 import DroneProductSection from "@/components/DroneProductSection";
+import PartsAccessoriesSection from "@/components/PartsAccessoriesSection";
 import AboutSection from "@/components/AboutSection";
 import AdvantagesSection from "@/components/AdvantagesSection";
 import TrainingSection from "@/components/TrainingSection";
@@ -17,6 +18,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 const Index = () => {
 
   const advantagesRef = useScrollAnimation();
+  const partsRef = useScrollAnimation();
   const aboutRef = useScrollAnimation();
   const trainingRef = useScrollAnimation();
   const faqRef = useScrollAnimation();
@@ -125,6 +127,15 @@ const Index = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <AdvantagesSection />
+        </motion.div>
+
+        <motion.div
+          ref={partsRef.ref}
+          initial={{ opacity: 0, y: 50 }}
+          animate={partsRef.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <PartsAccessoriesSection />
         </motion.div>
 
         <motion.div
