@@ -6,10 +6,9 @@ import { GraduationCap, Users, Zap, Shield, Award, ArrowRight, BookOpen, Target,
 
 const TrainingSection = () => {
   const handleWhatsAppClick = () => {
-    const message = encodeURIComponent(
-      "Olá! Tenho interesse nos serviços de Treinamento e Consultoria. Gostaria de mais informações sobre os cursos disponíveis."
-    );
-    window.open(`https://wa.me/559684156605?text=${message}`, '_blank');
+    const message = "Olá! Espero que esteja bem. Gostaria de saber mais informações sobre os cursos de pilotagem de drones e consultoria. Poderia me ajudar?";
+    const whatsappUrl = `https://wa.me/5596984156605?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   const services = [

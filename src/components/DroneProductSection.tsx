@@ -36,11 +36,11 @@ const DroneProductSection = ({
   specs
 }: DroneProductSectionProps) => {
   const whatsappMessage = encodeURIComponent(
-    `Olá! Tenho interesse no drone ${title} ${subtitle}. Gostaria de mais informações sobre disponibilidade e condições.`
+    `Olá! Espero que esteja bem. Gostaria de solicitar um orçamento para o drone ${title}. Poderia me enviar mais informações sobre preços e condições de pagamento?`
   );
 
   const handleWhatsAppClick = () => {
-    window.open(`https://wa.me/559684156605?text=${whatsappMessage}`, '_blank');
+    window.open(`https://wa.me/5596984156605?text=${whatsappMessage}`, '_blank');
   };
 
   const handleSpecsClick = () => {

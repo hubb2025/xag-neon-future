@@ -9,11 +9,11 @@ import { CheckCircle, Star, ArrowRight, Phone, Mail, MessageCircle } from "lucid
 
 const XagPhantomPro = () => {
   const whatsappMessage = encodeURIComponent(
-    `Olá! Tenho interesse no drone XAG P60 Pequenas Propriedades. Gostaria de mais informações sobre disponibilidade e condições.`
+    `Olá! Espero que esteja bem. Gostaria de saber mais informações sobre o XAG P60 e solicitar um orçamento personalizado. Poderia me ajudar?`
   );
 
   const handleWhatsAppClick = () => {
-    window.open(`https://wa.me/559684156605?text=${whatsappMessage}`, '_blank');
+    window.open(`https://wa.me/5596984156605?text=${whatsappMessage}`, '_blank');
   };
 
   const specs = {
@@ -84,7 +84,8 @@ const XagPhantomPro = () => {
                   Comprar Agora
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
-                <Button variant="outline" className="btn-cyber-red text-lg px-8 py-4">
+                <Button variant="outline" className="btn-cyber-red text-lg px-8 py-4"
+                  onClick={handleWhatsAppClick}>
                   <Phone className="mr-2 h-5 w-5" />
                   Falar com Especialista
                 </Button>
