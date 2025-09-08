@@ -70,7 +70,7 @@ const Index = () => {
       specs: {
         flightTime: "75min",
         range: "25km",
-        payload: "3kg",
+        payload: "50kg",
         camera: "8K+IR",
         capacity: "50L",
         coverage: "15ha/h",
@@ -96,11 +96,11 @@ const Index = () => {
       specs: {
         flightTime: "55min",
         range: "20km",
-        payload: "50kg",
+        payload: "65kg",
         camera: "4K/30fps",
         capacity: "100L",
         coverage: "10ha/h",
-        weight: "50kg",
+        weight: "65kg",
       },
     },
   ];
