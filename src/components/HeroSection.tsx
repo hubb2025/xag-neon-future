@@ -48,14 +48,20 @@ const HeroSection = () => {
   }, [hasAnimated]);
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      />
+      {/* YouTube Video Background */}
+      <div className="absolute inset-0 w-full h-full">
+        <iframe
+          className="absolute top-1/2 left-1/2 w-[300%] h-[300%] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+          src="https://www.youtube.com/embed/McMtw78RVN4?autoplay=1&mute=1&loop=1&playlist=McMtw78RVN4&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1"
+          title="Hero Background Video"
+          frameBorder="0"
+          allow="autoplay; encrypted-media"
+          allowFullScreen
+        />
+      </div>
 
       {/* Dark overlay for better text contrast */}
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-black/60" />
 
       {/* Animated Background Grid - Disabled to prevent flickering */}
 
