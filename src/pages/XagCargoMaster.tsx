@@ -9,7 +9,7 @@ import { CheckCircle, Star, ArrowRight, Phone, Mail, MessageCircle } from "lucid
 
 const XagCargoMaster = () => {
   const whatsappMessage = encodeURIComponent(
-    `Olá! Tenho interesse no drone XAG CARGO MASTER CLASS. Gostaria de mais informações sobre disponibilidade e condições.`
+    `Olá! Tenho interesse no drone XAG P150 Modelo Premium. Gostaria de mais informações sobre disponibilidade e condições.`
   );
 
   const handleWhatsAppClick = () => {
@@ -19,11 +19,11 @@ const XagCargoMaster = () => {
   const specs = {
     flightTime: "55min",
     range: "20km",
-    payload: "10kg",
+    payload: "50kg",
     camera: "4K/30fps",
-    capacity: "20L",
+    capacity: "100L",
     coverage: "10ha/h",
-    weight: "35kg"
+    weight: "50kg"
   };
 
   const features = [
@@ -69,10 +69,10 @@ const XagCargoMaster = () => {
                 <h1 className="text-5xl md:text-7xl font-cyber font-black leading-tight">
                   <span className="text-neon-green">XAG P150</span>
                   <br />
-                  <span className="text-foreground">MASTER CLASS</span>
+                  <span className="text-foreground">Modelo Premium</span>
                 </h1>
                 <p className="text-xl font-tech leading-relaxed text-muted-foreground mt-6">
-                  Especialmente desenvolvido para transporte de cargas pesadas e entregas comerciais em larga escala.
+                  O XAG P150 é o drone premium ideal para grandes áreas, com tanque de 100 L, taxa de aplicação de 40 L/min e cobertura de até 22 hectares por hora em 25 minutos de autonomia. Equipado com Radar 4D e RTK com precisão de ±1,5 cm.
                 </p>
               </div>
               

@@ -44,7 +44,21 @@ const DroneProductSection = ({
   };
 
   const handleSpecsClick = () => {
-    window.location.href = `/drones/${id}`;
+    let route = '';
+    switch(id) {
+      case 'XAG P60':
+        route = '/XagPhantomPro';
+        break;
+      case 'XAG P100 PRO':
+        route = '/XagStealthElite';
+        break;
+      case 'XAG P150':
+        route = '/XagCargoMaster';
+        break;
+      default:
+        route = '/';
+    }
+    window.location.href = route;
   };
   // Alternar entre verde (0,2,4...) e branco (1,3,5...)
   const sectionClass = isReversed ? 'section-light' : 'section-green';

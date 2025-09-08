@@ -9,7 +9,7 @@ import { CheckCircle, Star, ArrowRight, Phone, Mail, MessageCircle } from "lucid
 
 const XagPhantomPro = () => {
   const whatsappMessage = encodeURIComponent(
-    `Olá! Tenho interesse no drone XAG PHANTOM PRO SERIES. Gostaria de mais informações sobre disponibilidade e condições.`
+    `Olá! Tenho interesse no drone XAG P60 Pequenas Propriedades. Gostaria de mais informações sobre disponibilidade e condições.`
   );
 
   const handleWhatsAppClick = () => {
@@ -19,7 +19,7 @@ const XagPhantomPro = () => {
   const specs = {
     flightTime: "65min",
     range: "15km",
-    payload: "5kg",
+    payload: "25kg",
     camera: "8K/60fps",
     capacity: "16L",
     coverage: "12ha/h",
@@ -69,10 +69,10 @@ const XagPhantomPro = () => {
                 <h1 className="text-5xl md:text-7xl font-cyber font-black leading-tight">
                   <span className="text-neon-green">XAG P60</span>
                   <br />
-                  <span className="text-white">PRO SERIES</span>
+                  <span className="text-white">Pequenas Propriedades</span>
                 </h1>
                 <p className="text-xl font-tech leading-relaxed text-white/90 mt-6">
-                  O drone mais avançado para operações comerciais e de vigilância. Equipado com tecnologia de ponta e sistema de navegação autônoma.
+                  O XAG P60 é o drone ideal para quem inicia no agronegócio. Com capacidade de 30 L, cobre até 12 hectares por hora e oferece autonomia de 12 minutos. Equipado com sensor Radar 4D e design compacto de apenas 25 kg, reduz custos operacionais e o amassamento da lavoura.
                 </p>
               </div>
               
