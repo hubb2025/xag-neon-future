@@ -54,8 +54,29 @@ const XagPhantomPro = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
+      {/* Video Section */}
+      <section className="pt-24 pb-8 section-light">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-cyber font-bold text-center mb-8">
+            <span className="text-neon-green">Vídeo</span> Demonstração
+          </h2>
+          <div className="max-w-4xl mx-auto">
+            <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl">
+              <iframe
+                src="https://www.youtube.com/embed/Lk5coJRNWJQ?si=N6irfscESCgB6Izo"
+                title="XAG P60 Demonstração"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Hero Section */}
-      <section className="pt-24 pb-16 section-green relative overflow-hidden">
+      <section className="pt-16 pb-16 section-green relative overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-30"></div>
         <div className="cyber-corner absolute inset-0 opacity-40"></div>
         

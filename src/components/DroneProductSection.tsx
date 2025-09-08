@@ -173,17 +173,10 @@ const DroneProductSection = ({
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
                   className="btn-cyber text-lg px-8 py-4 group"
-                  onClick={handleWhatsAppClick}
-                >
-                  Comprar Agora
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <Button 
-                  variant="outline" 
-                  className="btn-cyber-red text-lg px-8 py-4"
                   onClick={handleSpecsClick}
                 >
-                  Ver Especificações
+                  Saiba Mais
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </div>
               
