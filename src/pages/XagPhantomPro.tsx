@@ -11,7 +11,7 @@ import demoVideo from "@/assets/xagp60.mp4"
 
 const XagPhantomPro = () => {
   const whatsappMessage = encodeURIComponent(
-    "Olá, desejo um atendimento!"
+    "Olá, gostaria de obter mais informações sobre o XAG P60!"
   );
 
   const handleWhatsAppClick = () => {

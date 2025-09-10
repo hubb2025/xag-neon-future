@@ -36,7 +36,7 @@ const DroneProductSection = ({
   specs
 }: DroneProductSectionProps) => {
   const whatsappMessage = encodeURIComponent(
-    `Olá, desejo um atendimento!`
+    `Olá, gostaria de obter mais informações sobre o ${title}!`
   );
 
   const handleWhatsAppClick = () => {

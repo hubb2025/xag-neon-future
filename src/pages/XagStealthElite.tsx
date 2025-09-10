@@ -9,7 +9,7 @@ import { CheckCircle, Star, ArrowRight, Phone, Mail, MessageCircle } from "lucid
 
 const XagStealthElite = () => {
   const whatsappMessage = encodeURIComponent(
-    "Olá, desejo um atendimento!"
+    "Olá, gostaria de obter mais informações sobre o XAG P100 PRO!"
   );
 
   const handleWhatsAppClick = () => {

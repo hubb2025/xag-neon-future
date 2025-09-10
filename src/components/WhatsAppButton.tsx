@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const WhatsAppButton = () => {
   const whatsappNumber = "5548984806556"; // Número do WhatsApp
-  const message = "Olá, desejo um atendimento!";
+  const message = "Olá, gostaria de obter mais informações sobre os drones XAG!";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
   return (
