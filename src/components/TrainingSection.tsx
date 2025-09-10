@@ -6,8 +6,8 @@ import { GraduationCap, Users, Zap, Shield, Award, ArrowRight, BookOpen, Target,
 
 const TrainingSection = () => {
   const handleWhatsAppClick = () => {
-    const message = "Olá! Espero que esteja bem. Gostaria de saber mais informações sobre os cursos de pilotagem de drones e consultoria. Poderia me ajudar?";
-    const whatsappUrl = `https://wa.me/554884742150?text=${encodeURIComponent(message)}`;
+    const message = "Olá, desejo um atendimento!";
+    const whatsappUrl = `https://wa.me/5548984806556?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 

@@ -6,8 +6,8 @@ import { Zap, Shield, Settings, Wrench } from "lucide-react";
 
 const Pecas = () => {
     const handleWhatsAppClick = (productName: string) => {
-        const phoneNumber = "559684156605";
-        const message = `Olá! Gostaria de solicitar um orçamento para o ${productName}. Poderia me enviar mais informações sobre preços e condições?`;
+        const phoneNumber = "5548984806556";
+        const message = `Olá, desejo um atendimento!`;
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, "_blank");
     };

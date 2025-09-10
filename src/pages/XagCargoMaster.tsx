@@ -11,7 +11,7 @@ import demoVideo from "@/assets/XAG P150.mp4"
 
 const XagCargoMaster = () => {
   const whatsappMessage = encodeURIComponent(
-    `Olá! Espero que esteja bem. Gostaria de saber mais informações sobre o XAG P150 e solicitar um orçamento personalizado. Poderia me ajudar?`
+    "Olá, desejo um atendimento!"
   );
 
   const handleWhatsAppClick = () => {
