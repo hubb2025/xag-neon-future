@@ -41,7 +41,7 @@ const Footer = () => {
               <img
                 src="/lovable-uploads/logo-comprida-drone__1_-removebg-preview.png"
                 alt="DRONES Xag Logo"
-                className="h-12 w-auto"
+                className="h-16 w-auto"  // antes era h-12
               />
             </div>
 

@@ -14,7 +14,7 @@ const TrainingSection = () => {
   const services = [
     {
       icon: <GraduationCap className="h-8 w-8" />,
-      title: "Curso de Aplicacao aeroagricola remota CAAR Certificado pelo MAPA",
+      title: "Curso de Aplicacao Aeroagricola Remota CAAR Certificado Pelo MAPA",
       description: "Aprenda os fundamentos da pilotagem de drones com segurança e eficiência.",
       duration: "40h",
       level: "Iniciante",

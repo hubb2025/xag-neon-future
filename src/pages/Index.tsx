@@ -97,7 +97,7 @@ const Index = () => {
       specs: {
         flightTime: "25min",
         range: "20km",
-        payload: "100 Litros",
+        payload: "70 Litros",
         camera: "4K/30fps",
         capacity: "100L",
         coverage: "10ha/h",
