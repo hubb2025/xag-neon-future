@@ -5,9 +5,9 @@ import { Badge } from "@/components/ui/badge";
 import { Zap, Shield, Settings, Wrench } from "lucide-react";
 
 const PartsAccessoriesSection = () => {
-  const handleWhatsAppClick = () => {
-    const phoneNumber = "554884742150";
-    const message = "Olá! Gostaria de saber mais sobre o Drone"; 
+  const handleWhatsAppClick = (productName: string) => {
+    const phoneNumber = "559684156605";
+    const message = `Olá! Gostaria de solicitar um orçamento para o ${productName}. Poderia me enviar mais informações sobre preços e condições?`; 
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
   };
@@ -24,8 +24,7 @@ const PartsAccessoriesSection = () => {
         "Taxa de fluxo: 16 L/min",
         "Autonomia: 12 minutos",
         "30 Litros"
-      ],
-      price: "R$ 2.899,00"
+      ]
     },
     {
       id: 2,
@@ -38,8 +37,7 @@ const PartsAccessoriesSection = () => {
         "Taxa de aplicação de 22 L/min",
         "IA para detecção de obstáculos",
         "50 Litros"
-      ],
-      price: "R$ 1.599,00"
+      ]
     },
     {
       id: 3,
@@ -52,8 +50,7 @@ const PartsAccessoriesSection = () => {
         "Taxa de aplicação de 30 L/min",
         "IA para detecção de obstáculos",
         "100 Litros"
-      ],
-      price: "R$ 3.299,00"
+      ]
     }
   ];
 
@@ -123,19 +120,23 @@ const PartsAccessoriesSection = () => {
                     ))}
                   </div>
 
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-2xl font-bold text-primary">{item.price}</span>
-                    {item.category === "DESTAQUE" && (
-                      <Shield className="h-5 w-5 text-green-500" />
-                    )}
+                  <div className="flex items-center justify-center mb-4">
+                    <div className="text-center">
+                      <span className="text-lg font-bold text-primary">Solicite seu Orçamento</span>
+                      {item.category === "DESTAQUE" && (
+                        <div className="flex justify-center mt-1">
+                          <Shield className="h-5 w-5 text-green-500" />
+                        </div>
+                      )}
+                    </div>
                   </div>
 
                   <Button 
-                    onClick={handleWhatsAppClick}
+                    onClick={() => handleWhatsAppClick(item.name)}
                     className="w-full bg-green-600 hover:bg-green-700 text-white"
                   >
                     <Wrench className="mr-2 h-4 w-4" />
-                    Consultar
+                    Solicitar Orçamento
                   </Button>
                 </CardContent>
               </Card>

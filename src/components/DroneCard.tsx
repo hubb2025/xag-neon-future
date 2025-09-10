@@ -79,21 +79,14 @@ const DroneCard = ({
           ))}
         </div>
 
-        {/* Price */}
-        <div className="flex items-center justify-between">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl font-cyber font-bold text-neon-green">
-                {price}
-              </span>
-              {originalPrice && (
-                <span className="text-sm text-muted-foreground line-through">
-                  {originalPrice}
-                </span>
-              )}
+        {/* Call to Action */}
+        <div className="flex items-center justify-center">
+          <div className="text-center space-y-2">
+            <div className="text-lg font-cyber font-bold text-neon-green">
+              Solicite seu Orçamento
             </div>
             <div className="text-xs text-muted-foreground font-tech">
-              ou 12x sem juros
+              Consulte preços e condições especiais
             </div>
           </div>
         </div>
@@ -102,10 +95,7 @@ const DroneCard = ({
         <div className="flex gap-2 pt-2">
           <Button className="btn-cyber flex-1">
             <ShoppingCart className="mr-2 h-4 w-4" />
-            Comprar
-          </Button>
-          <Button variant="outline" className="btn-cyber-red">
-            Detalhes
+            Consultar Preço
           </Button>
         </div>
       </CardContent>
