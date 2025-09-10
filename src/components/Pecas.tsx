@@ -28,28 +28,29 @@ const Pecas = () => {
         },
         {
             id: 2,
-            name: "XAG P100 PRO",
-            category: "Drone",
+            name: "Reboque Para Operção com Drone Comprimento útil em torno de 3,50M",
+            category: "Reboque",
             description: "Precisão Extrema",
-            image: "/lovable-uploads/e004268f-665d-4e77-a00e-241c47a47044.png",
+            image: "/lovable-uploads/reboque.jpg",
             features: [
-                "Capacidade 50 L (60 L oficial)",
-                "Taxa de aplicação de 22 L/min",
-                "IA para detecção de obstáculos",
-                "50 Litros"
+                "Largura aproximada de 2M",
+                "Altura interna em torno de 2M",
+                "Capacidade de carga até 1.500kg",
+                "Eixo duplo para maior estabilidade"
             ]
         },
         {
             id: 3,
-            name: "XAG P150",
-            category: "Drone",
+            name: "Misturador de calda de 300 Litros Abastecimento com filtro",
+            category: "Misturador de calda",
             description: "Modelo Premium",
-            image: "/lovable-uploads/a716d702-40cb-40bb-a842-a73475fd5abe.png",
+            image: "/lovable-uploads/mistura-removebg-preview.png",
             features: [
-                "Capacidade 100 L (115 L oficial)",
-                "Taxa de aplicação de 30 L/min",
-                "IA para detecção de obstáculos",
-                "100 Litros"
+                "Lava frasco",
+                "Alças para transporte e para mangueira de abastecimento",
+                "Dimensões A × L × P ",
+                "140cm x 70cm x 70cm ",
+                "Peso: 50 kg"
             ]
         }
     ];
@@ -91,8 +92,9 @@ const Pecas = () => {
                                     <img
                                         src={item.image}
                                         alt={item.name}
-                                        className="w-full h-48 object-contain p-2 transition-transform duration-500 group-hover:scale-105"
+                                        className="w-[100%] h-[300px] object-contain p-2 transition-transform duration-500 group-hover:scale-105"
                                     />
+
                                     <div className="absolute top-4 left-4">
                                         <Badge
                                             variant={item.category === "DESTAQUE" ? "default" : "secondary"}

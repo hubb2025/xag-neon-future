@@ -185,11 +185,11 @@ const ContactForm = () => {
               <CardContent className="space-y-4">
                 <div className="flex justify-between">
                   <span className="font-tech text-white/70">Segunda - Sexta</span>
-                  <span className="text-white">9:00 - 18:00</span>
+                  <span className="text-white">8:30 - 18:00</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-tech text-white/70">Sábado</span>
-                  <span className="text-white">9:00 - 14:00</span>
+                  <span className="text-white">8:30 - 12:00</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-tech text-white/70">Domingo</span>

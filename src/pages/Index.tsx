@@ -87,7 +87,7 @@ const Index = () => {
       image: "/lovable-uploads/a716d702-40cb-40bb-a842-a73475fd5abe.png",
       badge: "PROFISSIONAL",
       features: [
-        "Capacidade 100 L (115 L oficial)",
+        "Capacidade 70L",
         "Taxa de aplicação de 30 L/min",
         "Carga útil de pulverização de 65 kg",
         "Radar 4D + RTK + precisão 2,5 cm",

@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Twitter, Youtube, Mail, Phone, MapPin, Zap } from "lucide-react";
+import { Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -12,11 +12,12 @@ const Footer = () => {
   ];
 
   const categories = [
-    { name: "Drones de Vigilância", href: "#" },
-    { name: "Drones de Racing", href: "#" },
-    { name: "Drones de Entrega", href: "#" },
-    { name: "Drones Profissionais", href: "#" },
-    { name: "Acessórios", href: "#" }
+    { name: "Drones", href: "#" },
+    { name: "Geradores", href: "#" },
+    { name: "Misturadores", href: "#" },
+    { name: "Peças", href: "#" },
+    { name: "Reboques", href: "#" },
+    { name: "Treinamentos", href: "#" }
   ];
 
   const support = [
@@ -34,16 +35,14 @@ const Footer = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Main Footer Content */}
-        <div className="py-16 grid lg:grid-cols-4 md:grid-cols-2 gap-12">
+        <div className="py-16 grid lg:grid-cols-4 md:grid-cols-2 gap-12 items-start">
           {/* Company Info */}
-          <div className="space-y-6">
-            <div className="flex items-center space-x-3">
-              <img
-                src="/lovable-uploads/logo-comprida-drone__1_-removebg-preview.png"
-                alt="DRONES Xag Logo"
-                className="h-16 w-auto"  // antes era h-12
-              />
-            </div>
+          <div className="flex flex-col items-start space-y-6">
+            <img
+              src="/lovable-uploads/logo-comprida-drone__1_-removebg-preview.png"
+              alt="DRONES Xag Logo"
+              className="h-[80px] w-auto mb-[20px]"
+            />
 
             <p className="text-muted-foreground font-tech leading-relaxed">
               A mais avançada concessionária de drones do Brasil, oferecendo tecnologia de ponta
@@ -52,17 +51,23 @@ const Footer = () => {
 
             {/* Social Media */}
             <div className="flex space-x-4">
-              <a href="https://www.instagram.com/agricamp.drones?igsh=MWdxZzU0MTdxM2xudg%3D%3D" className="p-3 bg-primary/10 hover:bg-primary/20 rounded-lg border border-primary/30 transition-colors group">
+              <a
+                href="https://www.instagram.com/agricamp.drones?igsh=MWdxZzU0MTdxM2xudg%3D%3D"
+                className="p-3 bg-primary/10 hover:bg-primary/20 rounded-lg border border-primary/30 transition-colors group"
+              >
                 <Instagram className="h-5 w-5 text-primary group-hover:text-neon-green" />
               </a>
-              <a href="https://youtube.com/@xag_official?si=QaIflyiDj2GAy8No" className="p-3 bg-primary/10 hover:bg-primary/20 rounded-lg border border-primary/30 transition-colors group">
+              <a
+                href="https://youtube.com/@xag_official?si=QaIflyiDj2GAy8No"
+                className="p-3 bg-primary/10 hover:bg-primary/20 rounded-lg border border-primary/30 transition-colors group"
+              >
                 <Youtube className="h-5 w-5 text-primary group-hover:text-neon-green" />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
-          <div className="space-y-6">
+          <div className="flex flex-col items-start space-y-6">
             <h3 className="text-xl font-cyber font-bold text-neon-green">
               NAVEGAÇÃO
             </h3>
@@ -81,7 +86,7 @@ const Footer = () => {
           </div>
 
           {/* Categories */}
-          <div className="space-y-6">
+          <div className="flex flex-col items-start space-y-6">
             <h3 className="text-xl font-cyber font-bold text-neon-red">
               CATEGORIAS
             </h3>
@@ -100,18 +105,22 @@ const Footer = () => {
           </div>
 
           {/* Contact & Support */}
-          <div className="space-y-6">
+          <div className="flex flex-col items-start space-y-6">
             <h3 className="text-xl font-cyber font-bold text-neon-green">
               CONTATO
             </h3>
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-primary flex-shrink-0" />
-                <span className="text-muted-foreground font-tech">+55 (48) 98480-6556</span>
+                <span className="text-muted-foreground font-tech">
+                  +55 (48) 98480-6556
+                </span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-primary flex-shrink-0" />
-                <span className="text-muted-foreground font-tech">comercial@dronesxag.com.br</span>
+                <span className="text-muted-foreground font-tech">
+                  comercial@dronesxag.com.br
+                </span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-primary flex-shrink-0" />
@@ -124,7 +133,9 @@ const Footer = () => {
             </div>
 
             <div className="space-y-3">
-              <h4 className="font-tech font-semibold text-foreground">SUPORTE 24/7</h4>
+              <h4 className="font-tech font-semibold text-foreground">
+                SUPORTE 24/7
+              </h4>
               {support.slice(0, 3).map((item) => (
                 <a
                   key={item.name}
@@ -169,16 +180,28 @@ const Footer = () => {
               © {currentYear} DroneXag. Todos os direitos reservados.
             </p>
             <div className="flex flex-wrap gap-6 text-sm">
-              <a href="/politica-privacidade" className="text-muted-foreground hover:text-primary transition-colors font-tech">
+              <a
+                href="/politica-privacidade"
+                className="text-muted-foreground hover:text-primary transition-colors font-tech"
+              >
                 Política de Privacidade
               </a>
-              <a href="/termos-uso" className="text-muted-foreground hover:text-primary transition-colors font-tech">
+              <a
+                href="/termos-uso"
+                className="text-muted-foreground hover:text-primary transition-colors font-tech"
+              >
                 Termos de Uso
               </a>
-              <a href="/politica-cookies" className="text-muted-foreground hover:text-primary transition-colors font-tech">
+              <a
+                href="/politica-cookies"
+                className="text-muted-foreground hover:text-primary transition-colors font-tech"
+              >
                 Cookies
               </a>
-              <a href="/contrato-servicos" className="text-muted-foreground hover:text-primary transition-colors font-tech">
+              <a
+                href="/contrato-servicos"
+                className="text-muted-foreground hover:text-primary transition-colors font-tech"
+              >
                 Contrato
               </a>
             </div>

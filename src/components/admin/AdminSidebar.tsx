@@ -30,7 +30,7 @@ import { useAuth } from "@/hooks/useAuth";
 const menuItems = [
   { title: "Dashboard", url: "/admin", icon: LayoutDashboard },
   { title: "Contratos", url: "/admin/contracts", icon: Package },          // Nova aba
-  { title: "Análise de Créditos", url: "/admin/credit-analysis", icon: Package }, // Nova aba
+  { title: "Análise de Crédito", url: "/admin/credit-analysis", icon: Package }, // Nova aba
   { title: "Clientes", url: "/admin/customers", icon: Users },
   { title: "Drones", url: "/admin/drones", icon: Plane },
   { title: "Vendas", url: "/admin/orders", icon: ShoppingCart },
@@ -63,13 +63,13 @@ export function AdminSidebar() {
           {/* Header */}
           <div className="admin-header">
             <div className="admin-header-content">
-              <div className="admin-logo">
-                <Plane className="admin-logo-icon" />
-              </div>
               {!collapsed && (
-                <div className="admin-brand">
-                  <h2 className="admin-brand-title">DroneXag</h2>
-                  <p className="admin-brand-subtitle">Painel Administrativo</p>
+                <div className="admin-brand flex items-center space-x-2">
+                  <img
+                    src="lovable-uploads/logo-comprida-drone__1_-removebg-preview.png"
+                    alt="DroneXag Logo"
+                    className="h-[60px] w-[200px]" // altura 60px e largura 200px
+                  />
                 </div>
               )}
             </div>
