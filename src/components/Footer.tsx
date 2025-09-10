@@ -52,16 +52,10 @@ const Footer = () => {
 
             {/* Social Media */}
             <div className="flex space-x-4">
-              <a href="#" className="p-3 bg-primary/10 hover:bg-primary/20 rounded-lg border border-primary/30 transition-colors group">
-                <Facebook className="h-5 w-5 text-primary group-hover:text-neon-green" />
-              </a>
               <a href="https://www.instagram.com/agricamp.drones?igsh=MWdxZzU0MTdxM2xudg%3D%3D" className="p-3 bg-primary/10 hover:bg-primary/20 rounded-lg border border-primary/30 transition-colors group">
                 <Instagram className="h-5 w-5 text-primary group-hover:text-neon-green" />
               </a>
-              <a href="#" className="p-3 bg-primary/10 hover:bg-primary/20 rounded-lg border border-primary/30 transition-colors group">
-                <Twitter className="h-5 w-5 text-primary group-hover:text-neon-green" />
-              </a>
-              <a href="#" className="p-3 bg-primary/10 hover:bg-primary/20 rounded-lg border border-primary/30 transition-colors group">
+              <a href="https://youtube.com/@xag_official?si=QaIflyiDj2GAy8No" className="p-3 bg-primary/10 hover:bg-primary/20 rounded-lg border border-primary/30 transition-colors group">
                 <Youtube className="h-5 w-5 text-primary group-hover:text-neon-green" />
               </a>
             </div>
@@ -113,7 +107,7 @@ const Footer = () => {
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-primary flex-shrink-0" />
-                <span className="text-muted-foreground font-tech">+55 (48)8480-6556</span>
+                <span className="text-muted-foreground font-tech">+55 (48) 98480-6556</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-primary flex-shrink-0" />
