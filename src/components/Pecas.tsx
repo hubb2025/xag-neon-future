@@ -28,7 +28,7 @@ const Pecas = () => {
         },
         {
             id: 2,
-            name: "Reboque Para Operção com Drone Comprimento útil em torno de 3,50M",
+            name: "Reboque Para Operação com Drone Comprimento útil em torno de 3,50M",
             category: "Reboque",
             description: "Precisão Extrema",
             image: "/lovable-uploads/reboque.jpg",
@@ -49,8 +49,7 @@ const Pecas = () => {
                 "Lava frasco",
                 "Alças para transporte e para mangueira de abastecimento",
                 "Dimensões A × L × P ",
-                "140cm x 70cm x 70cm ",
-                "Peso: 50 kg"
+                "140cm x 70cm x 70cm",
             ]
         }
     ];
