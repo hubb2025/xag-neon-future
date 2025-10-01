@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DRONES Xag - Concessionária de Drones</title>
+  <title>DRONES Xag - Concessionária de Drones Futurista</title>
   <meta name="description"
     content="DRONES Xag - A mais avançada concessionária de drones com tecnologia cyberpunk e designs futuristas" />
   <meta name="author" content="DRONES Xag" />
@@ -22,165 +22,41 @@
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 
-  <!-- Chatbot TemplyIA Personalizado -->
-  <style data-filename="pages/EmbeddableChatbot" data-linenumber="96"
-    data-visual-selector-id="pages/EmbeddableChatbot96">
-    /* Container do Chatbot */
-    #temply-chatbot {
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      width: 550px;
-      height: 90vh;
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      z-index: 9999;
-      transition: all 0.3s ease-in-out;
-      display: none;
-      font-family: Inter, sans-serif;
-      font-size: 14px;
-      background-color: #f8fafc;
-      overflow: hidden;
-    }
+  <!-- Botão WhatsApp Flutuante -->
+  <a href="https://wa.me/5548984806556?text=Olá,%20desejo%20um%20atendimento!" class="whatsapp-float" target="_blank"
+    aria-label="Atendimento via WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+  </a>
 
-    /* Responsividade */
-    @media (max-width: 768px) {
-      #temply-chatbot {
-        width: 90%;
-        height: 80vh;
-        bottom: 70px;
-        right: 5%;
-        left: 5%;
-      }
-    }
-
-    /* Botão principal do chatbot */
-    #chatbot-toggle {
+  <style>
+    .whatsapp-float {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #00fe91;
-      color: #fff;
-      border: none;
+      width: 60px;
+      height: 60px;
+      bottom: 100px;
+      /* Aumente este valor para levantar o ícone */
+      right: 31px;
+      background-color: #25D366;
       border-radius: 50%;
-      width: 70px;
-      height: 70px;
-      font-size: 32px;
-      cursor: pointer;
-      z-index: 10000;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-      transition: transform 0.2s;
+      transition: transform 0.3s ease;
     }
 
-    #chatbot-toggle:hover {
-      transform: scale(1.1);
-    }
-
-    /* Botão de minimizar */
-    #chatbot-minimize {
-      position: fixed;
-      bottom: calc(90vh + 90px);
-      /* Ajustado para estar acima do iframe */
-      right: 25px;
-      background: #FF4B4B;
-      color: #fff;
-      border: none;
-      border-radius: 50%;
+    .whatsapp-float img {
       width: 35px;
       height: 35px;
-      font-size: 20px;
-      cursor: pointer;
-      z-index: 10001;
-      display: none;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
-    @media (max-width: 768px) {
-      #chatbot-minimize {
-        bottom: calc(80vh + 80px);
-        /* Ajustado para mobile */
-        right: 8%;
-      }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
     }
   </style>
 
-  <!-- Botão principal do chat -->
-  <button data-filename="pages/EmbeddableChatbot" data-linenumber="179"
-    data-visual-selector-id="pages/EmbeddableChatbot179" id="chatbot-toggle"
-    title="Abrir Chat de Atendimento">👋</button>
-
-  <!-- Iframe do Chatbot com Parâmetros de Estilo -->
-  <iframe data-filename="pages/EmbeddableChatbot" data-linenumber="182"
-    data-visual-selector-id="pages/EmbeddableChatbot182" id="temply-chatbot"
-    src="https://preview--temply-5680f369.base44.app/PublicChat?businessId=68acdabb84fdb66d960e2097&style=custom&primaryColor=%2300fe91&bgColor=%23f8fafc&userMsgColor=%233b82f6&botMsgColor=%23f1f5f9&inputBgColor=%23ffffff&inputBorderColor=%23e2e8f0&sendBtnColor=%2310b981&borderRadius=12px&fontFamily=Inter%2C%20sans-serif&fontSize=14px&userTextColor=%23ffffff&botTextColor=%23334155&headerTextColor=%23ffffff"
-    title="Chat TemplyIA - CyberSfaecorp" allow="microphone; camera; geolocation"></iframe>
-
-  <!-- Botão de minimizar -->
-  <button data-filename="pages/EmbeddableChatbot" data-linenumber="189"
-    data-visual-selector-id="pages/EmbeddableChatbot189" id="chatbot-minimize" title="Minimizar Chat">✖</button>
-
-  <script data-filename="pages/EmbeddableChatbot" data-linenumber="191"
-    data-visual-selector-id="pages/EmbeddableChatbot191">
-      (function () {
-        const chatbot = document.getElementById('temply-chatbot');
-        const toggleBtn = document.getElementById('chatbot-toggle');
-        const minimizeBtn = document.getElementById('chatbot-minimize');
-
-        // Verificar se os elementos existem
-        if (!chatbot || !toggleBtn || !minimizeBtn) {
-          console.error('TemplyIA: Elementos do chatbot não encontrados');
-          return;
-        }
-
-        // Abrir chatbot
-        toggleBtn.addEventListener('click', () => {
-          chatbot.style.display = "block";
-          minimizeBtn.style.display = "block";
-          toggleBtn.style.display = "none";
-
-          // Enviar evento para analytics (opcional)
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'chat_opened', {
-              event_category: 'engagement',
-              event_label: 'temply_chatbot'
-            });
-          }
-        });
-
-        // Minimizar chatbot
-        minimizeBtn.addEventListener('click', () => {
-          chatbot.style.display = "none";
-          minimizeBtn.style.display = "none";
-          toggleBtn.style.display = "flex";
-
-          // Enviar evento para analytics (opcional)
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'chat_minimized', {
-              event_category: 'engagement',
-              event_label: 'temply_chatbot'
-            });
-          }
-        });
-
-        // **CORREÇÃO: Escutar mensagem para fechar o chat a partir do iframe**
-        window.addEventListener('message', function (event) {
-          if (event.data === 'close_chat') {
-            chatbot.style.display = 'none';
-            minimizeBtn.style.display = 'none';
-            toggleBtn.style.display = 'flex';
-          } else if (event.data && event.data.type === 'temply-notification') {
-            // Você pode implementar notificações visuais aqui
-            console.log('Nova mensagem do TemplyIA:', event.data.message);
-          }
-        });
-      })();
-    </script>
-
-  <!-- Fim do Código do Chatbot TemplyIA -->
 </body>
 
 </html>
